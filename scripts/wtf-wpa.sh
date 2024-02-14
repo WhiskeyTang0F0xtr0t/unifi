@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###################################### 
-# wtf_wpa v3.1
+# wtf-wpa v3.1
 #
 # Check/repair/install the wpa_supplicant setup on UDM hardware
 #
