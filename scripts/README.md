@@ -9,7 +9,7 @@
 A non-destructive script to verify the disposition of the wpa_supplicant system service.
 The script will output formatted status messages and all errors to the logfile
 
-Usage
+### Usage
 ```
 ./wtf-check-wpasupp.sh
 ```
@@ -28,9 +28,22 @@ Workflow Breakdown - Main scripts actions
 ## wtf-install-wpasupp.sh
 
 A non-destructive script to verify the disposition of the wpa_supplicant system service.
-The script will output formatted status messages and all errors to the logfile
+The script will output formatted status messages and all errors to the log file.
 
-Usage
+### Backup folder structure
+The "backup" folder will need to copied over to your hardware and accessable by the user running the script. Mine is /root/config
+
+$backupPath
+```
+./libpcsclite1_1.9.1-1_arm64.deb
+./wpasupplicant_2.9.0-21_arm64.deb
+./CA.pem
+./Client.pem
+./PrivateKey.pem
+./wpa_supplicant.conf (Optional. Can be created if not found)
+```
+
+### Usage
 ```
 ./wtf-install-wpasupp.sh
 ```
@@ -40,7 +53,7 @@ Workflow Breakdown - Main scripts actions
 3. Check for deb packages (functions: `check-for-debpkg`)
 4. Check for required directories (functions: `check-backupPath` `check-destPaths`)
 5. Verify if certificates exist (functions: `check-for-pems`)
-6. Check for wpa_supplicant.conf (functions: `check-wpasupp-conf`)
+6. Check fir wpa_supplicant.conf and create if not found (functions: `check-wpasupp-conf`)
 7. Check wpa_supplicant service & activate (functions: `check-wpa-supp-installed` `check-wpa-supp-active`)
    1. If wpa_supplicant service is not found, install & configure (functions: `install-wpa-supp`)
 8. Test internet connectivity with to google.com:80 (functions: `netcat-test`)
