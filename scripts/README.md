@@ -1,1 +1,46 @@
-[wtf-check-wpasupp.sh](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/scripts/wtf-check-wpasupp.sh)
+# Scripts
+
+> [!NOTE]
+> - I tried to put as much into functions as possible for portability and the potential for others to reuse.
+> - I'm sure they're over engineered and/or poorly coded, but I enjoyed the exercise.
+
+## wtf-check-wpasupp.sh
+
+A non-destructive script to verify the disposition of the wpa_supplicant system service.
+The script will output formatted status messages and all errors to the logfile
+
+Usage
+```
+./wtf-check-wpasupp.sh
+```
+Workflow Breakdown - Main scripts actions
+1. Reset the logfile
+2. Check Hardware (functions: `check-hw` `parse-wan-int`)
+3. Check wpa_supplicant service (functions: `check-wpa-supp-installed` `check-wpa-supp-active` `check-wpa-supp-enabled`)
+4. Checking for override.conf file (functions: `check-for-override`)
+5. Parsing active config from wpa_supplicant service (functions: `parse_service_conf`)
+6. Parsing ${wpasuppconf_filename} (functions: `parse-wpasupp-conf`)
+7. Verifying certificates exist (functions: `check-for-pems`)
+8. Verifying WAN interfaces match (functions: `check-compare-interfaces`)
+------
+
+
+## wtf-install-wpasupp.sh
+
+A non-destructive script to verify the disposition of the wpa_supplicant system service.
+The script will output formatted status messages and all errors to the logfile
+
+Usage
+```
+./wtf-install-wpasupp.sh
+```
+Workflow Breakdown - Main scripts actions
+1. Reset the logfile
+2. Check Hardware (functions: `check-hw` `parse-wan-int`)
+3. Check for deb packages (functions: `check-for-debpkg`)
+4. Check for required directories (functions: `check-backupPath` `check-destPaths`)
+5. Verify if certificates exist (functions: `check-for-pems`)
+6. Check for wpa_supplicant.conf (functions: `check-wpasupp-conf`)
+7. Check wpa_supplicant service & activate (functions: `check-wpa-supp-installed` `check-wpa-supp-active`)
+   1. If wpa_supplicant service is not found, install & configure (functions: `install-wpa-supp`)
+8. Test internet connectivity with to google.com:80 (functions: `netcat-test`)
