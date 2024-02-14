@@ -8,11 +8,11 @@
 ####################################### 
 # Backup folder structure
 # $backupPath
-#  - $wpapkg
 #  - $libpcspkg
-#  - CA_XXXXXX-123456789012345.pem
-#  - Client_XXXXXX-123456789012345.pem
-#  - PrivateKey_PKCS1_XXXXXX-123456789012345.pem
+#  - $wpapkg
+#  - CA.pem
+#  - Client.pem
+#  - PrivateKey.pem
 #  - wpa_supplicant.conf(Can be created if not found)
 ####################################### 
 
@@ -23,28 +23,28 @@
 wpasupp_install=""
 
 # FULL PATH to "backup" folder
-backupPath='/root/config'
+backupPath="/root/config"
 
 # Names of install deb files
-libpcspkg='libpcsclite1_1.9.1-1_arm64.deb'
-wpapkg='wpasupplicant_2.9.0-21_arm64.deb'
+libpcspkg="libpcsclite1_1.9.1-1_arm64.deb"
+wpapkg="wpasupplicant_2.9.0-21_arm64.deb"
 
 # Internet (ONT) interface MAC address (Pulled from cert extraction process)
-inetONTmac='00:00:00:00:00:00'
+inetONTmac="00:00:00:00:00:00"
 
 # Certficate variables
-CA='CA_XXXXXX-YYYYYYYYYYYYYYY.pem'
-Client='Client_XXXXXX-YYYYYYYYYYYYYYY.pem'
-PrivateKey='PrivateKey_PKCS1_XXXXXX-YYYYYYYYYYYYYYY.pem'
+CA="CA.pem"
+Client="Client.pem"
+PrivateKey="PrivateKey.pem"
 
 # FULL PATH for wpa_supplicant.conf
-confPath='/etc/wpa_supplicant/conf'
+confPath="/etc/wpa_supplicant/conf"
 
 # FULL PATH for cert storage
-certPath='/etc/wpa_supplicant/conf'
+certPath="/etc/wpa_supplicant/conf"
 
 # FULL PATH for deb package storage
-debPath='/etc/wpa_supplicant/packages'
+debPath="/etc/wpa_supplicant/packages"
 
 ####################################### 
 ##    DO NOT EDIT BELOW THIS LINE    ##
