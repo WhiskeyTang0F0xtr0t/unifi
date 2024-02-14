@@ -237,7 +237,7 @@ clear
 banner "Resetting $log_file"
 rm $log_file
 
-banner "Checking Hardware Version"
+banner "Checking Hardware"
 check-hw
 parse-wan-int
 
