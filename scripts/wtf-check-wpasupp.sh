@@ -194,7 +194,7 @@ parse-wpasupp-conf () {
 }
 
 #######################################
-# Checks for files based on input variables	
+# Checks for files based on input arrays	
 # Arguments:
 #   Short name, path variable, file variable
 # RETURN:
