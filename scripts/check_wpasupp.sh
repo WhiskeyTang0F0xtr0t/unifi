@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ####################################### 
-# check_supp v2.1
+# check_wpasupp v2.1
 #
 # Checks the wpa_supplicant service and confirms needed files are present by parsing the existing config.
 #
