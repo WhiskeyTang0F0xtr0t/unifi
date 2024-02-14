@@ -156,9 +156,9 @@ parse_service_conf () {
 	wpasuppconf_longpath=`systemctl status wpa_supplicant --no-pager | awk '/Dwired/{ print $7 }' | sed 's/-c//'`
 	wpasuppconf_filename=`basename ${wpasuppconf_longpath}`
 	wpasuppconf_path=`dirname ${wpasuppconf_longpath}`
-   printf "$format" "wpa_supplicant" "${GREEN}${wpasuppconf_longpath}${NC}"; log IF "${wpasuppconf_longpath}"
+   printf "$format" "wpa_supplicant" "Parsed - ${GREEN}${wpasuppconf_longpath}${NC}"; log IF "${wpasuppconf_longpath}"
 	wpasupp_int=`systemctl status wpa_supplicant --no-pager | awk '/Dwired/{ print $6 }' | sed 's/-i//'` && log IP "Dwired"
-   printf "$format" "wpa_supplicant" "Interface - ${CYAN}${wpasupp_int}${NC}"; log IP "Interface: ${wpasupp_int}"
+   printf "$format" "wpa_supplicant" "Parsed - Interface: ${CYAN}${wpasupp_int}${NC}"; log IP "Interface: ${wpasupp_int}"
 }
 
 #######################################
