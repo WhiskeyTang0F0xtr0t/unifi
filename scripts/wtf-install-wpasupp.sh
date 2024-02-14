@@ -334,7 +334,7 @@ install-wpa-supp () {
 ####################################### 
 clear
 rm $log_file
-banner "Resetting $log_file"
+banner "Logging to: $log_file"
 
 banner "Checking Hardware Version"
 check-hw

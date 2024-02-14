@@ -234,8 +234,8 @@ fi
 ## Main script
 ####################################### 
 clear
-banner "Resetting $log_file"
 rm $log_file
+banner "Logging to: $log_file"
 
 banner "Checking Hardware"
 check-hw
