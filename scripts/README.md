@@ -5,6 +5,7 @@
 > - I'm sure they're over engineered and/or poorly coded, but I enjoyed the exercise.
 
 ## wtf-check-wpasupp.sh
+<img width="1215" alt="wtf-check" src="https://github.com/WhiskeyTang0F0xtr0t/unifi/assets/9803191/0cfa5f13-daca-4e53-8552-2f98cf385d97">
 
 A non-destructive script to verify the disposition of the wpa_supplicant system service.
 The script will output formatted status messages and all errors to the logfile
@@ -26,8 +27,12 @@ Workflow Breakdown - Main scripts actions
 
 
 ## wtf-install-wpasupp.sh
+<img width="1215" alt="wtf-install" src="https://github.com/WhiskeyTang0F0xtr0t/unifi/assets/9803191/42f32637-928c-4003-a0b6-031967099d7c">
 
-A non-destructive script to verify the disposition of the wpa_supplicant system service.
+> [!WARNING]
+> This script can break things if you don't configure it properly.
+
+Check/repair/install the wpa_supplicant setup on UDM hardware.
 The script will output formatted status messages and all errors to the log file.
 
 ### Backup folder structure
