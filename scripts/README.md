@@ -48,7 +48,7 @@ The script will output formatted status messages and all errors to the logfile
 [2024-02-14 19:13:12] - *** Verifying certificates exist ***
 [2024-02-14 19:13:12] - INFO: Found - CA /etc/wpa_supplicant/conf/CA.pem
 [2024-02-14 19:13:12] - INFO: Found - Client /etc/wpa_supplicant/conf/Client.pem
-[2024-02-14 19:13:12] - INFO: Found - PrivateKey /etc/wpa_supplicant/conf/PrivateKey_PKCS1.pem
+[2024-02-14 19:13:12] - INFO: Found - PrivateKey /etc/wpa_supplicant/conf/PrivateKey.pem
 [2024-02-14 19:13:12] - *** Verifying WAN interfaces match ***
 [2024-02-14 19:13:12] - INFO: Detected WAN interface matches wpa_supplicant service conf
 [2024-02-14 19:13:12] - *** Checks complete ***
@@ -101,9 +101,9 @@ The script will output formatted status messages and all errors to the log file.
 [2024-02-14 19:12:51] - INFO: Found - certPath /etc/wpa_supplicant/conf
 [2024-02-14 19:12:51] - INFO: Found - confPath /etc/wpa_supplicant/conf
 [2024-02-14 19:12:51] - *** Checking for required certificates ***
-[2024-02-14 19:12:51] - INFO: Found - CA /etc/wpa_supplicant/conf/CA_001E46-163150393829616.pem
-[2024-02-14 19:12:51] - INFO: Found - Client /etc/wpa_supplicant/conf/Client_001E46-163150393829616.pem
-[2024-02-14 19:12:51] - INFO: Found - PrivateKey /etc/wpa_supplicant/conf/PrivateKey_PKCS1_001E46-163150393829616.pem
+[2024-02-14 19:12:51] - INFO: Found - CA /etc/wpa_supplicant/conf/CA.pem
+[2024-02-14 19:12:51] - INFO: Found - Client /etc/wpa_supplicant/conf/Client.pem
+[2024-02-14 19:12:51] - INFO: Found - PrivateKey /etc/wpa_supplicant/conf/PrivateKey.pem
 [2024-02-14 19:12:51] - *** Checking for wpa_supplicant.conf ***
 [2024-02-14 19:12:51] - INFO: Found - /etc/wpa_supplicant/conf/wpa_supplicant.conf
 [2024-02-14 19:12:51] - *** Checking wpa_supplicant service ***
