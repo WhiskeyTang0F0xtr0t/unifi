@@ -10,7 +10,7 @@ The script will output formatted status messages and all errors to the logfile
 
 <details>
 <summary>Terminal Output Example</summary>
-<img width="1006" alt="wtf-check" src="https://github.com/WhiskeyTang0F0xtr0t/unifi/assets/9803191/5dfb7b75-af99-4e22-9287-ba38fa4b4943">
+<img width="1006" alt="wtf-check" src="https://github.com/WhiskeyTang0F0xtr0t/unifi/assets/9803191/989a5076-31bb-41b5-9f66-8b8c59239801">
 </details>
 
 <details>
@@ -81,9 +81,9 @@ The script will output formatted status messages and all errors to the log file.
 
 <details>
 <summary>Terminal Output Example</summary>
-<img width="1006" alt="wtf-install" src="https://github.com/WhiskeyTang0F0xtr0t/unifi/assets/9803191/621fa23e-6e47-4b78-ab98-1bdae0a7532c">
-</details>
 
+</details>
+<img width="1006" alt="wtf-install" src="https://github.com/WhiskeyTang0F0xtr0t/unifi/assets/9803191/cef6b8f2-1e61-4e7a-b2ec-90e2422c5588">
 <details>
 <summary>Log Output Example</summary>
 
