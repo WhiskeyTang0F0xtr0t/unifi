@@ -5,10 +5,56 @@
 > - I'm sure they're over engineered and/or poorly coded, but I enjoyed the exercise.
 
 ## wtf-check-wpasupp.sh
-<img width="1215" alt="wtf-check" src="https://github.com/WhiskeyTang0F0xtr0t/unifi/assets/9803191/0cfa5f13-daca-4e53-8552-2f98cf385d97">
-
 A non-destructive script to verify the disposition of the wpa_supplicant system service.
 The script will output formatted status messages and all errors to the logfile
+
+<details>
+<summary>Terminal Output Example</summary>
+<img width="1215" alt="wtf-check" src="https://github.com/WhiskeyTang0F0xtr0t/unifi/assets/9803191/0cfa5f13-daca-4e53-8552-2f98cf385d97">
+</details>
+
+<details>
+<summary>Log Output Example</summary>
+
+```
+[2024-02-14 19:13:12] - *** Logging to: check-wpasupp.log ***
+[2024-02-14 19:13:12] - *** Checking Hardware ***
+[2024-02-14 19:13:12] - INFO: Hardware - UniFi Dream Machine Pro
+[2024-02-14 19:13:12] - INFO: WAN Interface: eth8
+[2024-02-14 19:13:12] - *** Checking wpa_supplicant service ***
+[2024-02-14 19:13:12] - INFO: wpa_supplicant installed: 2:2.9.0-21
+[2024-02-14 19:13:12] - INFO: wpa_supplicant is active
+[2024-02-14 19:13:12] - INFO: wpa_supplicant is enabled
+[2024-02-14 19:13:12] - *** Checking for override.conf file ***
+[2024-02-14 19:13:12] - INFO: Found - /etc/systemd/system/wpa_supplicant.service.d/override.conf
+[2024-02-14 19:13:12] - INFO: Parsed - /etc/wpa_supplicant/conf/wpa_supplicant.conf
+[2024-02-14 19:13:12] - *** Parsing active config from wpa_supplicant service ***
+[2024-02-14 19:13:12] - INFO: Found - /etc/wpa_supplicant/conf/wpa_supplicant.conf
+[2024-02-14 19:13:12] - INFO: Parsed - Dwired
+[2024-02-14 19:13:12] - INFO: Parsed - Interface: eth8
+[2024-02-14 19:13:12] - *** Parsing wpa_supplicant.conf ***
+[2024-02-14 19:13:12] - INFO: wpa_supplicant conf - /etc/wpa_supplicant/conf/wpa_supplicant.conf
+[2024-02-14 19:13:12] - INFO: Parsed - identity
+[2024-02-14 19:13:12] - INFO: Parsed - ONT MAC - 0:00:00:00:00:00
+[2024-02-14 19:13:12] - INFO: Parsed - ca_cert
+[2024-02-14 19:13:12] - INFO: Parsed - CA Path: /etc/wpa_supplicant/conf
+[2024-02-14 19:13:12] - INFO: Parsed - CA Filename: CA.pem
+[2024-02-14 19:13:12] - INFO: Parsed - client_cert
+[2024-02-14 19:13:12] - INFO: Parsed - Client Path: /etc/wpa_supplicant/conf
+[2024-02-14 19:13:12] - INFO: Parsed - Client Filename: Client.pem
+[2024-02-14 19:13:12] - INFO: Parsed - private_key
+[2024-02-14 19:13:12] - INFO: Parsed - PrivateKey Path: /etc/wpa_supplicant/conf
+[2024-02-14 19:13:12] - INFO: Parsed - PrivateKey Filename: PrivateKey_PKCS1.pem
+[2024-02-14 19:13:12] - *** Verifying certificates exist ***
+[2024-02-14 19:13:12] - INFO: Found - CA /etc/wpa_supplicant/conf/CA.pem
+[2024-02-14 19:13:12] - INFO: Found - Client /etc/wpa_supplicant/conf/Client.pem
+[2024-02-14 19:13:12] - INFO: Found - PrivateKey /etc/wpa_supplicant/conf/PrivateKey.pem
+[2024-02-14 19:13:12] - *** Verifying WAN interfaces match ***
+[2024-02-14 19:13:12] - INFO: Detected WAN interface matches wpa_supplicant service conf
+[2024-02-14 19:13:12] - *** Checks complete ***
+```
+</details>
+
 
 ### Usage
 ```
@@ -27,13 +73,48 @@ Workflow Breakdown - Main scripts actions
 
 
 ## wtf-install-wpasupp.sh
-<img width="1215" alt="wtf-install" src="https://github.com/WhiskeyTang0F0xtr0t/unifi/assets/9803191/42f32637-928c-4003-a0b6-031967099d7c">
+Check/repair/install the wpa_supplicant setup on UDM hardware.
+The script will output formatted status messages and all errors to the log file.
 
 > [!WARNING]
 > This script can break things if you don't configure it properly.
 
-Check/repair/install the wpa_supplicant setup on UDM hardware.
-The script will output formatted status messages and all errors to the log file.
+<details>
+<summary>Terminal Output Example</summary>
+<img width="1215" alt="wtf-install" src="https://github.com/WhiskeyTang0F0xtr0t/unifi/assets/9803191/42f32637-928c-4003-a0b6-031967099d7c">
+</details>
+
+<details>
+<summary>Log Output Example</summary>
+
+```
+[2024-02-14 19:12:51] - *** Logging to: wtf-install-wpasupp.log ***
+[2024-02-14 19:12:51] - *** Checking Hardware Version ***
+[2024-02-14 19:12:51] - INFO: Hardware - UniFi Dream Machine Pro
+[2024-02-14 19:12:51] - INFO: WAN Interface: eth8
+[2024-02-14 19:12:51] - *** Checking for required deb packages ***
+[2024-02-14 19:12:51] - INFO: Found - libpcsclite1_1.9.1-1_arm64.deb
+[2024-02-14 19:12:51] - INFO: Found - wpasupplicant_2.9.0-21_arm64.deb
+[2024-02-14 19:12:51] - *** Checking for required directories ***
+[2024-02-14 19:12:51] - INFO: Found - backupPath /root/config
+[2024-02-14 19:12:51] - INFO: Found - debPath /etc/wpa_supplicant/packages
+[2024-02-14 19:12:51] - INFO: Found - certPath /etc/wpa_supplicant/conf
+[2024-02-14 19:12:51] - INFO: Found - confPath /etc/wpa_supplicant/conf
+[2024-02-14 19:12:51] - *** Checking for required certificates ***
+[2024-02-14 19:12:51] - INFO: Found - CA /etc/wpa_supplicant/conf/CA.pem
+[2024-02-14 19:12:51] - INFO: Found - Client /etc/wpa_supplicant/conf/Client.pem
+[2024-02-14 19:12:51] - INFO: Found - PrivateKey /etc/wpa_supplicant/conf/PrivateKey.pem
+[2024-02-14 19:12:51] - *** Checking for wpa_supplicant.conf ***
+[2024-02-14 19:12:51] - INFO: Found - /etc/wpa_supplicant/conf/wpa_supplicant.conf
+[2024-02-14 19:12:51] - *** Checking wpa_supplicant service ***
+[2024-02-14 19:12:51] - INFO: wpa_supplicant installed: 2:2.9.0-21
+[2024-02-14 19:12:51] - INFO: wpa_supplicant is active
+[2024-02-14 19:12:51] - *** Testing internet connectivity ***
+[2024-02-14 19:12:51] - INFO: netcat google.com:80 SUCCESSFUL
+[2024-02-14 19:12:51] - *** Process complete ***
+```
+</details>
+
 
 ### Backup folder structure
 The "backup" folder will need to copied over to your hardware and accessable by the user running the script. Mine is /root/config
