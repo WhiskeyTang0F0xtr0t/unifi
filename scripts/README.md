@@ -81,9 +81,9 @@ The script will output formatted status messages and all errors to the log file.
 
 <details>
 <summary>Terminal Output Example</summary>
-
-</details>
 <img width="1006" alt="wtf-install" src="https://github.com/WhiskeyTang0F0xtr0t/unifi/assets/9803191/cef6b8f2-1e61-4e7a-b2ec-90e2422c5588">
+</details>
+
 <details>
 <summary>Log Output Example</summary>
 
