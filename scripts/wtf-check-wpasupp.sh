@@ -39,7 +39,6 @@ NC=$(tput sgr0)
 TICK="[${GREEN}✓${NC}]"
 CROSS="[${RED}✗${NC}]"
 INFO="[i]"
-DONE="${GREEN} done!${NCNC}"
 
 #######################################
 # Show a formatted banner with message
@@ -56,7 +55,7 @@ DONE="${GREEN} done!${NCNC}"
 
 banner () {
 	local string=$1
-	printf "%b %s\\n" "${INFO}" "${string}"
+	printf "%b %s\\n" "${INFO}" "${string}" && log B "*** $string ***"
 }
 
 #######################################
