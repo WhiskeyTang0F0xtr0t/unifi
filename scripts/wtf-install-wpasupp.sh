@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###################################### 
-# wtf-install-wpa v3.3
+# wtf-install-wpa v3.4
 #
 # Check/repair/install the wpa_supplicant setup on UDM hardware
 #
@@ -91,7 +91,7 @@ INFO="[i]"
 ####################################### 
 banner () {
 	local string=$1
-	printf "%b %s\\n" "${INFO}" "${string}" && log B "*** $string ***"
+	printf "%b \e[4m%s\e[0m\\n" "${INFO}" "${string}" && log B "*** $string ***"
 }
 
 #######################################
@@ -105,9 +105,9 @@ check-hw () {
 	if command -V ubnt-device-info 1> /dev/null 2> >(log_stream); then
 		local model
 		model=$(ubnt-device-info model)
-		printf "   %b  %b %s\\n" "${TICK}" "Model:" "${CYAN}${model}${NC}"; log I "Hardware - ${model}"
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Model:" "${CYAN}${model}${NC}"; log I "Hardware - ${model}"
 	else
-    printf "   %b %s\\n" "${CROSS}" "${RED}UNSUPPORTED HARDWARE - EXITING${NC}"; log E "UNSUPPORTED HARDWARE - EXITING"; exit 1
+    printf "   %b %s\\n" "${CROSS}" "\e[4m${RED}UNSUPPORTED HARDWARE - EXITING${NC}"; log E "UNSUPPORTED HARDWARE - EXITING"; exit 1
 	fi
 }
 
@@ -123,9 +123,9 @@ parse-wan-int () {
 	if [ -f /data/udapi-config/ubios-udapi-server/ubios-udapi-server.state ]; then
 		# Parses udapi-net-cfg.json and etracts first interface in wanFailover yaml object
 		udapi_wan_int=$(jq -r '.services.wanFailover.wanInterfaces.[0].interface' /data/udapi-config/udapi-net-cfg.json)
-		printf "   %b  %b %s\\n" "${TICK}" "WAN Int:" "${CYAN}${udapi_wan_int}${NC}" && log I "WAN Interface: ${udapi_wan_int}"
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "WAN Int:" "${CYAN}${udapi_wan_int}${NC}" && log I "WAN Interface: ${udapi_wan_int}"
 	else
-		printf "   %b  %b %s\\n" "${CROSS}" "WAN Int:" "${RED}Could not determine WAN interface from udapi-net-cfg - EXITING${NC}"; log E "Could not determine WAN interface from udapi-net-cfg - EXITING"
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "WAN Int:" "${RED}Could not determine WAN interface from udapi-net-cfg - EXITING${NC}"; log E "Could not determine WAN interface from udapi-net-cfg - EXITING"
 		exit 1
 	fi
 }
@@ -139,9 +139,9 @@ check-wpa-supp-installed () {
 # Check if wpa_supplicant is installed with dpkg
 	if dpkg -s wpasupplicant 1> /dev/null 2> >(log_stream) ; then
 		wpa_supp_ver=$(dpkg -s wpasupplicant | grep -i '^Version' | cut -d' ' -f2)
-		printf "   %b  %b %s\\n" "${TICK}" "Installed:" "${GREEN}${wpa_supp_ver}${NC}"; log I "wpa_supplicant installed: ${wpa_supp_ver}"
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Installed:" "${GREEN}${wpa_supp_ver}${NC}"; log I "wpa_supplicant installed: ${wpa_supp_ver}"
 	else
-		printf "   %b  %b %s\\n" "${CROSS}" "Installed:" "${RED}NOT INSTALLED${NC}"; log E "wpa_supplicant not installed"; return 1
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "Installed:" "${RED}NOT INSTALLED${NC}"; log E "wpa_supplicant not installed"; return 1
 	fi
 }
 
@@ -154,10 +154,10 @@ check-wpa-supp-installed () {
 #######################################
 check-backupPath () {
 	if [ -d "${backupPath}" ]; then
-	   printf "   %b  %b %s\\n" "${TICK}" "Backup Path:" "${GREEN}${backupPath}${NC}"; log IF "backupPath ${backupPath}"
+	   printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Backup Path:" "${GREEN}${backupPath}${NC}"; log IF "backupPath ${backupPath}"
 	else
-		printf "   %b  %b %s\\n" "${CROSS}" "Backup Path:" "${RED}${backupPath} not found."; log ENF "backupPath ${backupPath}"
-		printf "   %b  %b %s\\n" "${INFO}" "Backup Path:" "Please check your files and try again. - EXITING${NC}"; exit 1
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "Backup Path:" "${RED}${backupPath} not found."; log ENF "backupPath ${backupPath}"
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "Backup Path:" "Please check your files and try again. - EXITING${NC}"; exit 1
 	fi
 }
 
@@ -175,13 +175,13 @@ check-destPaths () {
 	path_list=("${debPath}" "${certPath}" "${confPath}")
 	for i in "${!path_type[@]}"; do
 		if [[ -d ${path_list[i]} ]]; then
-		   printf "   %b  %b %s\\n" "${TICK}" "${path_type[i]}" "Found: ${GREEN}${path_list[i]}${NC}"; log IF "${path_type[i]} ${path_list[i]}"
+		   printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "${path_type[i]}" "${GREEN}${path_list[i]}${NC}"; log IF "${path_type[i]} ${path_list[i]}"
 		else
-	      printf "   %b  %b %s\\n" "${CROSS}" "${path_type[i]}" "${RED}${path_list[i]} not found.${NC} - Attempting to create"; log ENF "Creating ${path_type[i]} ${path_list[i]}"
+	      printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${path_type[i]}" "${RED}${path_list[i]} not found.${NC} - Attempting to create"; log ENF "Creating ${path_type[i]} ${path_list[i]}"
 	      if mkdir -p "${path_list[i]}" &> /dev/null; then
-		      printf "   %b  %b %s\\n" "${TICK}" "${path_type[i]}" "${GREEN}${path_list[i]} created${NC}"; log I "Created ${path_list[i]}"
+		      printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "${path_type[i]}" "${GREEN}${path_list[i]} created${NC}"; log I "Created ${path_list[i]}"
 	      else
-		      printf "   %b  %b %s\\n" "${CROSS}" "${path_type[i]}" "${RED}Could not create ${path_list[i]}! - EXITING${NC}"; log E "Could not create ${path_type[i]} ${path_list[i]} - EXITING"
+		      printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${path_type[i]}" "${RED}Could not create ${path_list[i]}! - EXITING${NC}"; log E "Could not create ${path_type[i]} ${path_list[i]} - EXITING"
 		      exit 1
 		    fi
 		fi
@@ -202,15 +202,15 @@ check-for-pems () {
 	local cert_files=("${CA_filename}" "${Client_filename}" "${PrivateKey_filename}")
 	for i in "${!cert_type[@]}"; do
 		if [ -f ${certPath}/"${cert_files[i]}" ]; then
-			printf "   %b  %b %s\\n" "${TICK}" "${cert_type[i]}:" "${GREEN}${cert_files[i]}${NC}"; log IF "${cert_type[i]} ${certPath}/${cert_files[i]}"
+			printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "${cert_type[i]}:" "${GREEN}${cert_files[i]}${NC}"; log IF "${cert_type[i]} ${certPath}/${cert_files[i]}"
 		else
-			printf "   %b  %b %s\\n" "${CROSS}" "${cert_type[i]}:" "${RED}${cert_files[i]} not found${NC}"; log ENF "${cert_type[i]}: ${cert_files[i]}"
-			printf "   %b  %b %s\\n" "${INFO}" "${cert_type[i]}:" "Copying ${cert_files[i]} from ${backupPath}"; log IF "Copying ${cert_files[i]} from ${backupPath}"
+			printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${cert_type[i]}:" "${RED}${cert_files[i]} not found${NC}"; log ENF "${cert_type[i]}: ${cert_files[i]}"
+			printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "${cert_type[i]}:" "Copying ${cert_files[i]} from ${backupPath}"; log IF "Copying ${cert_files[i]} from ${backupPath}"
 			if cp ${backupPath}/"${cert_files[i]}" ${certPath}/ &> /dev/null; then
-				printf "   %b  %b %s\\n" "${TICK}" "${cert_type[i]}:" "${GREEN}${cert_files[i]}${NC}"; log IC "${cert_type[i]} ${certPath}/${cert_files[i]}"
+				printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "${cert_type[i]}:" "${GREEN}${cert_files[i]}${NC}"; log IC "${cert_type[i]} ${certPath}/${cert_files[i]}"
 			else
-				printf "   %b  %b %s\\n" "${CROSS}" "${cert_type[i]}:" "Could not copy ${cert_files[i]} from ${backupPath}"; log E "Could not copy ${cert_files[i]} from ${backupPath}"
-				printf "   %b  %b %s\\n" "${INFO}" "${cert_type[i]}:" "Please check your files and try again."
+				printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${cert_type[i]}:" "Could not copy ${cert_files[i]} from ${backupPath}"; log E "Could not copy ${cert_files[i]} from ${backupPath}"
+				printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "${cert_type[i]}:" "Please check your files and try again."
 				exit 1
 			fi
 		fi
@@ -229,14 +229,14 @@ check-for-debpkg () {
 	list=("${libpcspkg}" "${wpapkg}")
 	for i in "${!list[@]}"; do
 		if [ -f ${debPath}/"${list[i]}" ]; then
-			printf "   %b  %b %s\\n" "${TICK}" "deb_pkg" "${GREEN}${debPath}/${list[i]}${NC}"; log IF "${list[i]}"
+			printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "deb_pkg:" "${GREEN}${debPath}/${list[i]}${NC}"; log IF "${list[i]}"
 		else
-			printf "   %b  %b %s\\n" "${CROSS}" "deb_pkg" "${RED}${list[i]} not found${NC}"; log ENF "${debPath}/${list[i]}"
-			printf "   %b  %b %s\\n" "${INFO}" "deb_pkg" "Copying ${list[i]} from ${backupPath}"; log ENF "Copying ${list[i]} from ${backupPath}"
+			printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "deb_pkg:" "${RED}${list[i]} not found${NC}"; log ENF "${debPath}/${list[i]}"
+			printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "deb_pkg:" "Copying ${list[i]} from ${backupPath}"; log ENF "Copying ${list[i]} from ${backupPath}"
 			if cp ${backupPath}/"${list[i]}" ${debPath}/ &> /dev/null; then
-				printf "   %b  %b %s\\n" "${TICK}" "deb_pkg" "${GREEN}${debPath}/${list[i]}${NC}"; log IC "${debPath}/${list[i]}"
+				printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "deb_pkg:" "${GREEN}${debPath}/${list[i]}${NC}"; log IC "${debPath}/${list[i]}"
 			else
-				printf "   %b  %b %s\\n" "${CROSS}" "deb_pkg" "${RED}Could not copy ${list[i]} from ${backupPath} - EXITING${NC}"; log E "Could not copy ${list[i]} from ${backupPath} - EXITING"
+				printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "deb_pkg:" "${RED}Could not copy ${list[i]} from ${backupPath} - EXITING${NC}"; log E "Could not copy ${list[i]} from ${backupPath} - EXITING"
 				exit 1
 			fi
 		fi
@@ -252,17 +252,17 @@ check-for-debpkg () {
 ####################################### 
 check-wpasupp-conf () {
 	if [ -f ${confPath}'/wpa_supplicant.conf' ]; then
-		printf "   %b  %b %s\\n" "${TICK}" "wpa_conf" "${GREEN}${confPath}/wpa_supplicant.conf${NC}"; log IF "${confPath}/wpa_supplicant.conf"
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "wpa_conf:" "${GREEN}${confPath}/wpa_supplicant.conf${NC}"; log IF "${confPath}/wpa_supplicant.conf"
 	else
-		printf "   %b  %b %s\\n" "${CROSS}" "wpa_conf" "${RED}${confPath}/wpa_supplicant.conf not found${NC}"; log ENF "${confPath}/wpa_supplicant.conf"
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "wpa_conf:" "${RED}${confPath}/wpa_supplicant.conf not found${NC}"; log ENF "${confPath}/wpa_supplicant.conf"
 		if [ -f ${backupPath}'/wpa_supplicant.conf' ]; then
-			printf "   %b  %b %s\\n" "${INFO}" "wpa_conf" "Copying wpa_supplicant.conf from ${backupPath}"; log I "Copying wpa_supplicant.conf from ${backupPath}"
-			cp ${backupPath}'/wpa_supplicant.conf' ${confPath}/ &> /dev/null && printf "   %b  %b %s\\n" "${TICK}" "wpa_conf" "${GREEN}${confPath}/wpa_supplicant.conf${NC}"; log IC "${confPath}/wpa_supplicant.conf"
+			printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "wpa_conf:" "Copying wpa_supplicant.conf from ${backupPath}"; log I "Copying wpa_supplicant.conf from ${backupPath}"
+			cp ${backupPath}'/wpa_supplicant.conf' ${confPath}/ &> /dev/null && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "wpa_conf:" "${GREEN}${confPath}/wpa_supplicant.conf${NC}"; log IC "${confPath}/wpa_supplicant.conf"
 		else
-			printf "   %b  %b %s\\n" "${CROSS}" "wpa_conf" "${RED}Not found in ${backupPath}${NC}"; log ENF "${backupPath}/wpa_supplicant.conf"
-			printf "   %b  %b %s\\n" "${INFO}" "wpa_conf" "Attempting to build wpa_supplicant.conf from known variables"; log I "Attempting to build wpa_supplicant.conf from known variables"
+			printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "wpa_conf:" "${RED}Not found in ${backupPath}${NC}"; log ENF "${backupPath}/wpa_supplicant.conf"
+			printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "wpa_conf:" "Attempting to build wpa_supplicant.conf from known variables"; log I "Attempting to build wpa_supplicant.conf from known variables"
 			# Attempts to create ${confPath}/wpa_supplicant.conf from known variables
-			printf 'eapol_version=1\nap_scan=0\nfast_reauth=1\nnetwork={\n''        ca_cert="'"${certPath}"/"${CA}"'"\n''        client_cert="'"${certPath}"/"${Client}"'"\n''        eap=TLS\n        eapol_flags=0\n''        identity="'"${inetONTmac}"'" # Internet (ONT) interface MAC address must match this value\n        key_mgmt=IEEE8021X\n        phase1="allow_canned_success=1"\n        private_key="'"${certPath}"/"${PrivateKey}"'"\n''}\n' > "${confPath}"'/wpa_supplicant.conf' && printf "   %b  %b %s\\n" "${TICK}" "${backupPath}/wpa_supplicant.conf - Created"; log I "${backupPath}/wpa_supplicant.conf - Created"
+			printf 'eapol_version=1\nap_scan=0\nfast_reauth=1\nnetwork={\n''        ca_cert="'"${certPath}"/"${CA}"'"\n''        client_cert="'"${certPath}"/"${Client}"'"\n''        eap=TLS\n        eapol_flags=0\n''        identity="'"${inetONTmac}"'" # Internet (ONT) interface MAC address must match this value\n        key_mgmt=IEEE8021X\n        phase1="allow_canned_success=1"\n        private_key="'"${certPath}"/"${PrivateKey}"'"\n''}\n' > "${confPath}"'/wpa_supplicant.conf' && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "wpa_conf:" "${confPath}/wpa_supplicant.conf - Created"; log I "${confPath}/wpa_supplicant.conf - Created"
 		fi
 	fi
 }
@@ -275,9 +275,9 @@ check-wpasupp-conf () {
 check-wpa-supp-active () {
 # Check if wpa_supplicant is active with systemctl
 	if systemctl is-active wpa_supplicant 1> /dev/null 2> >(log_stream); then
-	   printf "   %b  %b %s\\n" "${TICK}" "Active:" "${GREEN}Yes${NC}" && log I "wpa_supplicant is active"
+	   printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Active:" "${GREEN}Yes${NC}" && log I "wpa_supplicant is active"
 	else
-	   printf "   %b  %b %s\\n" "${CROSS}" "Active:" "${RED}No${NC}"; log E "wpa_supplicant is not active"
+	   printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "Active:" "${RED}No${NC}"; log E "wpa_supplicant is not active"
 	   wpa-supp-enable
 	fi
 }
@@ -290,24 +290,11 @@ check-wpa-supp-active () {
 wpa-supp-enable () {
 # Start and enable the wpa_supplicant service with systemctl
 	if systemctl enable --now wpa_supplicant 1> /dev/null 2> >(log_stream); then
-		printf "   %b  %b %s\\n" "${TICK}" "systemctl" "${GREEN}wpa_supplicant started & enabled${NC}"; log I "Started & enabled wpasupplicant"
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "systemctl:" "${GREEN}wpa_supplicant started & enabled${NC}"; log I "Started & enabled wpasupplicant"
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "systemctl:" "Waiting for 5 seconds for service to sync"; log I "Waiting for 5 seconds for service to sync" && sleep 5
 	else
-		printf "   %b  %b %s\\n" "${CROSS}" "systemctl" "${RED}wpa_supplicant service could not be enabled - EXITING${NC}"; log E "wpa_supplicant service could not be enabled - EXITING"
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "systemctl:" "${RED}wpa_supplicant service could not be enabled - EXITING${NC}"; log E "wpa_supplicant service could not be enabled - EXITING"
 		exit 1
-	fi
-}
-
-#######################################
-# Checks internet connectivity using netstat
-# Outputs:
-#   Status message
-####################################### 
-netcat-test () {
-# Test for internet connectivity with netcat to google.com:80
-	if nc -z -w 3 google.com 80; then
-	   printf "   %b  %b %s\\n" "${TICK}" "netcat" "${GREEN}google.com:80 SUCCESSFUL${NC}" && log I "netcat google.com:80 SUCCESSFUL"
-	else
-	   printf "   %b  %b %s\\n" "${CROSS}" "netcat" "${RED}google.com:80 FAILED${NC}" && log E "netcat google.com:80 FAILED"
 	fi
 }
 
@@ -319,27 +306,50 @@ netcat-test () {
 #   Status message, installs wpa_supplicant service, error output and exits script if failed
 ####################################### 
 install-wpa-supp () {
-# Install ${wpapkg} with dpkg
+# Install required packages with dpkg
 	if [ "$wpasupp_install" = "install" ]; then
 		local list
 		list=("${libpcspkg}" "${wpapkg}")
 		for i in "${!list[@]}"; do
-			printf "   %b  %b %s\\n" "${INFO}" "Installing:" "${list[i]}"
+			printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "Installing:" "${list[i]}"
 			if dpkg -i ${backupPath}/"${list[i]}" 1> /dev/null 2> >(log_stream); then
-				printf "   %b  %b %s\\n" "${TICK}" "dpkg" "Install successful: ${GREEN}${list[i]}${NC}"; log I "Installed ${list[i]}"
+				printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "dpkg" "Install successful: ${GREEN}${list[i]}${NC}"; log I "Installed ${list[i]}"
 			else
-				printf "   %b  %b %s\\n" "${CROSS}" "dpkg" "Install failed: ${RED}${list[i]} - EXITING${NC}"; log E "Install failed: ${list[i]} - EXITING"
+				printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "dpkg" "Install failed: ${RED}${list[i]} - EXITING${NC}"; log E "Install failed: ${list[i]} - EXITING"
 				exit 1
 			fi
 		done
-		printf "   %b  %b %s\\n" "${INFO}" "override.conf:" "Adding override.conf to Drop-In path."; log I "Adding override.conf to Drop-In path"
-		printf "[Service]\nExecStart=\nExecStart=/sbin/wpa_supplicant -u -s -Dwired -i${udapi_wan_int} -c${confPath}/wpa_supplicant.conf\n" > /etc/systemd/system/wpa_supplicant.service.d/override.conf && printf "   %b  %b %s\\n" "${TICK}" "override.conf:" "override.conf created in Drop-In path$"; log I "override.conf created in Drop-In path" || { printf "   %b  %b %s\\n" "${CROSS}" "override.conf:" "${RED}Could not create the override.conf file. EXITING${NC}" ; log E "Could not create the override.conf file. EXITING" ; exit 1; }
-		printf "   %b  %b %s\\n" "${INFO}" "systemctl" "Reloading systemd manager configuration"; log I "Reloading systemd manager configuration"
-		systemctl daemon-reload && printf "   %b  %b %s\\n" "${TICK}" "systemctl" "systemd manager configuration reloaded"; log I "systemd manager configuration reloaded" || { printf "   %b  %b %s\\n" "${CROSS}" "systemctl" "${RED}systemd manager configuration could not be reloaded. EXITING${NC}" ; log E "systemd manager configuration could not be reloaded. EXITING" ; exit 1; }
+		if [ -f /etc/systemd/system/wpa_supplicant.service.d/override.conf ]; then
+		  printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "override.conf:" "${GREEN}FOUND${NC}"; log IF "/etc/systemd/system/wpa_supplicant.service.d/override.conf"
+		else
+			printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "override.conf:" "${RED}NOT FOUND${NC}"; log E "override.conf was not found"
+			printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "override.conf:" "Creating override.conf in service Drop-In path"; log I "Creating override.conf in service Drop-In path"
+			printf "[Service]\nExecStart=\nExecStart=/sbin/wpa_supplicant -u -s -Dwired -i${udapi_wan_int} -c${confPath}/wpa_supplicant.conf\n" > /etc/systemd/system/wpa_supplicant.service.d/override.conf && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "override.conf:" "override.conf created in Drop-In path$"; log I "override.conf created in Drop-In path" || { printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "override.conf:" "${RED}Could not create the override.conf file. EXITING${NC}" ; log E "Could not create the override.conf file. EXITING" ; exit 1; }
+		fi
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "systemctl" "Reloading systemd manager configuration"; log I "Reloading systemd manager configuration"
+		systemctl daemon-reload && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "systemctl" "systemd manager configuration reloaded"; log I "systemd manager configuration reloaded" || { printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "systemctl" "${RED}systemd manager configuration could not be reloaded. EXITING${NC}" ; log E "systemd manager configuration could not be reloaded. EXITING" ; exit 1; }
 	else
-		printf "   %b  %b %s\\n" "${INFO}" "dpkg" "Install flag not. ${RED}Aborting deb pkg installation${NC}"; log E "Install flag not. Aborting deb pkg installation" 
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "dpkg" "Install flag not. ${RED}Aborting deb pkg installation${NC}"; log E "Install flag not. Aborting deb pkg installation" 
 	fi
 }
+
+#######################################
+# Checks internet connectivity using netstat
+# Outputs:
+#   Status message
+####################################### 
+netcat-test () {
+# Test for internet connectivity with netcat to google.com:80
+	for i in {1..3}; do
+	   if nc -z -w 2 google.com 80; then
+	       printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "netcat:" "Attemp ${i}/3: ${GREEN}SUCCESSFUL${NC}" && log I "Attemp ${i}/3: netcat google.com:80 SUCCESSFUL"
+	       break
+	   else
+	       printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "netcat:" "Attemp ${i}/3: ${RED}FAILED${NC}" && log E "Attemp ${i}/3: netcat google.com:80 FAILED"
+	   fi
+	done
+}
+
 
 ####################################### 
 ## Main script
@@ -375,7 +385,7 @@ else
    wpa-supp-enable
 fi
 
-banner "Testing internet connectivity"
+banner "Testing connection to google.com:80"
 netcat-test
 
 banner "Process complete"
