@@ -139,7 +139,7 @@ check-for-override () {
 	if [ -f /etc/systemd/system/wpa_supplicant.service.d/override.conf ]; then
 	   printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "override.conf:" "${GREEN}FOUND${NC}"; log IF "/etc/systemd/system/wpa_supplicant.service.d/override.conf"
 	   override_wpasupp_path=$(awk '/Dwired/{ print $6 }' /etc/systemd/system/wpa_supplicant.service.d/override.conf | sed 's/-c//')
-	   printf "   %b  %s\\n" "${INFO}" "" "Parsing override.conf for service configuration file"
+	   printf "   %b  %s\\n" "${INFO}" "Parsing override.conf for service configuration file"
 	   printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Parsed:" "${GREEN}${override_wpasupp_path}${NC}"; log IP "${override_wpasupp_path}"
 	else
 	   printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "override.conf:" "${RED}NOT FOUND${NC}"; log E "override.conf was not found"
