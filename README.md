@@ -20,4 +20,4 @@ Additional details on each script will be in the scripts folder.
 ------
 - [ ] `wtf-install-wpasupp.sh` - Add functions from wtf-check-wpasupp.sh for parsing active config & add option flags
 - [ ] `wtf-install-wpasupp.sh` - Add "auto recover" systemctl service to re-enable wpa_supplicant service after minor Unifi OS update(Major will most like wipe the volume)
-- [ ] `wtf-wpa.sh` - Merge both scripts into a new script with combind functionality using switches
+- [ ] `wtf-wpa.sh` - Merge both scripts into a new script with combined functionality using switches
