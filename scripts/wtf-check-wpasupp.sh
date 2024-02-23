@@ -154,11 +154,11 @@ check-for-override () {
 #   Status message, exits script if fails
 #######################################
 parse_service_conf () {
-	wpasuppconf_longpath=$(systemctl status wpa_supplicant --no-pager | awk '/Dwired/{ print $7 }' | sed 's/-c//')
+	wpasuppconf_longpath=$(systemctl status wpa_supplicant --no-pager 2> >(log_stream) | awk '/Dwired/{ print $7 }' | sed 's/-c//')
 	wpasuppconf_filename=$(basename "${wpasuppconf_longpath}")
 	#wpasuppconf_path=$(dirname "${wpasuppconf_longpath}") #Unused
    printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Found:" "${GREEN}${wpasuppconf_longpath}${NC}"; log IF "${wpasuppconf_longpath}"
-	wpasupp_int=$(systemctl status wpa_supplicant --no-pager | awk '/Dwired/{ print $6 }' | sed 's/-i//') && log IP "Dwired"
+	wpasupp_int=$(systemctl status wpa_supplicant --no-pager 2> >(log_stream) | awk '/Dwired/{ print $6 }' | sed 's/-i//') && log IP "Dwired"
    printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Found:" "${CYAN}${wpasupp_int}${NC}"; log IP "Interface: ${wpasupp_int}"
 }
 
