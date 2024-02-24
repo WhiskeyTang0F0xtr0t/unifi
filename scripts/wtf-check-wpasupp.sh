@@ -153,7 +153,7 @@ check-for-override () {
 # RETURN:
 #   Status message, exits script if fails
 #######################################
-parse_service_conf () {
+parse-service-conf () {
 	wpasuppconf_longpath=$(systemctl status wpa_supplicant --no-pager 2> >(log_stream) | awk '/Dwired/{ print $7 }' | sed 's/-c//')
 	wpasuppconf_filename=$(basename "${wpasuppconf_longpath}")
 	#wpasuppconf_path=$(dirname "${wpasuppconf_longpath}") #Unused
@@ -255,7 +255,7 @@ banner "Checking for override.conf file"
 check-for-override
 
 banner "Pulling active config from wpa_supplicant service"
-parse_service_conf
+parse-service-conf
 
 banner "Parsing ${wpasuppconf_filename}"
 parse-wpasupp-conf
