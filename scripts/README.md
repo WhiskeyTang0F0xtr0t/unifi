@@ -65,7 +65,7 @@ Workflow Breakdown - Main scripts actions
 2. Check Hardware (functions: `check-hw` `parse-wan-int`)
 3. Check wpa_supplicant service (functions: `check-wpa-supp-installed` `check-wpa-supp-active` `check-wpa-supp-enabled`)
 4. Check for override.conf file (functions: `check-for-override`)
-5. Parse active config from wpa_supplicant service (functions: `parse_service_conf`)
+5. Parse active config from wpa_supplicant service (functions: `parse-service-conf`)
 6. Parse ${wpasuppconf_filename} (functions: `parse-wpasupp-conf`)
 7. Verify certificates exist (functions: `check-for-pems`)
 8. Verify WAN interfaces match (functions: `check-compare-interfaces`)
