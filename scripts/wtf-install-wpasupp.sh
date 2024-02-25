@@ -156,7 +156,7 @@ check-backupPath () {
 	if [ -d "${backupPath}" ]; then
 	   printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Backup Path:" "${GREEN}${backupPath}${NC}"; log IF "backupPath ${backupPath}"
 	else
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "Backup Path:" "${RED}${backupPath} not found."; log ENF "backupPath ${backupPath}"
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "Backup Path:" "${RED}${backupPath} not found.${NC}"; log ENF "backupPath ${backupPath}"
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "Backup Path:" "Please check your files and try again. - EXITING${NC}"; exit 1
 	fi
 }
