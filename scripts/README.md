@@ -18,7 +18,11 @@ This will probably be the most useful scripts for regular users.
 
 ## wtf-check-wpasupp.sh
 A non-destructive script to verify the disposition of the wpa_supplicant system service.
-The script will output formatted status messages and all errors to the logfile
+The script will output formatted status messages and all errors to the logfile.
+
+> [!NOTE]
+> - The parsing of the live config, comparison of outputs, etc, were mostly an academic exercise and not used by any other method that I'm aware of.
+
 
 <details>
 <summary>Terminal Output Example</summary>
