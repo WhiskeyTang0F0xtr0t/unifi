@@ -4,6 +4,18 @@
 > - I tried to put as much into functions as possible for portability and the potential for others to reuse.
 > - I'm sure they're over engineered and/or poorly coded, but I enjoyed the exercise.
 
+
+## wtf-wpa.sh
+Combines some functionality of wtf-check-wpasupp.sh & wtf-install-wpasupp.sh to create an "all in one" solution.
+This will probably be the most useful scripts for regular users.
+
+### Usage
+```
+./wtf-wpa.sh
+```
+------
+
+
 ## wtf-check-wpasupp.sh
 A non-destructive script to verify the disposition of the wpa_supplicant system service.
 The script will output formatted status messages and all errors to the logfile
