@@ -6,9 +6,6 @@ Starting point for my Unifi scripts
 These scripts do not use the podman method that was depricated by Unifi some time ago and works directly on the hardware's debian OS. 
 Additional details on each script will be in the scripts folder.
 
-> [!NOTE]
-> I used both of these scripts on my hardware after upgrading to UniFi OS v3.2.12 removed the wpa_supplicant service.
-
 - [wtf-wpa.sh](scripts/wtf-wpa.sh) - Combines some functionality of wtf-check-wpasupp.sh & wtf-install-wpasupp.sh to create an "all in one" solution.
 - [wtf-check-wpasupp.sh](scripts/wtf-check-wpasupp.sh) - Checks the wpa_supplicant service and confirms needed files are present by parsing the existing config.
 - [wtf-install-wpasupp.sh](scripts/wtf-install-wpasupp.sh) - Check/repair/install the wpa_supplicant setup on UDM hardware
