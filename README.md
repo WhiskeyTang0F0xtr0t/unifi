@@ -16,5 +16,5 @@ Additional details on each script will be in the scripts folder.
 
 ### Future Plans
 ------
-- [ ] `wtf-install-wpasupp.sh` - Add "auto recover" systemctl service to re-enable wpa_supplicant service after minor Unifi OS update(Major will most like wipe the volume)
 - [X] `wtf-wpa.sh` - Merge both scripts into a new script with combined functionality using switches
+- [ ] Add "auto recover" systemctl service to re-enable wpa_supplicant service after minor Unifi OS update(Major will most like wipe the volume)
