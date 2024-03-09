@@ -1,4 +1,5 @@
 #!/bin/sh
+COMMBAD="/etc/nut/commbad"
 
 case $1 in
   online)
