@@ -7,13 +7,13 @@ Very rough process outline
 ### Edit conf files to match your config
 
 ### Install nut-client on UDM Pro, etc
-apt-get install nut-client
+```apt-get install nut-client```
 
 ### Copy nut config files to /etc/nut
-scp -r ./* root@udmpro:/etc/nut/
+```scp -r ./* root@udmpro:/etc/nut/```
 
 ### service restart
-sudo systemctl restart nut-client
+```sudo systemctl restart nut-client```
 
 ### service status
-sudo systemctl status nut-client
+```sudo systemctl status nut-client```
