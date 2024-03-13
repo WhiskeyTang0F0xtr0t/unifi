@@ -1,6 +1,6 @@
-# WTF Unifi Scripts
+# WTF Unifi
 
-Starting point for my Unifi scripts
+A repository for my Unfi-related content.
 
 ## [wpa_supplicant](wpa_supplicant)
 Check/repair/install the wpa_supplicant setup on UDM hardware with formatted status messages and logging.
