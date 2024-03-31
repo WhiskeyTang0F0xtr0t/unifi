@@ -1,7 +1,7 @@
 # Scripts
 
 > [!NOTE]
-> These scripts are considered depricated and ar ehere for reference
+> These scripts are considered depricated and are here for reference
 
 ## wtf-check-wpasupp.sh
 A non-destructive script to verify the disposition of the wpa_supplicant system service.
