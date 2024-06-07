@@ -13,7 +13,7 @@ root@UDMPRO:~# ./wtf-wpa.sh
  
    WTF wpa [ install/repair | check ]
 
-   Syntax: wtf-wpa.sh [-i|r|c]
+   Syntax: wtf-wpa.sh [-i|c]
 
    options: 
 
