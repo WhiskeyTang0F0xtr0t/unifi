@@ -77,7 +77,7 @@ display-help()
 	script_name=$(basename -- "$0")
 	printf "%b %s\\n"
 	printf "   %b\\n\\n" "WTF wpa [ install/repair | check ]"
-	printf "   %b\\n\\n" "Syntax: ${CYAN}${full_filename} [-i|r|c]${NC}"
+	printf "   %b\\n\\n" "Syntax: ${CYAN}${full_filename} [-i|c]${NC}"
 	printf "   %b %s\\n\\n" "options:" ""
 	printf "   %8s   %s\\n" "-i" "Install/repair & configure the wpa_supplicant service"
 	printf "   %8s   %s\\n\\n" "" "Example: ${CYAN}${full_filename} -i${NC}"
