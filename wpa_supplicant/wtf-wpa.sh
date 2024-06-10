@@ -370,7 +370,7 @@ netcat-test () {
 }
 
 #######################################
-# Creates an "auto recovery" service for wpa_supplicant
+# Checks if wtf-wpa.service is enabled
 # Outputs:
 #   Status message
 ####################################### 
@@ -383,7 +383,7 @@ check-recovery-enabled () {
 }
 
 #######################################
-# Creates an "auto recovery" service for wpa_supplicant
+# Enables wtf-wpa.service
 # Outputs:
 #   Status message
 ####################################### 
@@ -397,7 +397,7 @@ recovery-enable () {
 }
 
 #######################################
-# Creates an "auto recovery" service for wpa_supplicant
+# Creates an "auto recovery" service "wtf-wpa.service"
 # Outputs:
 #   Status message
 ####################################### 
