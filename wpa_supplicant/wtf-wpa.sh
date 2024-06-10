@@ -376,9 +376,9 @@ netcat-test () {
 ####################################### 
 check-recovery-enabled () {
 	if systemctl is-enabled wtf-wpa.service 1> /dev/null 2> >(log_stream); then
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "systemctl:" "${GREEN}wtf-wpa.service already enabled${NC}"; log I "wtf-wpa.service is already enabled"
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Enabled:" "${GREEN}Yes${NC}"; log I "wtf-wpa.service is enabled"
 	else
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "systemctl:" "${RED}wtf-wpa.service is not enabled${NC}"; log E "wtf-wpa.service is not enabled"; return 1
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "Enabled:" "${RED}No${NC}"; log E "wtf-wpa.service is not enabled"; return 1
 	fi
 }
 
@@ -403,17 +403,13 @@ recovery-enable () {
 ####################################### 
 recovery-install () {
   ## Check if wtf-wpa.service is enabled. 
-  if check-recovery-enabled; then
-    printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Enabled:" "${GREEN}Yes${NC}" && log I "wtf-wpa.service is enabled"
-	else
-    printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "Enabled:" "${RED}No${NC}"; log E "wtf-wpa.service is not enabled"
+  if ! check-recovery-enabled; then
   	printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "wtf-wpa.service:" "Creating wtf-wpa.service config"; log I "Creating wtf-wpa.service config"
   	printf '[Unit]\nDescription=Re-run wtf-wpa.sh if the wpa_supplicant binary has been removed\nConditionPathExists=!/sbin/wpa_supplicant\n\n[Service]\nType=oneshot\nExecStart='${backupPath}'/wtf-wpa.sh -i\n\n[Install]\nWantedBy=multi-user.target\n' > /etc/systemd/system/wtf-wpa.service && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "wtf-wpa.service:" "/etc/systemd/system/wtf-wpa.service - Created"; log I "/etc/systemd/system/wtf-wpa.service - Created"
   	systemctl daemon-reload && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "systemctl:" "systemd manager configuration reloaded"; log I "systemd manager configuration reloaded" || { printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "systemctl:" "${RED}systemd manager configuration could not be reloaded. EXITING${NC}" ; log E "systemd manager configuration could not be reloaded. EXITING" ; exit 1; }
+  	recovery-enable
 	fi
-	recovery-enable
 }
-
 
 main-install () {
 clear
@@ -444,7 +440,9 @@ banner "Checking for wpa_supplicant.conf"
 check-for-file "wpa_conf" "${confPath}" "wpa_supplicant.conf" restore
 
 banner "Checking wpa_supplicant service"
-if [ ! check-wpa-supp-installed ] || [ ! check-wpa-supp-active ] || [ ! check-wpa-supp-enabled ] ]] ; then
+if check-wpa-supp-installed && check-wpa-supp-active && check-wpa-supp-enabled ; then
+   sleep 0
+else
    banner "Installing required packages"
    install-wpa-supp
    wpa-supp-enable
