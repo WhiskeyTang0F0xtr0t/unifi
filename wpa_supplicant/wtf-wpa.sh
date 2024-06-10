@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###################################### 
-# wtf-wpa v1.2
+# wtf-wpa v1.3
 #
 # Check/repair/install the wpa_supplicant setup on UDM hardware
 #
@@ -153,13 +153,15 @@ parse-wan-int () {
 check-for-path () {
 	local checkPathType="$1"
 	local checkPath="$2"
+	local checkPathOption="$3"
 	if [ -d "${checkPath}" ]; then
 	   printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "${checkPathType}:" "${GREEN}${checkPath}${NC}"; log IF "${checkPathType}: ${checkPath}"
 	else
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${checkPathType}:" "${RED}${checkPath}${NC}"; log ENF "${checkPathType}: ${backupPath}"
 		if [ "$checkPathType" == 'Backup Path' ]; then
-			printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "Backup Path:" "Please check your files and try again. - EXITING${NC}"; exit 1
-		else
+			printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "Backup Path:" "Please check your backupPath variable and try again. - EXITING${NC}"; exit 1
+		fi
+		if [ "$checkPathOption" == 'restore' ]; then
 			create-path "${checkPathType}" "${checkPath}"
 		fi
 	fi
@@ -222,6 +224,7 @@ restore-file () {
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "${restoreFileType}:" "${GREEN}${restoreFileName}${NC}"; log IC "${restoreFileType} ${restoreFilePath}/${restoreFileName}"
 	else
 		if [ "$restoreFileType" == 'wpa_conf' ]; then
+			printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${restoreFileType}:" "Could not copy ${restoreFileName} from ${backupPath}"; log E "Could not copy ${restoreFileName} from ${backupPath}"
 			create-wpasupp-conf
 		else
 			printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${restoreFileType}:" "Could not copy ${restoreFileName} from ${backupPath}"; log E "Could not copy ${restoreFileName} from ${backupPath}"
@@ -423,9 +426,9 @@ parse-wan-int
 
 banner "Checking for required directories"
 check-for-path 'Backup Path' "${backupPath}"
-check-for-path debPath "${debPath}"
-check-for-path certPath "${certPath}"
-check-for-path confPath "${confPath}"
+check-for-path debPath "${debPath}" restore
+check-for-path certPath "${certPath}" restore
+check-for-path confPath "${confPath}" restore
 
 banner "Checking for required deb packages"
 check-for-file "deb_pkg" "${debPath}" "${libpcspkg}" restore
