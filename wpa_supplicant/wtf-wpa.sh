@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###################################### 
-# wtf-wpa v1.0
+# wtf-wpa v1.1
 #
 # Check/repair/install the wpa_supplicant setup on UDM hardware
 #
@@ -205,14 +205,14 @@ check-for-file () {
 }
 
 #######################################
-# Copies file from  based on passed parameters
+# Copies file based on passed parameters
 # Globals:
 #   backupPath
 # Arguments:
 #   FileType FilePath FileName
 # Outputs:
 #   Status message
-####################################### 
+#######################################
 restore-file () {
 	local restoreFileType="$1"
 	local restoreFilePath="$2"
@@ -369,6 +369,52 @@ netcat-test () {
 	done
 }
 
+#######################################
+# Creates an "auto recovery" service for wpa_supplicant
+# Outputs:
+#   Status message
+####################################### 
+check-recovery-enabled () {
+	if systemctl is-enabled wtf-wpa.service 1> /dev/null 2> >(log_stream); then
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "systemctl:" "${GREEN}wtf-wpa.service already enabled${NC}"; log I "wtf-wpa.service is already enabled"
+	else
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "systemctl:" "${RED}wtf-wpa.service is not enabled${NC}"; log E "wtf-wpa.service is not enabled"; return 1
+	fi
+}
+
+#######################################
+# Creates an "auto recovery" service for wpa_supplicant
+# Outputs:
+#   Status message
+####################################### 
+recovery-enable () {
+  ## Enable wtf-wpa.service
+	if systemctl enable wtf-wpa.service 1> /dev/null 2> >(log_stream); then
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "systemctl:" "${GREEN}wtf-wpa.service enabled${NC}"; log I "wtf-wpa.service enabled"
+	else
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "systemctl:" "${RED}wtf-wpa.service service could not be enabled${NC}"; log E "wtf-wpa.service service could not be enabled"
+	fi
+}
+
+#######################################
+# Creates an "auto recovery" service for wpa_supplicant
+# Outputs:
+#   Status message
+####################################### 
+recovery-install () {
+  ## Check if wtf-wpa.service is enabled. 
+  if check-recovery-enabled; then
+    printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Enabled:" "${GREEN}Yes${NC}" && log I "wtf-wpa.service is enabled"
+	else
+    printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "Enabled:" "${RED}No${NC}"; log E "wtf-wpa.service is not enabled"
+  	printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "wtf-wpa.service:" "Creating wtf-wpa.service config"; log I "Creating wtf-wpa.service config"
+  	printf '[Unit]\nDescription=Re-run wtf-wpa.sh if the wpa_supplicant binary has been removed\nConditionPathExists=!/sbin/wpa_supplicant\n\n[Service]\nType=oneshot\nExecStart='${backupPath}'/wtf-wpa.sh -i\n\n[Install]\nWantedBy=multi-user.target\n' > /etc/systemd/system/wtf-wpa.service && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "wtf-wpa.service:" "/etc/systemd/system/wtf-wpa.service - Created"; log I "/etc/systemd/system/wtf-wpa.service - Created"
+  	systemctl daemon-reload && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "systemctl:" "systemd manager configuration reloaded"; log I "systemd manager configuration reloaded" || { printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "systemctl:" "${RED}systemd manager configuration could not be reloaded. EXITING${NC}" ; log E "systemd manager configuration could not be reloaded. EXITING" ; exit 1; }
+	fi
+	recovery-enable
+}
+
+
 main-install () {
 clear
 rm "$log_file" 1> /dev/null 2> >(log_stream)
@@ -401,11 +447,14 @@ banner "Checking wpa_supplicant service"
 # Check status of wpa_supplicant service
 if check-wpa-supp-installed ; then
    check-wpa-supp-active && wpa-supp-enable
-else	
+else
    banner "Installing required packages"
    install-wpa-supp
    wpa-supp-enable
 fi
+
+banner "Installing recovery service"
+recovery-install
 
 banner "Testing connection to google.com:80"
 netcat-test
@@ -447,6 +496,9 @@ banner "Checking wpa_supplicant service"
 check-wpa-supp-installed
 check-wpa-supp-active
 check-wpa-supp-enabled
+
+banner "Checking recovery service"
+check-recovery-enabled
 
 banner "Testing connection to google.com:80"
 netcat-test

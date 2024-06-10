@@ -7,9 +7,37 @@
 Combines some functionality of wtf-check-wpasupp.sh & wtf-install-wpasupp.sh to create an "all in one" solution.
 This will probably be the most useful scripts for regular users.
 
-### Usage
+### Create your "config" folder
+I created a folder called "config" that contains the following:
 ```
-root@UDMPRO:~# ./wtf-wpa.sh 
+CA.pem
+Client.pem
+PrivateKey.pem
+libpcsclite1_1.9.1-1_arm64.deb
+wpasupplicant_2.9.0-21_arm64.deb
+wtf-wpa.sh
+```
+You will need to privde your own certificates, but the deb files and script are available here.
+
+- [Debian packages](wpa_supplicant/deb%20packages)
+- [wtf-wpa.sh](wpa_supplicant/wtf-wpa.sh)
+
+### Make sure SSH is configured on your device.
+I like to use SSH private keys instead of passwords and install them using the ```ssh-copy-id``` command.
+
+### Copy the "config" folder to your device
+I've created a hostname entry on my internal dns called "udmpro", but you can use your IP address.
+
+```scp -r config root@udmpro:~/```
+
+Once that is done, ssh into your device and navigate to the directory you just copied over.
+```
+DEMO:~ shaun$ ssh root@udmpro
+root@UDMPRO:~# cd config/
+```
+### Script Usage
+```
+root@UDMPRO:~/config# ./wtf-wpa.sh 
  
    WTF wpa [ install/repair | check ]
 
