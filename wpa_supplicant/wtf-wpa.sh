@@ -269,7 +269,7 @@ check-wpa-supp-active () {
 	if systemctl is-active wpa_supplicant 1> /dev/null 2> >(log_stream); then
 	   printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Active:" "${GREEN}Yes${NC}" && log I "wpa_supplicant is active"
 	else
-	   printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "Active:" "${RED}No${NC}"; log E "wpa_supplicant is not active"
+	   printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "Active:" "${RED}No${NC}"; log E "wpa_supplicant is not active"; return 1
 	fi
 }
 
@@ -283,7 +283,7 @@ check-wpa-supp-enabled () {
 	if systemctl is-enabled wpa_supplicant 1> /dev/null 2> >(log_stream); then
 	   printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Enabled:" "${GREEN}Yes${NC}" && log I "wpa_supplicant is enabled"
 	else
-	   printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "Enabled:" "${RED}No${NC}"; log E "wpa_supplicant is not enabled"
+	   printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "Enabled:" "${RED}No${NC}"; log E "wpa_supplicant is not enabled"; return 1
 	fi
 }
 
@@ -444,10 +444,7 @@ banner "Checking for wpa_supplicant.conf"
 check-for-file "wpa_conf" "${confPath}" "wpa_supplicant.conf" restore
 
 banner "Checking wpa_supplicant service"
-# Check status of wpa_supplicant service
-if check-wpa-supp-installed ; then
-   check-wpa-supp-active && wpa-supp-enable
-else
+if [ ! check-wpa-supp-installed ] || [ ! check-wpa-supp-active ] || [ ! check-wpa-supp-enabled ] ]] ; then
    banner "Installing required packages"
    install-wpa-supp
    wpa-supp-enable
