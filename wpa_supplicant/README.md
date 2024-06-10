@@ -58,7 +58,7 @@ root@UDMPRO:~#
 
 <details>
 <summary>Terminal Output Example</summary>
-<img width="863" alt="wtf-ui" src="https://github.com/WhiskeyTang0F0xtr0t/unifi/assets/9803191/cc028256-0c30-4141-a612-19a42cb108f7">
+<img width="922" alt="Terminal Output" src="https://github.com/WhiskeyTang0F0xtr0t/unifi/assets/9803191/078e677b-928d-4251-bfcc-d97e1889cdb2">
 </details>
 
 <details>
