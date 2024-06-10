@@ -3,9 +3,41 @@
 > [!NOTE]
 > - I tried to put as much into functions as possible for portability and the potential for others to reuse.
 > - I'm sure they're over engineered and/or poorly coded, but I enjoyed the exercise.
+
 ## wtf-wpa.sh
-Combines some functionality of wtf-check-wpasupp.sh & wtf-install-wpasupp.sh to create an "all in one" solution.
-This will probably be the most useful scripts for regular users.
+A script to setup the wpa_supplicant service on Ubiquiti hardware.
+
+> [!IMPORTANT]
+>
+>You need to update the variables in wtf-wpa.sh to match your configuration!
+
+```
+## USER VARIABLES ##
+
+# FULL PATH to "backup" folder
+backupPath="/root/config"
+
+# Names of install deb files
+libpcspkg="libpcsclite1_1.9.1-1_arm64.deb"
+wpapkg="wpasupplicant_2.9.0-21_arm64.deb"
+
+# Internet (ONT) interface MAC address (Pulled from cert extraction process)
+inetONTmac="00:00:00:00:00:00"
+
+# Certficate variables
+CA_filename="CA.pem"
+Client_filename="Client.pem"
+PrivateKey_filename="PrivateKey.pem"
+
+# FULL PATH for wpa_supplicant.conf
+confPath="/etc/wpa_supplicant/conf"
+
+# FULL PATH for cert storage
+certPath="/etc/wpa_supplicant/conf"
+
+# FULL PATH for deb package storage
+debPath="/etc/wpa_supplicant/packages"
+```
 
 ### Create your "config" folder
 I created a folder called "config" that contains the following:
@@ -104,7 +136,7 @@ root@UDMPRO:~#
 
 Future Plans
 - [X] `wtf-wpa.sh` - Merge both scripts into a new script with combined functionality using switches
-- [ ] Add "auto recover" systemctl service to re-enable wpa_supplicant service after minor Unifi OS update(Major will most like wipe the volume)
+- [X] Add "auto recover" systemctl service to re-enable wpa_supplicant service after minor Unifi OS update(Major will most like wipe the volume)
 
 Deprecated
 - [wtf-check-wpasupp.sh](archive/wtf-check-wpasupp.sh) - Checks the wpa_supplicant service and confirms needed files are present by parsing the existing config.
