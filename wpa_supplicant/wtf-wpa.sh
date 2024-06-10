@@ -405,7 +405,7 @@ recovery-install () {
   ## Check if wtf-wpa.service is enabled. 
   if ! check-recovery-enabled; then
   	printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "wtf-wpa.service:" "Creating wtf-wpa.service config"; log I "Creating wtf-wpa.service config"
-  	printf '[Unit]\nDescription=Re-run wtf-wpa.sh if the wpa_supplicant binary has been removed\nConditionPathExists=!/sbin/wpa_supplicant\n\n[Service]\nType=oneshot\nExecStart='${backupPath}'/wtf-wpa.sh -i\n\n[Install]\nWantedBy=multi-user.target\n' > /etc/systemd/system/wtf-wpa.service && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "wtf-wpa.service:" "/etc/systemd/system/wtf-wpa.service - Created"; log I "/etc/systemd/system/wtf-wpa.service - Created"
+  	printf printf '[Unit]\nDescription=Reinstall and start/enable wpa_supplicant\nAssertPathExistsGlob='${backupPath}'/wpasupplicant*arm64.deb\nAssertPathExistsGlob='${backupPath}'/libpcsclite1*arm64.deb\nConditionPathExists=!/sbin/wpa_supplicant\nConditionPathExists='${backupPath}'/wtf-wpa.sh\n\n[Service]\nType=oneshot\nExecStart='${backupPath}'/wtf-wpa.sh -i\n\n[Install]\nWantedBy=multi-user.target\n' > /etc/systemd/system/wtf-wpa.service && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "wtf-wpa.service:" "/etc/systemd/system/wtf-wpa.service - Created"; log I "/etc/systemd/system/wtf-wpa.service - Created"
   	systemctl daemon-reload && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "systemctl:" "systemd manager configuration reloaded"; log I "systemd manager configuration reloaded" || { printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "systemctl:" "${RED}systemd manager configuration could not be reloaded. EXITING${NC}" ; log E "systemd manager configuration could not be reloaded. EXITING" ; exit 1; }
   	recovery-enable
 	fi
