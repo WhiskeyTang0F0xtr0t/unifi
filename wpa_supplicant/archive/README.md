@@ -13,7 +13,6 @@ The script will output formatted status messages and all errors to the logfile.
 
 <details>
 <summary>Terminal Output Example</summary>
-<img width="922" alt="Terminal Output" src="https://github.com/WhiskeyTang0F0xtr0t/unifi/assets/9803191/078e677b-928d-4251-bfcc-d97e1889cdb2">
 </details>
 
 <details>
