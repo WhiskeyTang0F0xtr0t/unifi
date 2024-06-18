@@ -66,7 +66,7 @@ log() {
 	esac
 }
 
-log_stream() {
+log-stream() {
   # used to capture stream output from command responses
   [[ ! -t 0 ]] && while read -r line; do echo "$(date '+[%F %T]') - STREAM: $line" >> "$log_file"; done
 }
@@ -115,7 +115,7 @@ banner () {
 #   Status message, exits script if fails
 #######################################
 check-hw () {
-	if command -V ubnt-device-info 1> /dev/null 2> >(log_stream); then
+	if command -V ubnt-device-info 1> /dev/null 2> >(log-stream); then
 		local model
 		model=$(ubnt-device-info model)
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Model:" "${CYAN}${model}${NC}"; log I "Hardware - ${model}"
@@ -254,7 +254,7 @@ create-wpasupp-conf () {
 ####################################### 
 check-wpa-supp-installed () {
 # Check if wpa_supplicant is installed with dpkg
-	if dpkg -s wpasupplicant 1> /dev/null 2> >(log_stream) ; then
+	if dpkg -s wpasupplicant 1> /dev/null 2> >(log-stream) ; then
 		wpa_supp_ver=$(dpkg -s wpasupplicant | grep -i '^Version' | cut -d' ' -f2)
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Installed:" "${GREEN}${wpa_supp_ver}${NC}"; log I "wpa_supplicant installed: ${wpa_supp_ver}"
 	else
@@ -269,7 +269,7 @@ check-wpa-supp-installed () {
 ####################################### 
 check-wpa-supp-active () {
 # Check if wpa_supplicant is active with systemctl
-	if systemctl is-active wpa_supplicant 1> /dev/null 2> >(log_stream); then
+	if systemctl is-active wpa_supplicant 1> /dev/null 2> >(log-stream); then
 	   printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Active:" "${GREEN}Yes${NC}" && log I "wpa_supplicant is active"
 	else
 	   printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "Active:" "${RED}No${NC}"; log E "wpa_supplicant is not active"; return 1
@@ -283,7 +283,7 @@ check-wpa-supp-active () {
 ####################################### 
 check-wpa-supp-enabled () {
 # Check if wpa_supplicant is active with systemctl
-	if systemctl is-enabled wpa_supplicant 1> /dev/null 2> >(log_stream); then
+	if systemctl is-enabled wpa_supplicant 1> /dev/null 2> >(log-stream); then
 	   printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Enabled:" "${GREEN}Yes${NC}" && log I "wpa_supplicant is enabled"
 	else
 	   printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "Enabled:" "${RED}No${NC}"; log E "wpa_supplicant is not enabled"; return 1
@@ -297,7 +297,7 @@ check-wpa-supp-enabled () {
 ####################################### 
 wpa-supp-enable () {
 # Start and enable the wpa_supplicant service with systemctl
-	if systemctl enable --now wpa_supplicant 1> /dev/null 2> >(log_stream); then
+	if systemctl enable --now wpa_supplicant 1> /dev/null 2> >(log-stream); then
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "systemctl:" "${GREEN}wpa_supplicant started & enabled${NC}"; log I "Started & enabled wpasupplicant"
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "systemctl:" "Waiting for 5 seconds for service to sync"; log I "Waiting for 5 seconds for service to sync" && sleep 5
 	else
@@ -316,7 +316,7 @@ wpa-supp-enable () {
 install-pkg () {
 	local pkgName="$1"
 	printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "Installing:" "${pkgName}"
-	if dpkg -i ${backupPath}/"${pkgName}" 1> /dev/null 2> >(log_stream); then
+	if dpkg -i ${backupPath}/"${pkgName}" 1> /dev/null 2> >(log-stream); then
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "dpkg" "Install successful: ${GREEN}${pkgName}${NC}"; log I "Install successful: ${pkgName}"
 	else
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "dpkg" "Install failed: ${RED}${pkgName} - EXITING${NC}"; log E "Install failed: ${pkgName} - EXITING"
@@ -378,7 +378,7 @@ netcat-test () {
 #   Status message
 ####################################### 
 check-recovery-enabled () {
-	if systemctl is-enabled wtf-wpa.service 1> /dev/null 2> >(log_stream); then
+	if systemctl is-enabled wtf-wpa.service 1> /dev/null 2> >(log-stream); then
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Enabled:" "${GREEN}Yes${NC}"; log I "wtf-wpa.service is enabled"
 	else
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "Enabled:" "${RED}No${NC}"; log E "wtf-wpa.service is not enabled"; return 1
@@ -392,7 +392,7 @@ check-recovery-enabled () {
 ####################################### 
 recovery-enable () {
   ## Enable wtf-wpa.service
-	if systemctl enable wtf-wpa.service 1> /dev/null 2> >(log_stream); then
+	if systemctl enable wtf-wpa.service 1> /dev/null 2> >(log-stream); then
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "systemctl:" "${GREEN}wtf-wpa.service enabled${NC}"; log I "wtf-wpa.service enabled"
 	else
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "systemctl:" "${RED}wtf-wpa.service service could not be enabled${NC}"; log E "wtf-wpa.service service could not be enabled"
@@ -416,7 +416,7 @@ recovery-install () {
 
 main-install () {
 clear
-rm "$log_file" 1> /dev/null 2> >(log_stream)
+rm "$log_file" 1> /dev/null 2> >(log-stream)
 banner "Logging to: $log_file"
 
 banner "Installation Mode"
@@ -463,7 +463,7 @@ exit
 
 main-check () {
 clear
-rm "$log_file" 1> /dev/null 2> >(log_stream)
+rm "$log_file" 1> /dev/null 2> >(log-stream)
 banner "Logging to: $log_file"
 
 banner "Verification Mode"
