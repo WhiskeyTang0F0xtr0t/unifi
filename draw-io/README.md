@@ -17,3 +17,7 @@ All assets were created new and are fully connect-able.
 - NVR
 - NVR Pro
 <img width="836" alt="nvrs" src="https://github.com/WhiskeyTang0F0xtr0t/unifi/assets/9803191/9f468e17-81a7-4ce8-97e7-c0c9a4567541">
+
+### ubiquiti-Gateways.xml
+- Gateway Pro
+<img width="668" alt="gateways" src="https://github.com/WhiskeyTang0F0xtr0t/unifi/assets/9803191/4c565899-d12f-40e0-9ced-75c90c90e463">
