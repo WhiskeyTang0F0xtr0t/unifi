@@ -2,6 +2,7 @@
 
 > [!NOTE]
 > July 3rd, 2024
+> 
 > Updated UniFi OS from v3.2.12 to v4.0.6 and re-install service worked as intended.
 > No additional downtime outside of the reboot.
 
