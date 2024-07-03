@@ -1,8 +1,9 @@
 # Scripts
 
 > [!NOTE]
-> - I tried to put as much into functions as possible for portability and the potential for others to reuse.
-> - I'm sure they're over engineered and/or poorly coded, but I enjoyed the exercise.
+> July 3rd, 2024
+> Updated UniFi OS from v3.2.12 to v4.0.6 and re-install service worked as intended.
+> No additional downtime outside of the reboot.
 
 ## wtf-wpa.sh
 A script to setup the wpa_supplicant service on Ubiquiti hardware.
