@@ -11,6 +11,21 @@ A script to setup the wpa_supplicant service on Ubiquiti hardware.
 
 > [!IMPORTANT]
 >
+> This script has been confirmed working on the following hardware:
+> - Dream Machine Pro
+> - Dream Machine Special Edition
+> - Dream Machine Pro Max
+> - Cloud Gateway Ultra
+> - Cloud Gateway Express
+>
+> If your device is not on this list, message me and we can modfiy the script for compatibility.
+
+**DO NOT RUN THIS SCRIPT IF YOUR DEVICE IS IN BRIDGE MODE!**
+
+**IT DOES NOT CURRENTLY CHECK FOR BRIDGE MODE AND WILL BREAK YOUR SETUP!**
+
+> [!TIP]
+>
 >You need to update the variables in wtf-wpa.sh to match your configuration!
 
 ```
