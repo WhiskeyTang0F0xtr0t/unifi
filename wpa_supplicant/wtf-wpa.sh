@@ -198,9 +198,6 @@ check-for-file () {
 	local checkFileOption="$4"
 	if [ -f "${checkFilePath}"/"${checkFileName}" ]; then
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "${checkFileType}:" "${GREEN}${checkFileName}${NC}"; log IF "${checkFileType}: ${checkFilePath}/${checkFileName}"
-	elif [ "$restoreFileType" == 'override' ]; then
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${restoreFileType}:" "${restoreFileName} not found in ${restoreFilePath}"; log E "${restoreFileName} not found in ${restoreFilePath}"
-		create-overide-conf
 	else
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${checkFileType}:" "${RED}${checkFileName} not found${NC}"; log ENF "${checkFileType}: ${checkFilePath}/${checkFileName}"
 		if [ "$checkFileOption" == 'restore' ]; then
@@ -222,13 +219,16 @@ restore-file () {
 	local restoreFileType="$1"
 	local restoreFilePath="$2"
 	local restoreFileName="$3"
-	printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "${restoreFileType}:" "Copying ${restoreFileName} from ${backupPath}"; log IF "Copying ${restoreFileName} from ${backupPath}"
+	printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "${restoreFileType}:" "Restoring ${restoreFileName}"; log IF "Restoring ${restoreFileName}"
 	if cp "${backupPath}"/"${restoreFileName}" "${restoreFilePath}"/ &> /dev/null; then
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "${restoreFileType}:" "${GREEN}${restoreFileName}${NC}"; log IC "${restoreFileType} ${restoreFilePath}/${restoreFileName}"
 	else
 		if [ "$restoreFileType" == 'wpa_conf' ]; then
 			printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${restoreFileType}:" "Could not copy ${restoreFileName} from ${backupPath}"; log E "Could not copy ${restoreFileName} from ${backupPath}"
 			create-wpasupp-conf
+		elif [ "$restoreFileType" == 'override' ]; then
+			printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${restoreFileType}:" "${restoreFileName} not found in ${restoreFilePath}"; log E "${restoreFileName} not found in ${restoreFilePath}"
+			create-overide-conf
 		else
 			printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${restoreFileType}:" "Could not copy ${restoreFileName} from ${backupPath}"; log E "Could not copy ${restoreFileName} from ${backupPath}"
 			printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "${restoreFileType}:" "Please check your files and try again."
@@ -354,10 +354,9 @@ install-wpa-supp () {
 #   Status message, error output and exits script if failed
 ####################################### 
 create-overide-conf () {
-	check-for-path override /etc/systemd/system/wpa_supplicant.service.d restore
 	if [ -d /etc/systemd/system/wpa_supplicant.service.d ]; then
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "override.conf:" "Creating override.conf in service Drop-In path"; log I "Creating override.conf in service Drop-In path"
-		printf "[Service]\nExecStart=\nExecStart=/sbin/wpa_supplicant -u -s -Dwired -i${udapi_wan_int} -c${confPath}/wpa_supplicant.conf\n" > /etc/systemd/system/wpa_supplicant.service.d/override.conf && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "override.conf:" "override.conf created in Drop-In path$"; log I "override.conf created in Drop-In path" || { printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "override.conf:" "${RED}Could not create the override.conf file. EXITING${NC}" ; log E "Could not create the override.conf file. EXITING" ; exit 1; }
+		printf "[Service]\nExecStart=\nExecStart=/sbin/wpa_supplicant -u -s -Dwired -i${udapi_wan_int} -c${confPath}/wpa_supplicant.conf\n" > /etc/systemd/system/wpa_supplicant.service.d/override.conf && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "override.conf:" "override.conf created in Drop-In path"; log I "override.conf created in Drop-In path" || { printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "override.conf:" "${RED}Could not create the override.conf file. EXITING${NC}" ; log E "Could not create the override.conf file. EXITING" ; exit 1; }
 	else
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "override.conf:" "${RED}Path: /etc/systemd/system/wpa_supplicant.service.d NOT FOUND. EXITING${NC}" ; log E "${RED}Path: /etc/systemd/system/wpa_supplicant.service.d NOT FOUND. EXITING${NC}" ; exit 1
 	fi
