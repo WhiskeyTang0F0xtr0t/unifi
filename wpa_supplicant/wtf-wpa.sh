@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###################################### 
-# wtf-wpa v1.3
+# wtf-wpa v1.8
 #
 # Check/repair/install the wpa_supplicant setup on UDM hardware
 #
@@ -198,6 +198,9 @@ check-for-file () {
 	local checkFileOption="$4"
 	if [ -f "${checkFilePath}"/"${checkFileName}" ]; then
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "${checkFileType}:" "${GREEN}${checkFileName}${NC}"; log IF "${checkFileType}: ${checkFilePath}/${checkFileName}"
+	elif [ "$restoreFileType" == 'override' ]; then
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${restoreFileType}:" "${restoreFileName} not found in ${restoreFilePath}"; log E "${restoreFileName} not found in ${restoreFilePath}"
+		create-overide-conf
 	else
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${checkFileType}:" "${RED}${checkFileName} not found${NC}"; log ENF "${checkFileType}: ${checkFilePath}/${checkFileName}"
 		if [ "$checkFileOption" == 'restore' ]; then
@@ -351,8 +354,13 @@ install-wpa-supp () {
 #   Status message, error output and exits script if failed
 ####################################### 
 create-overide-conf () {
-	printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "override.conf:" "Creating override.conf in service Drop-In path"; log I "Creating override.conf in service Drop-In path"
-	printf "[Service]\nExecStart=\nExecStart=/sbin/wpa_supplicant -u -s -Dwired -i${udapi_wan_int} -c${confPath}/wpa_supplicant.conf\n" > /etc/systemd/system/wpa_supplicant.service.d/override.conf && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "override.conf:" "override.conf created in Drop-In path$"; log I "override.conf created in Drop-In path" || { printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "override.conf:" "${RED}Could not create the override.conf file. EXITING${NC}" ; log E "Could not create the override.conf file. EXITING" ; exit 1; }
+	check-for-path override /etc/systemd/system/wpa_supplicant.service.d restore
+	if [ -d /etc/systemd/system/wpa_supplicant.service.d ]; then
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "override.conf:" "Creating override.conf in service Drop-In path"; log I "Creating override.conf in service Drop-In path"
+		printf "[Service]\nExecStart=\nExecStart=/sbin/wpa_supplicant -u -s -Dwired -i${udapi_wan_int} -c${confPath}/wpa_supplicant.conf\n" > /etc/systemd/system/wpa_supplicant.service.d/override.conf && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "override.conf:" "override.conf created in Drop-In path$"; log I "override.conf created in Drop-In path" || { printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "override.conf:" "${RED}Could not create the override.conf file. EXITING${NC}" ; log E "Could not create the override.conf file. EXITING" ; exit 1; }
+	else
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "override.conf:" "${RED}Path: /etc/systemd/system/wpa_supplicant.service.d NOT FOUND. EXITING${NC}" ; log E "${RED}Path: /etc/systemd/system/wpa_supplicant.service.d NOT FOUND. EXITING${NC}" ; exit 1
+	fi
 }
 
 #######################################
@@ -429,6 +437,7 @@ check-for-path 'Backup Path' "${backupPath}"
 check-for-path debPath "${debPath}" restore
 check-for-path certPath "${certPath}" restore
 check-for-path confPath "${confPath}" restore
+check-for-path override /etc/systemd/system/wpa_supplicant.service.d restore
 
 banner "Checking for required deb packages"
 check-for-file "deb_pkg" "${debPath}" "${libpcspkg}" restore
@@ -439,8 +448,9 @@ check-for-file "CA" "${certPath}" "${CA_filename}" restore
 check-for-file "Client" "${certPath}" "${Client_filename}" restore
 check-for-file "PrivateKey" "${certPath}" "${PrivateKey_filename}" restore
 
-banner "Checking for wpa_supplicant.conf"
+banner "Checking for wpa_supplicant conf files"
 check-for-file "wpa_conf" "${confPath}" "wpa_supplicant.conf" restore
+check-for-file "override" "/etc/systemd/system/wpa_supplicant.service.d" "override.conf" restore
 
 banner "Checking wpa_supplicant service"
 if check-wpa-supp-installed && check-wpa-supp-active && check-wpa-supp-enabled ; then
@@ -476,6 +486,7 @@ check-for-path 'Backup Path' "${backupPath}"
 check-for-path debPath "${debPath}"
 check-for-path certPath "${certPath}"
 check-for-path confPath "${confPath}"
+check-for-path override /etc/systemd/system/wpa_supplicant.service.d
 
 banner "Checking for required deb packages"
 check-for-file "deb_pkg" "${debPath}" "${libpcspkg}"
@@ -486,8 +497,9 @@ check-for-file "CA" "${certPath}" "${CA_filename}"
 check-for-file "Client" "${certPath}" "${Client_filename}"
 check-for-file "PrivateKey" "${certPath}" "${PrivateKey_filename}"
 
-banner "Checking for wpa_supplicant.conf"
+banner "Checking for wpa_supplicant conf files"
 check-for-file "wpa_conf" "${confPath}" "wpa_supplicant.conf"
+check-for-file "override" "/etc/systemd/system/wpa_supplicant.service.d" "override.conf"
 
 banner "Checking wpa_supplicant service"
 # Check status of wpa_supplicant service
