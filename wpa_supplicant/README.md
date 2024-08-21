@@ -67,7 +67,7 @@ libpcsclite1_1.9.1-1_arm64.deb
 wpasupplicant_2.9.0-21_arm64.deb
 wtf-wpa.sh
 ```
-You will need to privde your own certificates, but the deb files and script are available here.
+You will need to provide your own certificates, but the deb files and script are available here.
 
 - [Debian packages](wpa_supplicant/deb%20packages)
 - [wtf-wpa.sh](wpa_supplicant/wtf-wpa.sh)
