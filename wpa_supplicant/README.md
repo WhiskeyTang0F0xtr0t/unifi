@@ -157,9 +157,3 @@ root@UDMPRO:~#
 Future Plans
 - [X] `wtf-wpa.sh` - Merge both scripts into a new script with combined functionality using switches
 - [X] Add "auto recover" systemctl service to re-enable wpa_supplicant service after minor Unifi OS update(Major will most like wipe the volume)
-
-Deprecated
-- [wtf-check-wpasupp.sh](archive/wtf-check-wpasupp.sh) - Checks the wpa_supplicant service and confirms needed files are present by parsing the existing config.
-- [wtf-install-wpasupp.sh](archive/wtf-install-wpasupp.sh) - Check/repair/install the wpa_supplicant setup on UDM hardware
-
-
