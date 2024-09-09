@@ -27,7 +27,7 @@ dpkgURL="https://download.splunk.com/products/universalforwarder/releases/9.3.0/
 
 ```
 
-- [wtf-sf.sh](splunk_forwarder/wtf-sf.sh)
+- [wtf-sf.sh](wtf-sf.sh)
 
 ### Make sure SSH is configured on your device.
 I like to use SSH private keys instead of passwords and install them using the ```ssh-copy-id``` command.
