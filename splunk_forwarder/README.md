@@ -1,7 +1,7 @@
 # Scripts
 
 ## splunk-forwader.sh
-A script to setup the splunk-forwader service.
+A script to download and setup the splunk-forwader service.
 
 > [!IMPORTANT]
 >
@@ -43,11 +43,11 @@ root@UDMPRO:~# cd splunk/
 ```
 ### Script Usage
 ```
-root@UDMPRO:~# ./splunk-forwader.sh 
+root@UDMPRO:~# ./wtf-sf.sh 
  
    Splunk Forwader [ install ]
 
-   Syntax: splunk-forwader.sh [-i]
+   Syntax: wtf-sf.sh [-i]
 
    options: 
 
