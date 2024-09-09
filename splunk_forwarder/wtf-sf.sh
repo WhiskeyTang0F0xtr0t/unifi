@@ -3,7 +3,7 @@
 ###################################### 
 # wtf-splunkforwarder v0.1
 #
-# Check/repair/install the splunk_forwader
+# Install and configure the splunk_forwader
 #
 ####################################### 
 
