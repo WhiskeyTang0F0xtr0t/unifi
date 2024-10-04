@@ -135,7 +135,7 @@ parse-wan-int () {
 # Checks ubios-udapi-server.state to determine the WAN port
 	if [ -f /data/udapi-config/ubios-udapi-server/ubios-udapi-server.state ]; then
 		# Parses udapi-net-cfg.json and etracts first interface in wanFailover yaml object
-		udapi_wan_int=$(jq -r '.services.wanFailover.wanInterfaces.[0].interface' /data/udapi-config/udapi-net-cfg.json)
+		udapi_wan_int=$(jq -r '.services.wanFailover.wanInterfaces[0].interface' /data/udapi-config/udapi-net-cfg.json)
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "WAN Int:" "${CYAN}${udapi_wan_int}${NC}" && log I "WAN Interface: ${udapi_wan_int}"
 	else
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "WAN Int:" "${RED}Could not determine WAN interface from udapi-net-cfg - EXITING${NC}"; log E "Could not determine WAN interface from udapi-net-cfg - EXITING"

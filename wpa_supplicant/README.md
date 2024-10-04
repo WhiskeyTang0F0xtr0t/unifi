@@ -18,6 +18,7 @@ A script to setup the wpa_supplicant service on Ubiquiti hardware.
 > - Dream Machine Pro Max
 > - Cloud Gateway Ultra
 > - Cloud Gateway Express
+> - Enterprise Fortress Gateway (u/Navish360)
 >
 > If your device is not on this list, message me and we can modfiy the script for compatibility.
 
