@@ -46,7 +46,7 @@ debPath="/etc/wpa_supplicant/packages"
 ##    DO NOT EDIT BELOW THIS LINE    ##
 ####################################### 
 # Load external variable file
-. ${backupPath}/var-wtf-wpa.txt
+. ${backupPath}/var-wtf-wpa.txt &> /dev/null
 
 wpasupp_install=""
 
@@ -480,7 +480,6 @@ banner "INSTALLATION MODE"
 
 banner "Checking for variables"
 check-for-file "var-file" "${backupPath}" "var-wtf-wpa.txt"
-check-for-file "var-file" "${backupPath}" "var-wtf-wpa.txt"
 check-variable backupPath "${backupPath}"
 check-variable libpcspkg "${libpcspkg}"
 check-variable wpapkg "${wpapkg}"
@@ -545,7 +544,6 @@ banner "Logging to: $log_filename"
 banner "FILES ONLY MODE"
 
 banner "Checking for variables"
-check-for-file "var-file" "${backupPath}" "var-wtf-wpa.txt"
 check-for-file "var-file" "${backupPath}" "var-wtf-wpa.txt"
 check-variable backupPath "${backupPath}"
 check-variable libpcspkg "${libpcspkg}"
@@ -650,7 +648,6 @@ banner "Logging to: $log_filename"
 banner "VERIFICATION MODE"
 
 banner "Checking for variables"
-check-for-file "var-file" "${backupPath}" "var-wtf-wpa.txt"
 check-for-file "var-file" "${backupPath}" "var-wtf-wpa.txt"
 check-variable backupPath "${backupPath}"
 check-variable libpcspkg "${libpcspkg}"
