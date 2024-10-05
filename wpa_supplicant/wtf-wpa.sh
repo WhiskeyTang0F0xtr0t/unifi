@@ -45,9 +45,6 @@ debPath="/etc/wpa_supplicant/packages"
 ####################################### 
 ##    DO NOT EDIT BELOW THIS LINE    ##
 ####################################### 
-# Load external variable file
-. ${backupPath}/var-wtf-wpa.txt
-
 wpasupp_install=""
 
 full_filename=$(basename -- "$0")
@@ -101,6 +98,9 @@ NC=$(tput sgr0)
 TICK="[${GREEN}✓${NC}]"
 CROSS="[${RED}✗${NC}]"
 INFO="[i]"
+
+# Load external variable file
+. ${backupPath}/var-wtf-wpa.txt 1> /dev/null 2> >(log-stream)
 
 #######################################
 # Show a formatted banner with message
