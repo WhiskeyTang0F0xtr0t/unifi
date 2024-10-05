@@ -102,6 +102,9 @@ TICK="[${GREEN}✓${NC}]"
 CROSS="[${RED}✗${NC}]"
 INFO="[i]"
 
+# Load external variable file
+. ${backupPath}/var-wtf-wpa.txt 1> /dev/null 2> >(log-stream)
+
 #######################################
 # Show a formatted banner with message
 # ARGUMENTS:
