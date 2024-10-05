@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###################################### 
-# wtf-wpa v2.1
+# wtf-wpa v2.1.1
 #
 # Check/repair/install the wpa_supplicant setup on UDM hardware
 #
@@ -120,11 +120,12 @@ banner () {
 #   Status message, exits script if fails
 #######################################
 check-variable () {
-	local varCheck="$1"
+	local varName="$1"
+	local varCheck="$2"
 	if [ ! -z "${varCheck}" ]; then
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "var-check:" "${SILVER}${varCheck}${NC}"; log IF "check-variable: ${varCheck}"
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "${varName}:" "${SILVER}${varCheck}${NC}"; log IF "${varName}: ${varCheck}"
 	else
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "var-check:" "${RED}${varCheck} not set/found$ - EXITING{NC}"; log ENF "check-variable: ${var-check}"; exit 1
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${varName}:" "${RED}${varCheck} not set/found$ - EXITING{NC}"; log ENF "${varName}"; exit 1
 	fi
 }
 
@@ -479,17 +480,18 @@ banner "INSTALLATION MODE"
 
 banner "Checking for variables"
 check-for-file "var-file" "${backupPath}" "var-wtf-wpa.txt"
-check-variable "${backupPath}"
-check-variable "${libpcspkg}"
-check-variable "${wpapkg}"
-check-variable "${inetONTmac}"
-check-variable "${backupPath}"
-check-variable "${CA_filename}"
-check-variable "${Client_filename}"
-check-variable "${PrivateKey_filename}"
-check-variable "${confPath}"
-check-variable "${certPath}"
-check-variable "${debPath}"
+check-for-file "var-file" "${backupPath}" "var-wtf-wpa.txt"
+check-variable backupPath "${backupPath}"
+check-variable libpcspkg "${libpcspkg}"
+check-variable wpapkg "${wpapkg}"
+check-variable inetONTmac "${inetONTmac}"
+check-variable backupPath "${backupPath}"
+check-variable CA_filename "${CA_filename}"
+check-variable Client_filename "${Client_filename}"
+check-variable PrivateKey_filename "${PrivateKey_filename}"
+check-variable confPath "${confPath}"
+check-variable certPath "${certPath}"
+check-variable debPath "${debPath}"
 
 banner "Checking Hardware Version"
 check-hw
@@ -544,17 +546,18 @@ banner "FILES ONLY MODE"
 
 banner "Checking for variables"
 check-for-file "var-file" "${backupPath}" "var-wtf-wpa.txt"
-check-variable "${backupPath}"
-check-variable "${libpcspkg}"
-check-variable "${wpapkg}"
-check-variable "${inetONTmac}"
-check-variable "${backupPath}"
-check-variable "${CA_filename}"
-check-variable "${Client_filename}"
-check-variable "${PrivateKey_filename}"
-check-variable "${confPath}"
-check-variable "${certPath}"
-check-variable "${debPath}"
+check-for-file "var-file" "${backupPath}" "var-wtf-wpa.txt"
+check-variable backupPath "${backupPath}"
+check-variable libpcspkg "${libpcspkg}"
+check-variable wpapkg "${wpapkg}"
+check-variable inetONTmac "${inetONTmac}"
+check-variable backupPath "${backupPath}"
+check-variable CA_filename "${CA_filename}"
+check-variable Client_filename "${Client_filename}"
+check-variable PrivateKey_filename "${PrivateKey_filename}"
+check-variable confPath "${confPath}"
+check-variable certPath "${certPath}"
+check-variable debPath "${debPath}"
 
 banner "Checking Hardware Version"
 check-hw
@@ -648,17 +651,18 @@ banner "VERIFICATION MODE"
 
 banner "Checking for variables"
 check-for-file "var-file" "${backupPath}" "var-wtf-wpa.txt"
-check-variable "${backupPath}"
-check-variable "${libpcspkg}"
-check-variable "${wpapkg}"
-check-variable "${inetONTmac}"
-check-variable "${backupPath}"
-check-variable "${CA_filename}"
-check-variable "${Client_filename}"
-check-variable "${PrivateKey_filename}"
-check-variable "${confPath}"
-check-variable "${certPath}"
-check-variable "${debPath}"
+check-for-file "var-file" "${backupPath}" "var-wtf-wpa.txt"
+check-variable backupPath "${backupPath}"
+check-variable libpcspkg "${libpcspkg}"
+check-variable wpapkg "${wpapkg}"
+check-variable inetONTmac "${inetONTmac}"
+check-variable backupPath "${backupPath}"
+check-variable CA_filename "${CA_filename}"
+check-variable Client_filename "${Client_filename}"
+check-variable PrivateKey_filename "${PrivateKey_filename}"
+check-variable confPath "${confPath}"
+check-variable certPath "${certPath}"
+check-variable debPath "${debPath}"
 
 banner "Checking Hardware Version"
 check-hw
