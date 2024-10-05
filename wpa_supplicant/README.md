@@ -2,16 +2,11 @@
 A tool to setup the wpa_supplicant service for AT&T Residential Gateway Bypass on Ubiquiti hardware.
 
 Features:
-- Confirms Ubiquiti hardware
+- Made for Ubiquiti hardware
 - Verifies all needed files are in available (certs, pkgs)
-- Installs and configures wpa_supplicant service
+- Installs and configures wpa_supplicant service with "restart on failure" configured
+- Creates "auto recovery" service that leverages $backupPath to re-install and configure wpa_supplicant after Unifi OS update/upgrade
 - 
-
-> [!NOTE]
-> July 3rd, 2024
-> 
-> Updated UniFi OS from v3.2.12 to v4.0.6 and re-install service worked as intended.
-> No additional downtime outside of the reboot.
 
 > [!IMPORTANT]
 >
@@ -83,6 +78,7 @@ You will need to provide your own certificates, but the deb files and script are
 
 - [Debian packages](wpa_supplicant/deb%20packages)
 - [wtf-wpa.sh](wpa_supplicant/wtf-wpa.sh)
+- [var-wtf-wpa.txt](wpa_supplicant/var-wtf-wpa.txt)
 
 ### Make sure SSH is configured on your device.
 I like to use SSH private keys instead of passwords and install them using the ```ssh-copy-id``` command.
