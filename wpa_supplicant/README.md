@@ -37,7 +37,8 @@ Features:
 
 <details>
 <summary>USER VARIABLES</summary>
-```
+
+ ```
 ## USER VARIABLES ##
 
 # FULL PATH to "backup" folder
@@ -64,6 +65,7 @@ certPath="/etc/wpa_supplicant/conf"
 # FULL PATH for deb package storage
 debPath="/etc/wpa_supplicant/packages"
 ```
+
 </details>
 
 ### Create your "config" folder
