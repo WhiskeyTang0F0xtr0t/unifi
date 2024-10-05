@@ -28,7 +28,7 @@ Features:
 > [!TIP]
 >
 >You need to update the USER VARIABLES to match your configuration!
->This can be done in the script itself or the **var-wtf-wpa.txt** file
+>This can be done in the script itself or the ```var-wtf-wpa.txt``` file
 
 <details>
 <summary>USER VARIABLES</summary>
