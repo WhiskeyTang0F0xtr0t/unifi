@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###################################### 
-# wtf-wpa v1.9
+# wtf-wpa v2.0
 #
 # Check/repair/install the wpa_supplicant setup on UDM hardware
 #
@@ -45,30 +45,33 @@ debPath="/etc/wpa_supplicant/packages"
 ####################################### 
 ##    DO NOT EDIT BELOW THIS LINE    ##
 ####################################### 
+# Load external variable file
+. ${backupPath}/var-wtf-wpa.txt
+
 wpasupp_install=""
 
 full_filename=$(basename -- "$0")
 short_filename="${full_filename%.*}"
-log_file="${short_filename}.log"
+log_filename="log-${short_filename}.log"
 
 log() {
-	# write formatted status messages to $log_file
+	# write formatted status messages to $log_filename
 	local flag="$1"; shift
 	stamp=$(date '+[%F %T]')
 	case $flag in
-		I) echo "$stamp - INFO: ${*}" >> "$log_file" ;;
-		IF) echo "$stamp - INFO: Found - ${*}" >> "$log_file" ;;
-		IC) echo "$stamp - INFO: Copied - ${*}" >> "$log_file" ;;
-		IP) echo "$stamp - INFO: Parsed - ${*}" >> "$log_file" ;;
-		E) echo "$stamp - ERROR: ${*}" >> "$log_file" ;;
-		ENF) echo "$stamp - ERROR: Not found - ${*}" >> "$log_file" ;;
-		B) echo "$stamp - ${*}"  >> "$log_file" ;;
+		I) echo "$stamp - INFO: ${*}" >> "$log_filename" ;;
+		IF) echo "$stamp - INFO: Found - ${*}" >> "$log_filename" ;;
+		IC) echo "$stamp - INFO: Copied - ${*}" >> "$log_filename" ;;
+		IP) echo "$stamp - INFO: Parsed - ${*}" >> "$log_filename" ;;
+		E) echo "$stamp - ERROR: ${*}" >> "$log_filename" ;;
+		ENF) echo "$stamp - ERROR: Not found - ${*}" >> "$log_filename" ;;
+		B) echo "$stamp - ${*}"  >> "$log_filename" ;;
 	esac
 }
 
 log-stream() {
   # used to capture stream output from command responses
-  [[ ! -t 0 ]] && while read -r line; do echo "$(date '+[%F %T]') - STREAM: $line" >> "$log_file"; done
+  [[ ! -t 0 ]] && while read -r line; do echo "$(date '+[%F %T]') - STREAM: $line" >> "$log_filename"; done
 }
 
 display-help()
@@ -76,13 +79,16 @@ display-help()
 	# Display Help
 	script_name=$(basename -- "$0")
 	printf "%b %s\\n"
-	printf "   %b\\n\\n" "WTF wpa [ install/repair | check ]"
-	printf "   %b\\n\\n" "Syntax: ${CYAN}${full_filename} [-i|c]${NC}"
+	printf "   %b\\n\\n" "WTF wpa_supplicant script"
+	printf "   %b\\n\\n" "Syntax: ${CYAN}${full_filename} [-i|c|f]${NC}"
 	printf "   %b %s\\n\\n" "options:" ""
 	printf "   %8s   %s\\n" "-i" "Install/repair & configure the wpa_supplicant service"
 	printf "   %8s   %s\\n\\n" "" "Example: ${CYAN}${full_filename} -i${NC}"
 	printf "   %8s   %s\\n" "-c" "Does a quick status check of the wpa_supplicant service"
 	printf "   %8s   %s\\n\\n" "" "Example: ${CYAN}${full_filename} -c${NC}"
+	printf "   %8s   %s\\n" "-f" "update your certificates and conf files only"
+	printf "   %8s   %s\\n" "" "Example: ${CYAN}${full_filename} -f${NC}"
+	printf "   %8s   %s\\n\\n" "" "Useful for rebuilding after configuration/certificate changes"
 	printf "   %8s   %s\\n\\n" "<none>" "Print this Help"
 }
 
@@ -342,8 +348,36 @@ install-wpa-supp () {
 	else
 		create-overide-conf
 	fi
-	printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "systemctl" "Reloading systemd manager configuration"; log I "Reloading systemd manager configuration"
+	printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "systemctl:" "Reloading systemd manager configuration"; log I "Reloading systemd manager configuration"
 	systemctl daemon-reload && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "systemctl" "systemd manager configuration reloaded"; log I "systemd manager configuration reloaded" || { printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "systemctl" "${RED}systemd manager configuration could not be reloaded. EXITING${NC}" ; log E "systemd manager configuration could not be reloaded. EXITING" ; exit 1; }
+}
+
+#######################################
+# Restart wpa_supplicant service after configuration has been changed
+# Globals:
+#   
+# Outputs:
+#   Status message, systemctl daemon, restarts wpa_supplicant service, error output
+####################################### 
+restart-wpa-supp () {
+	banner "Restart wpa_supplicant service"
+	printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "systemctl:" "Reloading systemd manager configuration"; log I "Reloading systemd manager configuration"
+	if systemctl daemon-reload 1> /dev/null 2> >(log-stream); then
+	   printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "systemctl:" "systemd manager configuration reloaded" && log I "systemd manager configuration reloaded"
+	else
+	   printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "systemctl:" "${RED}systemd manager configuration could not be reloaded.${NC}"; log E "systemd manager configuration could not be reloaded."
+	fi
+	if systemctl is-active wpa_supplicant 1> /dev/null 2> >(log-stream); then
+	   printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "wpa_supplicant:" "Active: ${GREEN}Yes${NC}" && log I "wpa_supplicant is active"
+	   printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "wpa_supplicant:" "Restarting wpa_supplicant service"; log I "Restarting wpa_supplicant service"
+	   if systemctl restart wpa_supplicant 1> /dev/null 2> >(log-stream); then
+	      printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "wpa_supplicant:" "Restart successful" && log I "wpa_supplicant service restart successful"
+	   else
+	      printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "wpa_supplicant:" "${RED}wpa_supplicant service could not be restarted${NC}"; log E "wpa_supplicant service could not be restarted."
+	fi
+	else
+	   printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "wpa_supplicant:" "Active: ${RED}No${NC}"; log E "wpa_supplicant is not active and cannot be restarted"; return 1
+	fi
 }
 
 #######################################
@@ -356,7 +390,7 @@ install-wpa-supp () {
 create-overide-conf () {
 	if [ -d /etc/systemd/system/wpa_supplicant.service.d ]; then
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "override.conf:" "Creating override.conf in service Drop-In path"; log I "Creating override.conf in service Drop-In path"
-		printf "[Service]\nExecStart=\nExecStart=/sbin/wpa_supplicant -u -s -Dwired -i${udapi_wan_int} -c${confPath}/wpa_supplicant.conf\n" > /etc/systemd/system/wpa_supplicant.service.d/override.conf && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "override.conf:" "override.conf created in Drop-In path"; log I "override.conf created in Drop-In path" || { printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "override.conf:" "${RED}Could not create the override.conf file. EXITING${NC}" ; log E "Could not create the override.conf file. EXITING" ; exit 1; }
+		printf "[Unit]\nDescription=wpa_supplicant service for AT&T router bypass\nStartLimitIntervalSec=30s\nStartLimitBurst=5\n\n[Service]\nRestart=on-failure\nRestartSec=5s\n\nExecStart=\nExecStart=/sbin/wpa_supplicant -u -s -Dwired -i${udapi_wan_int} -c${confPath}/wpa_supplicant.conf\n" > /etc/systemd/system/wpa_supplicant.service.d/override.conf && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "override.conf:" "override.conf created in Drop-In path"; log I "override.conf created in Drop-In path" || { printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "override.conf:" "${RED}Could not create the override.conf file. EXITING${NC}" ; log E "Could not create the override.conf file. EXITING" ; exit 1; }
 	else
 		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "override.conf:" "${RED}Path: /etc/systemd/system/wpa_supplicant.service.d NOT FOUND. EXITING${NC}" ; log E "${RED}Path: /etc/systemd/system/wpa_supplicant.service.d NOT FOUND. EXITING${NC}" ; exit 1
 	fi
@@ -415,7 +449,7 @@ recovery-install () {
   ## Check if wtf-wpa.service is enabled. 
   if ! check-recovery-enabled; then
   	printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "wtf-wpa.service:" "Creating wtf-wpa.service config"; log I "Creating wtf-wpa.service config"
-  	printf '[Unit]\nDescription=Reinstall and start/enable wpa_supplicant\nAssertPathExistsGlob='${backupPath}'/wpasupplicant*arm64.deb\nAssertPathExistsGlob='${backupPath}'/libpcsclite1*arm64.deb\nConditionPathExists=!/sbin/wpa_supplicant\nConditionPathExists='${backupPath}'/wtf-wpa.sh\n\n[Service]\nType=oneshot\nExecStart='${backupPath}'/wtf-wpa.sh -i\n\n[Install]\nWantedBy=multi-user.target\n' > /etc/systemd/system/wtf-wpa.service && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "wtf-wpa.service:" "/etc/systemd/system/wtf-wpa.service - Created"; log I "/etc/systemd/system/wtf-wpa.service - Created"
+  	printf '[Unit]\nDescription=Reinstall and start/enable wpa_supplicant\nAssertPathExistsGlob='${backupPath}'/wpasupplicant*arm64.deb\nAssertPathExistsGlob='${backupPath}'/libpcsclite1*arm64.deb\nConditionPathExists=!/sbin/wpa_supplicant\nConditionPathExists='${backupPath}'/wtf-wpa.sh\n\n[Service]\nType=oneshot\nExecStart='${backupPath}'/wtf-wpa.sh -i\n\n[Install]\nWantedBy=multi-user.target\n' > /etc/systemd/system/wtf-wpa.service -r&& printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "wtf-wpa.service:" "/etc/systemd/system/wtf-wpa.service - Created"; log I "/etc/systemd/system/wtf-wpa.service - Created"
   	systemctl daemon-reload && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "systemctl:" "systemd manager configuration reloaded"; log I "systemd manager configuration reloaded" || { printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "systemctl:" "${RED}systemd manager configuration could not be reloaded. EXITING${NC}" ; log E "systemd manager configuration could not be reloaded. EXITING" ; exit 1; }
   	recovery-enable
 	fi
@@ -423,10 +457,10 @@ recovery-install () {
 
 main-install () {
 clear
-rm "$log_file" 1> /dev/null 2> >(log-stream)
-banner "Logging to: $log_file"
+rm "$log_filename" 1> /dev/null 2> >(log-stream)
+banner "Logging to: $log_filename"
 
-banner "Installation Mode"
+banner "INSTALLATION MODE"
 banner "Checking Hardware Version"
 check-hw
 parse-wan-int
@@ -470,12 +504,102 @@ banner "Process complete"
 exit
 }
 
+main-files () {
+clear
+
+rm "$log_filename" 1> /dev/null 2> >(log-stream)
+banner "Logging to: $log_filename"
+
+banner "FILES ONLY MODE"
+banner "Checking Hardware Version"
+check-hw
+parse-wan-int
+
+banner "Checking for required directories"
+check-for-path 'Backup Path' "${backupPath}"
+check-for-path debPath "${debPath}" restore
+check-for-path certPath "${certPath}" restore
+check-for-path confPath "${confPath}" restore
+check-for-path override /etc/systemd/system/wpa_supplicant.service.d restore
+
+banner "Updating required certificates"
+restore-file "CA" "${certPath}" "${CA_filename}"
+restore-file "Client" "${certPath}" "${Client_filename}"
+restore-file "PrivateKey" "${certPath}" "${PrivateKey_filename}"
+
+banner "Updating wpa_supplicant conf files"
+restore-file "wpa_conf" "${confPath}" "wpa_supplicant.conf"
+restore-file "override" "/etc/systemd/system/wpa_supplicant.service.d" "override.conf"
+
+banner "Do you want to restart the wpa_supplicant service?"
+read -p "[y/N]" promptRestart
+if [ "$promptRestart" = "y" ]; then
+   restart-wpa-supp
+else
+   banner "wpa_supplicant service not restarted"
+fi
+
+banner "Process complete"
+exit
+}
+
+
+main-recovery () {
+clear
+
+log_filename="/root/recovery-${short_filename}.log"
+
+rm "$log_filename" 1> /dev/null 2> >(log-stream)
+banner "Logging to: $log_filename"
+
+banner "RECOVERY MODE"
+banner "Checking Hardware Version"
+check-hw
+parse-wan-int
+
+banner "Checking for required directories"
+check-for-path 'Backup Path' "${backupPath}"
+check-for-path debPath "${debPath}" restore
+check-for-path certPath "${certPath}" restore
+check-for-path confPath "${confPath}" restore
+check-for-path override /etc/systemd/system/wpa_supplicant.service.d restore
+
+banner "Checking for required deb packages"
+check-for-file "deb_pkg" "${debPath}" "${libpcspkg}" restore
+check-for-file "deb_pkg" "${debPath}" "${wpapkg}" restore
+
+banner "Checking for required certificates"
+check-for-file "CA" "${certPath}" "${CA_filename}" restore
+check-for-file "Client" "${certPath}" "${Client_filename}" restore
+check-for-file "PrivateKey" "${certPath}" "${PrivateKey_filename}" restore
+
+banner "Checking for wpa_supplicant conf files"
+check-for-file "wpa_conf" "${confPath}" "wpa_supplicant.conf" restore
+check-for-file "override" "/etc/systemd/system/wpa_supplicant.service.d" "override.conf" restore
+
+banner "Checking wpa_supplicant service"
+if check-wpa-supp-installed && check-wpa-supp-active && check-wpa-supp-enabled ; then
+   sleep 0
+else
+   banner "Installing required packages"
+   install-wpa-supp
+   wpa-supp-enable
+fi
+
+#This shouldn't be needed, but is here just in case the switch is invoked directly by the user
+banner "Installing recovery service"
+recovery-install
+
+banner "Process complete"
+exit
+}
+
 main-check () {
 clear
-rm "$log_file" 1> /dev/null 2> >(log-stream)
-banner "Logging to: $log_file"
+rm "$log_filename" 1> /dev/null 2> >(log-stream)
+banner "Logging to: $log_filename"
 
-banner "Verification Mode"
+banner "VERIFICATION MODE"
 banner "Checking Hardware Version"
 check-hw
 parse-wan-int
@@ -501,7 +625,6 @@ check-for-file "wpa_conf" "${confPath}" "wpa_supplicant.conf"
 check-for-file "override" "/etc/systemd/system/wpa_supplicant.service.d" "override.conf"
 
 banner "Checking wpa_supplicant service"
-# Check status of wpa_supplicant service
 check-wpa-supp-installed
 check-wpa-supp-active
 check-wpa-supp-enabled
@@ -521,11 +644,14 @@ exit
 ####################################### 
 
 # Get the options
-while getopts "ic" option; do
+while getopts "icfr" option; do
 	case $option in
 		i) wpasupp_install="install"
 			main-install;;
 		c) main-check;;
+		f) main-files;;
+		r) wpasupp_install="install"
+			main-recovery;;
 		\?) echo "Error: Invalid option"
 			display-help
 			exit;;

@@ -1,0 +1,25 @@
+## USER VARIABLES ##
+
+# FULL PATH to "backup" folder
+backupPath="/root/config"
+
+# Names of install deb files
+libpcspkg="libpcsclite1_1.9.1-1_arm64.deb"
+wpapkg="wpasupplicant_2.9.0-21_arm64.deb"
+
+# Internet (ONT) interface MAC address (Pulled from cert extraction process)
+inetONTmac="00:00:00:00:00:00"
+
+# Certficate variables
+CA_filename="CA.pem"
+Client_filename="Client.pem"
+PrivateKey_filename="PrivateKey.pem"
+
+# FULL PATH for wpa_supplicant.conf
+confPath="/etc/wpa_supplicant/conf"
+
+# FULL PATH for cert storage
+certPath="/etc/wpa_supplicant/conf"
+
+# FULL PATH for deb package storage
+debPath="/etc/wpa_supplicant/packages"

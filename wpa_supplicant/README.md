@@ -1,13 +1,17 @@
-# Scripts
+# Overview
+A tool to setup the wpa_supplicant service for AT&T Residential Gateway Bypass on Ubiquiti hardware.
+
+Features:
+- Confirms Ubiquiti hardware
+- Verifies all needed files are in available (certs, pkgs)
+- Installs and configures wpa_supplicant service
+- 
 
 > [!NOTE]
 > July 3rd, 2024
 > 
 > Updated UniFi OS from v3.2.12 to v4.0.6 and re-install service worked as intended.
 > No additional downtime outside of the reboot.
-
-## wtf-wpa.sh
-A script to setup the wpa_supplicant service on Ubiquiti hardware.
 
 > [!IMPORTANT]
 >
@@ -28,8 +32,11 @@ A script to setup the wpa_supplicant service on Ubiquiti hardware.
 
 > [!TIP]
 >
->You need to update the variables in wtf-wpa.sh to match your configuration!
+>You need to update the USER VARIABLES to match your configuration!
+>This can be done in the script itself or the **var-wtf-wpa.txt** file
 
+<details>
+<summary>USER VARIABLES</summary>
 ```
 ## USER VARIABLES ##
 
@@ -57,6 +64,7 @@ certPath="/etc/wpa_supplicant/conf"
 # FULL PATH for deb package storage
 debPath="/etc/wpa_supplicant/packages"
 ```
+</details>
 
 ### Create your "config" folder
 I created a folder called "config" that contains the following:
@@ -67,6 +75,7 @@ PrivateKey.pem
 libpcsclite1_1.9.1-1_arm64.deb
 wpasupplicant_2.9.0-21_arm64.deb
 wtf-wpa.sh
+var-wtf-wpa.txt (optional)
 ```
 You will need to provide your own certificates, but the deb files and script are available here.
 
@@ -88,11 +97,11 @@ root@UDMPRO:~# cd config/
 ```
 ### Script Usage
 ```
-root@UDMPRO:~/config# ./wtf-wpa.sh 
+root@UDMPRO:~/config# ./wtf-wpa.sh
  
-   WTF wpa [ install/repair | check ]
+   WTF wpa_supplicant script
 
-   Syntax: wtf-wpa.sh [-i|c]
+   Syntax: wtf-wpa.sh [-i|c|f]
 
    options: 
 
@@ -102,9 +111,13 @@ root@UDMPRO:~/config# ./wtf-wpa.sh
          -c   Does a quick status check of the wpa_supplicant service
               Example: wtf-wpa.sh -c
 
+         -f   update your certificates and conf files only
+              Example: wtf-wpa.sh -f
+              Useful for rebuilding after configuration/certificate changes
+
      <none>   Print this Help
 
-root@UDMPRO:~# 
+root@UDMPRO:~/config# 
 ```
 
 <details>
