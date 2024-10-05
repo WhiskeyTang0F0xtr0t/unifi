@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###################################### 
-# wtf-wpa v2.0
+# wtf-wpa v2.1
 #
 # Check/repair/install the wpa_supplicant setup on UDM hardware
 #
@@ -26,7 +26,7 @@ libpcspkg="libpcsclite1_1.9.1-1_arm64.deb"
 wpapkg="wpasupplicant_2.9.0-21_arm64.deb"
 
 # Internet (ONT) interface MAC address (Pulled from cert extraction process)
-inetONTmac="00:00:00:00:00:00"
+inetONTmac=""
 
 # Certficate variables
 CA_filename="CA.pem"
@@ -96,6 +96,7 @@ display-help()
 CYAN=$(tput setaf 6)
 GREEN=$(tput setaf 2)
 RED=$(tput setaf 1)
+SILVER=$(tput setaf 7)
 NC=$(tput sgr0)
 TICK="[${GREEN}✓${NC}]"
 CROSS="[${RED}✗${NC}]"
@@ -111,6 +112,20 @@ INFO="[i]"
 banner () {
 	local string=$1
 	printf "%b \e[4m%s\e[0m\\n" "${INFO}" "${string}" && log B "*** $string ***"
+}
+
+#######################################
+# Varifies required variables are set
+# RETURN:
+#   Status message, exits script if fails
+#######################################
+check-variable () {
+	local varCheck="$1"
+	if [ ! -z "${varCheck}" ]; then
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "var-check:" "${SILVER}${varCheck}${NC}"; log IF "check-variable: ${varCheck}"
+	else
+		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "var-check:" "${RED}${varCheck} not set/found$ - EXITING{NC}"; log ENF "check-variable: ${var-check}"; exit 1
+	fi
 }
 
 #######################################
@@ -449,7 +464,7 @@ recovery-install () {
   ## Check if wtf-wpa.service is enabled. 
   if ! check-recovery-enabled; then
   	printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "wtf-wpa.service:" "Creating wtf-wpa.service config"; log I "Creating wtf-wpa.service config"
-  	printf '[Unit]\nDescription=Reinstall and start/enable wpa_supplicant\nAssertPathExistsGlob='${backupPath}'/wpasupplicant*arm64.deb\nAssertPathExistsGlob='${backupPath}'/libpcsclite1*arm64.deb\nConditionPathExists=!/sbin/wpa_supplicant\nConditionPathExists='${backupPath}'/wtf-wpa.sh\n\n[Service]\nType=oneshot\nExecStart='${backupPath}'/wtf-wpa.sh -i\n\n[Install]\nWantedBy=multi-user.target\n' > /etc/systemd/system/wtf-wpa.service -r&& printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "wtf-wpa.service:" "/etc/systemd/system/wtf-wpa.service - Created"; log I "/etc/systemd/system/wtf-wpa.service - Created"
+  	printf '[Unit]\nDescription=Reinstall and start/enable wpa_supplicant\nAssertPathExistsGlob='${backupPath}'/wpasupplicant*arm64.deb\nAssertPathExistsGlob='${backupPath}'/libpcsclite1*arm64.deb\nConditionPathExists=!/sbin/wpa_supplicant\nConditionPathExists='${backupPath}'/wtf-wpa.sh\n\n[Service]\nType=oneshot\nExecStart='${backupPath}'/wtf-wpa.sh -r\n\n[Install]\nWantedBy=multi-user.target\n' > /etc/systemd/system/wtf-wpa.service&& printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "wtf-wpa.service:" "/etc/systemd/system/wtf-wpa.service - Created"; log I "/etc/systemd/system/wtf-wpa.service - Created"
   	systemctl daemon-reload && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "systemctl:" "systemd manager configuration reloaded"; log I "systemd manager configuration reloaded" || { printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "systemctl:" "${RED}systemd manager configuration could not be reloaded. EXITING${NC}" ; log E "systemd manager configuration could not be reloaded. EXITING" ; exit 1; }
   	recovery-enable
 	fi
@@ -461,6 +476,21 @@ rm "$log_filename" 1> /dev/null 2> >(log-stream)
 banner "Logging to: $log_filename"
 
 banner "INSTALLATION MODE"
+
+banner "Checking for variables"
+check-for-file "var-file" "${backupPath}" "var-wtf-wpa.txt"
+check-variable "${backupPath}"
+check-variable "${libpcspkg}"
+check-variable "${wpapkg}"
+check-variable "${inetONTmac}"
+check-variable "${backupPath}"
+check-variable "${CA_filename}"
+check-variable "${Client_filename}"
+check-variable "${PrivateKey_filename}"
+check-variable "${confPath}"
+check-variable "${certPath}"
+check-variable "${debPath}"
+
 banner "Checking Hardware Version"
 check-hw
 parse-wan-int
@@ -511,6 +541,21 @@ rm "$log_filename" 1> /dev/null 2> >(log-stream)
 banner "Logging to: $log_filename"
 
 banner "FILES ONLY MODE"
+
+banner "Checking for variables"
+check-for-file "var-file" "${backupPath}" "var-wtf-wpa.txt"
+check-variable "${backupPath}"
+check-variable "${libpcspkg}"
+check-variable "${wpapkg}"
+check-variable "${inetONTmac}"
+check-variable "${backupPath}"
+check-variable "${CA_filename}"
+check-variable "${Client_filename}"
+check-variable "${PrivateKey_filename}"
+check-variable "${confPath}"
+check-variable "${certPath}"
+check-variable "${debPath}"
+
 banner "Checking Hardware Version"
 check-hw
 parse-wan-int
@@ -600,6 +645,21 @@ rm "$log_filename" 1> /dev/null 2> >(log-stream)
 banner "Logging to: $log_filename"
 
 banner "VERIFICATION MODE"
+
+banner "Checking for variables"
+check-for-file "var-file" "${backupPath}" "var-wtf-wpa.txt"
+check-variable "${backupPath}"
+check-variable "${libpcspkg}"
+check-variable "${wpapkg}"
+check-variable "${inetONTmac}"
+check-variable "${backupPath}"
+check-variable "${CA_filename}"
+check-variable "${Client_filename}"
+check-variable "${PrivateKey_filename}"
+check-variable "${confPath}"
+check-variable "${certPath}"
+check-variable "${debPath}"
+
 banner "Checking Hardware Version"
 check-hw
 parse-wan-int
