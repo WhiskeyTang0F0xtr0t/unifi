@@ -78,7 +78,7 @@ You will need to provide your own certificates, but the deb files and script are
 
 - [Debian packages](deb%20packages)
 - [wtf-wpa.sh](wtf-wpa.sh)
-- [var-wtf-wpa.txt](var-wtf-wpa.txt)
+- [var-wtf-wpa.txt (optional)](var-wtf-wpa.txt)
 
 ### Make sure SSH is configured on your device.
 I like to use SSH private keys instead of passwords and install them using the ```ssh-copy-id``` command.
