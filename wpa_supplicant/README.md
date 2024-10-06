@@ -4,7 +4,7 @@ A tool to setup the wpa_supplicant service for AT&T Residential Gateway Bypass o
 Features:
 - Made for Ubiquiti hardware
 - Verifies all needed files are available(certs, pkgs) and variables are set
-- Installs and configures wpa_supplicant service with "restart on failure" configured
+- Installs and configures wpa_supplicant service with "restart on failure" enabled
 - Creates "auto recovery" service that leverages $backupPath to re-install and configure wpa_supplicant after Unifi OS update/upgrade
 
 
