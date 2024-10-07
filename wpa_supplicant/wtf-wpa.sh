@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###################################### 
-# wtf-wpa v2.1.1
+# wtf-wpa v2.2
 #
 # Check/repair/install the wpa_supplicant setup on UDM hardware
 #
@@ -118,6 +118,26 @@ banner () {
 }
 
 #######################################
+# Formats script terminal output
+# ARGUMENTS:
+#   Message type, category, string
+# OUTPUTS:
+#   Writes formatted string to stdout
+####################################### 
+output () {
+	local flag="$1"
+	local category="$2"
+	local string="$3"
+	case $flag in
+		T) printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "${category}:" "${GREEN}${string}${NC}" ;;
+		TS) printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "${category}:" "${SILVER}${string}${NC}" ;;
+		C) printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${category}:" "${RED}${string}${NC}" ;;
+		I) printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "${category}:" "${NC}${string}${NC}" ;;
+		IY) printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "${category}:" "${CYAN}${string}${NC}" ;;
+	esac
+}
+
+#######################################
 # Varifies required variables are set
 # RETURN:
 #   Status message, exits script if fails
@@ -126,9 +146,9 @@ check-variable () {
 	local varName="$1"
 	local varCheck="$2"
 	if [ ! -z "${varCheck}" ]; then
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "${varName}:" "${SILVER}${varCheck}${NC}"; log IF "${varName}: ${varCheck}"
+		output TS "${varName}" "${varCheck}"; log IF "${varName}: ${varCheck}"
 	else
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${varName}:" "${RED}${varCheck} not set/found$ - EXITING{NC}"; log ENF "${varName}"; exit 1
+		output C "${varName}" "${varCheck} not set/found - EXITING"; log ENF "${varName}"; exit 1
 	fi
 }
 
@@ -143,9 +163,9 @@ check-hw () {
 	if command -V ubnt-device-info 1> /dev/null 2> >(log-stream); then
 		local model
 		model=$(ubnt-device-info model)
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Model:" "${CYAN}${model}${NC}"; log I "Hardware - ${model}"
+		output IY "Model" "${model}"; log I "Hardware - ${model}"
 	else
-    printf "   %b %s\\n" "${CROSS}" "\e[4m${RED}UNSUPPORTED HARDWARE - EXITING${NC}"; log E "UNSUPPORTED HARDWARE - EXITING"; exit 1
+    	output C "\e[4m UNSUPPORTED HARDWARE - EXITING"; log E "UNSUPPORTED HARDWARE - EXITING"; exit 1
 	fi
 }
 
@@ -161,9 +181,9 @@ parse-wan-int () {
 	if [ -f /data/udapi-config/ubios-udapi-server/ubios-udapi-server.state ]; then
 		# Parses udapi-net-cfg.json and etracts first interface in wanFailover yaml object
 		udapi_wan_int=$(jq -r '.services.wanFailover.wanInterfaces.[0].interface' /data/udapi-config/udapi-net-cfg.json | awk -F"." '{print $1}')
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "WAN Int:" "${CYAN}${udapi_wan_int}${NC}" && log I "WAN Interface: ${udapi_wan_int}"
+		output IY "WAN Int" "${udapi_wan_int}" && log I "WAN Interface: ${udapi_wan_int}"
 	else
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "WAN Int:" "${RED}Could not determine WAN interface from udapi-net-cfg - EXITING${NC}"; log E "Could not determine WAN interface from udapi-net-cfg - EXITING"
+		output C "WAN Int" "Could not determine WAN interface from udapi-net-cfg - EXITING"; log E "Could not determine WAN interface from udapi-net-cfg - EXITING"
 		exit 1
 	fi
 }
@@ -180,11 +200,11 @@ check-for-path () {
 	local checkPath="$2"
 	local checkPathOption="$3"
 	if [ -d "${checkPath}" ]; then
-	   printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "${checkPathType}:" "${GREEN}${checkPath}${NC}"; log IF "${checkPathType}: ${checkPath}"
+	   output T "${checkPathType}" "${checkPath}"; log IF "${checkPathType}: ${checkPath}"
 	else
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${checkPathType}:" "${RED}${checkPath}${NC}"; log ENF "${checkPathType}: ${backupPath}"
+		output C "${checkPathType}" "${checkPath}"; log ENF "${checkPathType}: ${backupPath}"
 		if [ "$checkPathType" == 'Backup Path' ]; then
-			printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "Backup Path:" "Please check your backupPath variable and try again. - EXITING${NC}"; exit 1
+			output I "Backup Path" "Please check your backupPath variable and try again. - EXITING"; exit 1
 		fi
 		if [ "$checkPathOption" == 'restore' ]; then
 			create-path "${checkPathType}" "${checkPath}"
@@ -200,11 +220,11 @@ check-for-path () {
 create-path () {
 	local createPathType="$1"
 	local createPath="$2"
-  printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "${createPathType}" "Attempting to create ${createPath}"; log ENF "Attempting to create ${createPathType} ${createPath}"
+  output I "${createPathType}" "Attempting to create ${createPath}"; log ENF "Attempting to create ${createPathType} ${createPath}"
   if mkdir -p "${createPath}" &> /dev/null; then
-    printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "${createPathType}" "${GREEN}${createPath}${NC}"; log I "Created ${createPath}"
+    output T "${createPathType}" "${createPath}"; log I "Created ${createPath}"
   else
-    printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${createPathType}" "${RED}Could not create ${createPath}! - EXITING${NC}"; log E "Could not create ${createPathType} ${createPath} - EXITING"
+    output C "${createPathType}" "Could not create ${createPath}! - EXITING"; log E "Could not create ${createPathType} ${createPath} - EXITING"
     exit 1
   fi
 }
@@ -222,9 +242,9 @@ check-for-file () {
 	local checkFileName="$3"
 	local checkFileOption="$4"
 	if [ -f "${checkFilePath}"/"${checkFileName}" ]; then
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "${checkFileType}:" "${GREEN}${checkFileName}${NC}"; log IF "${checkFileType}: ${checkFilePath}/${checkFileName}"
+		output T "${checkFileType}" "${checkFileName}"; log IF "${checkFileType}: ${checkFilePath}/${checkFileName}"
 	else
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${checkFileType}:" "${RED}${checkFileName} not found${NC}"; log ENF "${checkFileType}: ${checkFilePath}/${checkFileName}"
+		output C "${checkFileType}" "${checkFileName} not found"; log ENF "${checkFileType}: ${checkFilePath}/${checkFileName}"
 		if [ "$checkFileOption" == 'restore' ]; then
 			restore-file "${checkFileType}" "${checkFilePath}" "${checkFileName}"
 		fi
@@ -244,19 +264,19 @@ restore-file () {
 	local restoreFileType="$1"
 	local restoreFilePath="$2"
 	local restoreFileName="$3"
-	printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "${restoreFileType}:" "Restoring ${restoreFileName}"; log IF "Restoring ${restoreFileName}"
+	output I "${restoreFileType}" "Restoring ${restoreFileName}"; log IF "Restoring ${restoreFileName}"
 	if cp "${backupPath}"/"${restoreFileName}" "${restoreFilePath}"/ &> /dev/null; then
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "${restoreFileType}:" "${GREEN}${restoreFileName}${NC}"; log IC "${restoreFileType} ${restoreFilePath}/${restoreFileName}"
+		output T "${restoreFileType}" "${restoreFileName}"; log IC "${restoreFileType} ${restoreFilePath}/${restoreFileName}"
 	else
 		if [ "$restoreFileType" == 'wpa_conf' ]; then
-			printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${restoreFileType}:" "Could not copy ${restoreFileName} from ${backupPath}"; log E "Could not copy ${restoreFileName} from ${backupPath}"
+			output C "${restoreFileType}" "Could not copy ${restoreFileName} from ${backupPath}"; log E "Could not copy ${restoreFileName} from ${backupPath}"
 			create-wpasupp-conf
 		elif [ "$restoreFileType" == 'override' ]; then
-			printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${restoreFileType}:" "${restoreFileName} not found in ${restoreFilePath}"; log E "${restoreFileName} not found in ${restoreFilePath}"
+			output C "${restoreFileType}" "${restoreFileName} not found in ${restoreFilePath}"; log E "${restoreFileName} not found in ${restoreFilePath}"
 			create-overide-conf
 		else
-			printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${restoreFileType}:" "Could not copy ${restoreFileName} from ${backupPath}"; log E "Could not copy ${restoreFileName} from ${backupPath}"
-			printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "${restoreFileType}:" "Please check your files and try again."
+			output C "${restoreFileType}" "Could not copy ${restoreFileName} from ${backupPath}"; log E "Could not copy ${restoreFileName} from ${backupPath}"
+			output I "${restoreFileType}" "Please check your files and try again."
 			exit 1
 		fi
 	fi
@@ -270,23 +290,23 @@ restore-file () {
 #   Status message, ${confPath}/wpa_supplicant.conf if needed
 ####################################### 
 create-wpasupp-conf () {
-	printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "wpa_conf:" "Building wpa_supplicant.conf from known variables"; log I "Building wpa_supplicant.conf from known variables"
+	output I "wpa_conf" "Building wpa_supplicant.conf from known variables"; log I "Building wpa_supplicant.conf from known variables"
 	# Attempts to create ${confPath}/wpa_supplicant.conf from known variables
-	printf 'eapol_version=1\nap_scan=0\nfast_reauth=1\nnetwork={\n''        ca_cert="'"${certPath}"/"${CA_filename}"'"\n''        client_cert="'"${certPath}"/"${Client_filename}"'"\n''        eap=TLS\n        eapol_flags=0\n''        identity="'"${inetONTmac}"'" # Internet (ONT) interface MAC address must match this value\n        key_mgmt=IEEE8021X\n        phase1="allow_canned_success=1"\n        private_key="'"${certPath}"/"${PrivateKey_filename}"'"\n''}\n' > "${confPath}"'/wpa_supplicant.conf' && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "wpa_conf:" "${confPath}/wpa_supplicant.conf - Created"; log I "${confPath}/wpa_supplicant.conf - Created"
+	printf 'eapol_version=1\nap_scan=0\nfast_reauth=1\nnetwork={\n''        ca_cert="'"${certPath}"/"${CA_filename}"'"\n''        client_cert="'"${certPath}"/"${Client_filename}"'"\n''        eap=TLS\n        eapol_flags=0\n''        identity="'"${inetONTmac}"'" # Internet (ONT) interface MAC address must match this value\n        key_mgmt=IEEE8021X\n        phase1="allow_canned_success=1"\n        private_key="'"${certPath}"/"${PrivateKey_filename}"'"\n''}\n' > "${confPath}"'/wpa_supplicant.conf' && output T "wpa_conf:" "${confPath}/wpa_supplicant.conf - Created"; log I "${confPath}/wpa_supplicant.conf - Created"
 }
 
 #######################################
 # Checks if wpa_supplicant service is installed
 # RETURN:
 #   Status message with version
-####################################### 
+#######################################
 check-wpa-supp-installed () {
 # Check if wpa_supplicant is installed with dpkg
 	if dpkg -s wpasupplicant 1> /dev/null 2> >(log-stream) ; then
 		wpa_supp_ver=$(dpkg -s wpasupplicant | grep -i '^Version' | cut -d' ' -f2)
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Installed:" "${GREEN}${wpa_supp_ver}${NC}"; log I "wpa_supplicant installed: ${wpa_supp_ver}"
+		output T "Installed" "${wpa_supp_ver}"; log I "wpa_supplicant installed: ${wpa_supp_ver}"
 	else
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "Installed:" "${RED}NOT INSTALLED${NC}"; log E "wpa_supplicant not installed"; return 1
+		output C "Installed" "NOT INSTALLED"; log E "wpa_supplicant not installed"; return 1
 	fi
 }
 
@@ -298,9 +318,9 @@ check-wpa-supp-installed () {
 check-wpa-supp-active () {
 # Check if wpa_supplicant is active with systemctl
 	if systemctl is-active wpa_supplicant 1> /dev/null 2> >(log-stream); then
-	   printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Active:" "${GREEN}Yes${NC}" && log I "wpa_supplicant is active"
+	   output T "Active" "Yes"; log I "wpa_supplicant is active"
 	else
-	   printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "Active:" "${RED}No${NC}"; log E "wpa_supplicant is not active"; return 1
+	   output C "Active" "No"; log E "wpa_supplicant is not active"; return 1
 	fi
 }
 
@@ -312,9 +332,9 @@ check-wpa-supp-active () {
 check-wpa-supp-enabled () {
 # Check if wpa_supplicant is active with systemctl
 	if systemctl is-enabled wpa_supplicant 1> /dev/null 2> >(log-stream); then
-	   printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Enabled:" "${GREEN}Yes${NC}" && log I "wpa_supplicant is enabled"
+	   output T "Enabled" "Yes"; log I "wpa_supplicant is enabled"
 	else
-	   printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "Enabled:" "${RED}No${NC}"; log E "wpa_supplicant is not enabled"; return 1
+	   output C "Enabled" "No"; log E "wpa_supplicant is not enabled"; return 1
 	fi
 }
 
@@ -326,10 +346,10 @@ check-wpa-supp-enabled () {
 wpa-supp-enable () {
 # Start and enable the wpa_supplicant service with systemctl
 	if systemctl enable --now wpa_supplicant 1> /dev/null 2> >(log-stream); then
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "systemctl:" "${GREEN}wpa_supplicant started & enabled${NC}"; log I "Started & enabled wpasupplicant"
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "systemctl:" "Waiting for 5 seconds for service to sync"; log I "Waiting for 5 seconds for service to sync" && sleep 5
+		output T "systemctl" "wpa_supplicant started & enabled"; log I "Started & enabled wpasupplicant"
+		output I "systemctl" "Waiting for 5 seconds for service to sync"; log I "Waiting for 5 seconds for service to sync" && sleep 5
 	else
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "systemctl:" "${RED}wpa_supplicant service could not be enabled - EXITING${NC}"; log E "wpa_supplicant service could not be enabled - EXITING"
+		output C "systemctl" "wpa_supplicant service could not be enabled - EXITING"; log E "wpa_supplicant service could not be enabled - EXITING"
 		exit 1
 	fi
 }
@@ -343,11 +363,11 @@ wpa-supp-enable () {
 ####################################### 
 install-pkg () {
 	local pkgName="$1"
-	printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "Installing:" "${pkgName}"
+	output I "Installing" "${pkgName}"
 	if dpkg -i ${backupPath}/"${pkgName}" 1> /dev/null 2> >(log-stream); then
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "dpkg" "Install successful: ${GREEN}${pkgName}${NC}"; log I "Install successful: ${pkgName}"
+		output T "dpkg" "Install successful: ${pkgName}"; log I "Install successful: ${pkgName}"
 	else
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "dpkg" "Install failed: ${RED}${pkgName} - EXITING${NC}"; log E "Install failed: ${pkgName} - EXITING"
+		output C "dpkg" "Install failed: ${pkgName} - EXITING"; log E "Install failed: ${pkgName} - EXITING"
 		exit 1
 	fi
 }
@@ -363,12 +383,12 @@ install-wpa-supp () {
 	install-pkg "${libpcspkg}"
 	install-pkg "${wpapkg}"
 	if [ -f /etc/systemd/system/wpa_supplicant.service.d/override.conf ]; then
-	  printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "override.conf:" "${GREEN}FOUND${NC}"; log IF "/etc/systemd/system/wpa_supplicant.service.d/override.conf"
+	  output T "override.conf" "FOUND"; log IF "/etc/systemd/system/wpa_supplicant.service.d/override.conf"
 	else
 		create-overide-conf
 	fi
-	printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "systemctl:" "Reloading systemd manager configuration"; log I "Reloading systemd manager configuration"
-	systemctl daemon-reload && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "systemctl" "systemd manager configuration reloaded"; log I "systemd manager configuration reloaded" || { printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "systemctl" "${RED}systemd manager configuration could not be reloaded. EXITING${NC}" ; log E "systemd manager configuration could not be reloaded. EXITING" ; exit 1; }
+	output I "systemctl" "Reloading systemd manager configuration"; log I "Reloading systemd manager configuration"
+	systemctl daemon-reload && output T "systemctl" "systemd manager configuration reloaded"; log I "systemd manager configuration reloaded" || { output C "systemctl" "systemd manager configuration could not be reloaded. EXITING" ; log E "systemd manager configuration could not be reloaded. EXITING" ; exit 1; }
 }
 
 #######################################
@@ -380,22 +400,22 @@ install-wpa-supp () {
 ####################################### 
 restart-wpa-supp () {
 	banner "Restart wpa_supplicant service"
-	printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "systemctl:" "Reloading systemd manager configuration"; log I "Reloading systemd manager configuration"
+	output I "systemctl" "Reloading systemd manager configuration"; log I "Reloading systemd manager configuration"
 	if systemctl daemon-reload 1> /dev/null 2> >(log-stream); then
-	   printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "systemctl:" "systemd manager configuration reloaded" && log I "systemd manager configuration reloaded"
+	   output T "systemctl" "systemd manager configuration reloaded" && log I "systemd manager configuration reloaded"
 	else
-	   printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "systemctl:" "${RED}systemd manager configuration could not be reloaded.${NC}"; log E "systemd manager configuration could not be reloaded."
+	   output C "systemctl" "systemd manager configuration could not be reloaded."; log E "systemd manager configuration could not be reloaded."
 	fi
 	if systemctl is-active wpa_supplicant 1> /dev/null 2> >(log-stream); then
-	   printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "wpa_supplicant:" "Active: ${GREEN}Yes${NC}" && log I "wpa_supplicant is active"
-	   printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "wpa_supplicant:" "Restarting wpa_supplicant service"; log I "Restarting wpa_supplicant service"
+	   output T "wpa_supplicant" "${NC}Active: ${GREEN}Yes${NC}" && log I "wpa_supplicant is active"
+	   output I "wpa_supplicant" "Restarting wpa_supplicant service"; log I "Restarting wpa_supplicant service"
 	   if systemctl restart wpa_supplicant 1> /dev/null 2> >(log-stream); then
-	      printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "wpa_supplicant:" "Restart successful" && log I "wpa_supplicant service restart successful"
+	      output T "wpa_supplicant" "Restart successful" && log I "wpa_supplicant service restart successful"
 	   else
-	      printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "wpa_supplicant:" "${RED}wpa_supplicant service could not be restarted${NC}"; log E "wpa_supplicant service could not be restarted."
+	      output C "wpa_supplicant" "wpa_supplicant service could not be restarted"; log E "wpa_supplicant service could not be restarted."
 	fi
 	else
-	   printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "wpa_supplicant:" "Active: ${RED}No${NC}"; log E "wpa_supplicant is not active and cannot be restarted"; return 1
+	   output C "wpa_supplicant" "${NC}Active: ${RED}No${NC}"; log E "wpa_supplicant is not active and cannot be restarted"; return 1
 	fi
 }
 
@@ -408,10 +428,10 @@ restart-wpa-supp () {
 ####################################### 
 create-overide-conf () {
 	if [ -d /etc/systemd/system/wpa_supplicant.service.d ]; then
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "override.conf:" "Creating override.conf in service Drop-In path"; log I "Creating override.conf in service Drop-In path"
-		printf "[Unit]\nDescription=wpa_supplicant service for AT&T router bypass\nStartLimitIntervalSec=30s\nStartLimitBurst=5\n\n[Service]\nRestart=on-failure\nRestartSec=5s\n\nExecStart=\nExecStart=/sbin/wpa_supplicant -u -s -Dwired -i${udapi_wan_int} -c${confPath}/wpa_supplicant.conf\n" > /etc/systemd/system/wpa_supplicant.service.d/override.conf && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "override.conf:" "override.conf created in Drop-In path"; log I "override.conf created in Drop-In path" || { printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "override.conf:" "${RED}Could not create the override.conf file. EXITING${NC}" ; log E "Could not create the override.conf file. EXITING" ; exit 1; }
+		output I "override.conf:" "Creating override.conf in service Drop-In path"; log I "Creating override.conf in service Drop-In path"
+		printf "[Unit]\nDescription=wpa_supplicant service for AT&T router bypass\nStartLimitIntervalSec=30s\nStartLimitBurst=5\n\n[Service]\nRestart=on-failure\nRestartSec=5s\n\nExecStart=\nExecStart=/sbin/wpa_supplicant -u -s -Dwired -i${udapi_wan_int} -c${confPath}/wpa_supplicant.conf\n" > /etc/systemd/system/wpa_supplicant.service.d/override.conf && output T "override.conf" "override.conf created in Drop-In path"; log I "override.conf created in Drop-In path" || { output C "override.conf" "Could not create the override.conf file. EXITING" ; log E "Could not create the override.conf file. EXITING" ; exit 1; }
 	else
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "override.conf:" "${RED}Path: /etc/systemd/system/wpa_supplicant.service.d NOT FOUND. EXITING${NC}" ; log E "${RED}Path: /etc/systemd/system/wpa_supplicant.service.d NOT FOUND. EXITING${NC}" ; exit 1
+		output C "override.conf" "Path: /etc/systemd/system/wpa_supplicant.service.d NOT FOUND. EXITING" ; log E "Path: /etc/systemd/system/wpa_supplicant.service.d NOT FOUND. EXITING" ; exit 1
 	fi
 }
 
@@ -424,10 +444,10 @@ netcat-test () {
 # Test for internet connectivity with netcat to google.com:80
 	for i in {1..3}; do
 	   if nc -z -w 2 google.com 80; then
-	       printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "netcat:" "Attempt ${i}/3: ${GREEN}SUCCESSFUL${NC}" && log I "Attempt ${i}/3: netcat google.com:80 SUCCESSFUL"
+	       output T "netcat" "${NC}Attempt ${i}/3: ${GREEN}SUCCESSFUL${NC}" && log I "Attempt ${i}/3: netcat google.com:80 SUCCESSFUL"
 	       break
 	   else
-	       printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "netcat:" "Attempt ${i}/3: ${RED}FAILED${NC}" && log E "Attempt ${i}/3: netcat google.com:80 FAILED"
+	       output C "netcat" "${NC}Attempt ${i}/3: ${RED}FAILED${NC}" && log E "Attempt ${i}/3: netcat google.com:80 FAILED"
 	   fi
 	done
 }
@@ -439,9 +459,9 @@ netcat-test () {
 ####################################### 
 check-recovery-enabled () {
 	if systemctl is-enabled wtf-wpa.service 1> /dev/null 2> >(log-stream); then
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "Enabled:" "${GREEN}Yes${NC}"; log I "wtf-wpa.service is enabled"
+		output T "Enabled" "Yes"; log I "wtf-wpa.service is enabled"
 	else
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "Enabled:" "${RED}No${NC}"; log E "wtf-wpa.service is not enabled"; return 1
+		output C "Enabled" "No"; log E "wtf-wpa.service is not enabled"; return 1
 	fi
 }
 
@@ -453,9 +473,9 @@ check-recovery-enabled () {
 recovery-enable () {
   ## Enable wtf-wpa.service
 	if systemctl enable wtf-wpa.service 1> /dev/null 2> >(log-stream); then
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "systemctl:" "${GREEN}wtf-wpa.service enabled${NC}"; log I "wtf-wpa.service enabled"
+		output T "systemctl" "wtf-wpa.service enabled"; log I "wtf-wpa.service enabled"
 	else
-		printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "systemctl:" "${RED}wtf-wpa.service service could not be enabled${NC}"; log E "wtf-wpa.service service could not be enabled"
+		output C "systemctl" "wtf-wpa.service service could not be enabled"; log E "wtf-wpa.service service could not be enabled"
 	fi
 }
 
@@ -467,9 +487,9 @@ recovery-enable () {
 recovery-install () {
   ## Check if wtf-wpa.service is enabled. 
   if ! check-recovery-enabled; then
-  	printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "wtf-wpa.service:" "Creating wtf-wpa.service config"; log I "Creating wtf-wpa.service config"
-  	printf '[Unit]\nDescription=Reinstall and start/enable wpa_supplicant\nAssertPathExistsGlob='${backupPath}'/wpasupplicant*arm64.deb\nAssertPathExistsGlob='${backupPath}'/libpcsclite1*arm64.deb\nConditionPathExists=!/sbin/wpa_supplicant\nConditionPathExists='${backupPath}'/wtf-wpa.sh\n\n[Service]\nType=oneshot\nExecStart='${backupPath}'/wtf-wpa.sh -r\n\n[Install]\nWantedBy=multi-user.target\n' > /etc/systemd/system/wtf-wpa.service&& printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "wtf-wpa.service:" "/etc/systemd/system/wtf-wpa.service - Created"; log I "/etc/systemd/system/wtf-wpa.service - Created"
-  	systemctl daemon-reload && printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "systemctl:" "systemd manager configuration reloaded"; log I "systemd manager configuration reloaded" || { printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "systemctl:" "${RED}systemd manager configuration could not be reloaded. EXITING${NC}" ; log E "systemd manager configuration could not be reloaded. EXITING" ; exit 1; }
+  	output I "wtf-wpa.service:" "Creating wtf-wpa.service config"; log I "Creating wtf-wpa.service config"
+  	printf '[Unit]\nDescription=Reinstall and start/enable wpa_supplicant\nAssertPathExistsGlob='${backupPath}'/wpasupplicant*arm64.deb\nAssertPathExistsGlob='${backupPath}'/libpcsclite1*arm64.deb\nConditionPathExists=!/sbin/wpa_supplicant\nConditionPathExists='${backupPath}'/wtf-wpa.sh\n\n[Service]\nType=oneshot\nExecStart='${backupPath}'/wtf-wpa.sh -r\n\n[Install]\nWantedBy=multi-user.target\n' > /etc/systemd/system/wtf-wpa.service&& output T "wtf-wpa.service" "/etc/systemd/system/wtf-wpa.service - Created"; log I "/etc/systemd/system/wtf-wpa.service - Created"
+  	systemctl daemon-reload && output T "systemctl" "systemd manager configuration reloaded"; log I "systemd manager configuration reloaded" || { output C "systemctl:" "systemd manager configuration could not be reloaded. EXITING" ; log E "systemd manager configuration could not be reloaded. EXITING" ; exit 1; }
   	recovery-enable
 	fi
 }
