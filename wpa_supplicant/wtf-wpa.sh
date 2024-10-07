@@ -424,10 +424,10 @@ netcat-test () {
 # Test for internet connectivity with netcat to google.com:80
 	for i in {1..3}; do
 	   if nc -z -w 2 google.com 80; then
-	       printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "netcat:" "Attemp ${i}/3: ${GREEN}SUCCESSFUL${NC}" && log I "Attemp ${i}/3: netcat google.com:80 SUCCESSFUL"
+	       printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "netcat:" "Attempt ${i}/3: ${GREEN}SUCCESSFUL${NC}" && log I "Attempt ${i}/3: netcat google.com:80 SUCCESSFUL"
 	       break
 	   else
-	       printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "netcat:" "Attemp ${i}/3: ${RED}FAILED${NC}" && log E "Attemp ${i}/3: netcat google.com:80 FAILED"
+	       printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "netcat:" "Attempt ${i}/3: ${RED}FAILED${NC}" && log E "Attempt ${i}/3: netcat google.com:80 FAILED"
 	   fi
 	done
 }
