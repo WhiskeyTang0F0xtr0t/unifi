@@ -2,7 +2,7 @@
 A tool to setup the wpa_supplicant service for AT&T Residential Gateway Bypass on Ubiquiti hardware.
 
 Features:
-- Made for Ubiquiti hardware
+- Made for Ubiquiti hardware, but could be tweaked to work on other platforms that support wpa_supplicant
 - Verifies all needed files are available(certs, pkgs) and variables are set
 - Installs and configures wpa_supplicant service with "restart on failure" enabled
 - Creates "auto recovery" service that leverages $backupPath to re-install and configure wpa_supplicant after Unifi OS update/upgrade
@@ -29,6 +29,7 @@ Features:
 >
 >You need to update the USER VARIABLES to match your configuration!
 >This can be done in the script itself or the ```var-wtf-wpa.txt``` file
+> Anything enter in the ```var-wtf-wpa.txt``` file will take precedence over values entered in the script
 
 <details>
 <summary>USER VARIABLES</summary>
@@ -44,7 +45,7 @@ libpcspkg="libpcsclite1_1.9.1-1_arm64.deb"
 wpapkg="wpasupplicant_2.9.0-21_arm64.deb"
 
 # Internet (ONT) interface MAC address (Pulled from cert extraction process)
-inetONTmac="00:00:00:00:00:00"
+inetONTmac=""
 
 # Certficate variables
 CA_filename="CA.pem"
@@ -78,7 +79,7 @@ You will need to provide your own certificates, but the deb files and script are
 
 - [Debian packages](deb%20packages)
 - [wtf-wpa.sh](wtf-wpa.sh)
-- [var-wtf-wpa.txt (optional)](var-wtf-wpa.txt)
+- [var-wtf-wpa.txt](var-wtf-wpa.txt)
 
 ### Make sure SSH is configured on your device.
 I like to use SSH private keys instead of passwords and install them using the ```ssh-copy-id``` command.
@@ -93,6 +94,25 @@ Once that is done, ssh into your device and navigate to the directory you just c
 DEMO:~ shaun$ ssh root@udmpro
 root@UDMPRO:~# cd config/
 ```
+
+Do an ```ls -l``` to confirm the script is executable.
+```
+root@UDMPRO:~/config# ls -l
+total 1276
+-rw-r----- 1 root root    6399 Jun 10 16:24 CA.pem
+-rw-r----- 1 root root    1123 Jun 10 16:24 Client.pem
+-rw-r----- 1 root root     891 Jun 10 16:37 PrivateKey.pem
+-rw-r--r-- 1 root root   59464 Jan 27  2024 libpcsclite1_1.9.1-1_arm64.deb
+-rw-r--r-- 1 root root     629 Oct  5 12:13 var-wtf-wpa.txt
+-rw-r--r-- 1 root root 1188492 Jan 25  2024 wpasupplicant_2.9.0-21_arm64.deb
+-rwxr-xr-x 1 root root   29593 Oct  7 12:45 wtf-wpa.sh*
+root@UDMPRO:~/config#
+```
+> [!TIP]
+>
+>If you do not see the "x" when listing the directory, you can add it by executing the following command:
+> ```chmod +x wtf-wpa.sh```
+
 ### Script Usage
 ```
 root@UDMPRO:~/config# ./wtf-wpa.sh
@@ -180,5 +200,4 @@ root@UDMPRO:~/config#
 ------
 
 Future Plans
-- [X] `wtf-wpa.sh` - Merge both scripts into a new script with combined functionality using switches
-- [X] Add "auto recover" systemctl service to re-enable wpa_supplicant service after minor Unifi OS update(Major will most like wipe the volume)
+- [ ] Overhaul README.md
