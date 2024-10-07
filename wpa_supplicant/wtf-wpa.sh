@@ -130,7 +130,7 @@ output () {
 	local string="$3"
 	case $flag in
 		T) printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "${category}:" "${GREEN}${string}${NC}" ;;
-		TS) printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "${category}:" "${SILVER}${string}${NC}" ;;
+		TS) printf "   %b  \e[1m%b\e[0m %s\\n" "${TICK}" "${category}:" "${SILVER}${string}${NC}" ;;
 		C) printf "   %b  \e[1m%b\e[0m %s\\n" "${CROSS}" "${category}:" "${RED}${string}${NC}" ;;
 		I) printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "${category}:" "${NC}${string}${NC}" ;;
 		IY) printf "   %b  \e[1m%b\e[0m %s\\n" "${INFO}" "${category}:" "${CYAN}${string}${NC}" ;;
