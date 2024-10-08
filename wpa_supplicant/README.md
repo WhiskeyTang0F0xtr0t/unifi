@@ -1,7 +1,9 @@
 # Table of Contents
 - [Overview](#overview)
 - [Supported Devices](#supported-devices)
-- [How to Use](#how-to-use)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Future Plans](#future-plans)
 
 # Overview
 A tool to setup the wpa_supplicant service for AT&T Residential Gateway Bypass on Ubiquiti hardware.
@@ -25,17 +27,15 @@ This script has been confirmed working on the following hardware:
 
 If your device is not on this list, message me and we can modfiy the script for compatibility.
 
-# How to Use
+# Getting Started
 > [!WARNING]
 >
 > **DO NOT RUN THIS SCRIPT IF YOUR DEVICE IS IN BRIDGE MODE!**
 > **IT DOES NOT CURRENTLY CHECK FOR BRIDGE MODE AND WILL BREAK YOUR SETUP!**
 
-> [!TIP]
->
->You need to update the USER VARIABLES to match your configuration!
->This can be done in the script itself or the ```var-wtf-wpa.txt``` file
-> Anything enter in the ```var-wtf-wpa.txt``` file will take precedence over values entered in the script
+You must update the USER VARIABLES to match your configuration!
+This can be done in the script itself or the ```var-wtf-wpa.txt``` file
+Anything enter in the ```var-wtf-wpa.txt``` file will take precedence over values entered in the script
 
 <details>
 <summary>USER VARIABLES</summary>
@@ -67,7 +67,6 @@ certPath="/etc/wpa_supplicant/conf"
 # FULL PATH for deb package storage
 debPath="/etc/wpa_supplicant/packages"
 ```
-
 </details>
 
 ### Create your "config" folder
@@ -79,13 +78,13 @@ PrivateKey.pem
 libpcsclite1_1.9.1-1_arm64.deb
 wpasupplicant_2.9.0-21_arm64.deb
 wtf-wpa.sh
-var-wtf-wpa.txt (optional)
+var-wtf-wpa.txt
 ```
-You will need to provide your own certificates, but the deb files and script are available here.
-
-- [Debian packages](deb%20packages)
+You will need to provide your own certificates, but the script, deb files and variable file are available below:
 - [wtf-wpa.sh](wtf-wpa.sh)
-- [var-wtf-wpa.txt](var-wtf-wpa.txt)
+- [wpasupplicant_2.9.0-21_arm64.deb](deb%20packages/wpasupplicant_2.9.0-21_arm64.deb) - wpa_supplicant installer
+- [libpcsclite1_1.9.1-1_arm64.deb](deb%20packages/libpcsclite1_1.9.1-1_arm64.deb) - Dependancy for wpasupplicant_2.9.0-21_arm64.deb
+- [var-wtf-wpa.txt](var-wtf-wpa.txt) (_optional_)
 
 ### Make sure SSH is configured on your device.
 I like to use SSH private keys instead of passwords and install them using the ```ssh-copy-id``` command.
@@ -119,7 +118,7 @@ root@UDMPRO:~/config#
 >If you do not see the "x" when listing the directory, you can add it by executing the following command:
 > ```chmod +x wtf-wpa.sh```
 
-### Script Usage
+## Usage
 ```shell
 root@UDMPRO:~/config# ./wtf-wpa.sh
  
@@ -200,10 +199,6 @@ root@UDMPRO:~/config#
 </details>
 ------
 
-[Debian packages](wpa_supplicant/deb%20packages)
-- `wpasupplicant_2.9.0-21_arm64.deb` - wpasupplicant install file
-- `libpcsclite1_1.9.1-1_arm64.deb` - Dependancy for wpasupplicant_2.9.0-21_arm64.deb; All others should be in place on UniFi OS 3.x+
-------
 
-Future Plans
+# Future Plans
 - [ ] Overhaul README.md
