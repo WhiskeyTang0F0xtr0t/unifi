@@ -1,4 +1,9 @@
-# Overview
+## Table of Contents
+- [Overview](##-overview)
+- [Supported Devices](#-supported-devices)
+- [How to Use](#-how-to-use)
+
+## Overview
 A tool to setup the wpa_supplicant service for AT&T Residential Gateway Bypass on Ubiquiti hardware.
 
 Features:
@@ -8,22 +13,23 @@ Features:
 - Creates "auto recovery" service that leverages $backupPath to re-install and configure wpa_supplicant after Unifi OS update/upgrade
 
 
-> [!IMPORTANT]
->
-> This script has been confirmed working on the following hardware:
-> - Dream Machine (u/-BruceWayne-)
-> - Dream Machine Pro
-> - Dream Machine Special Edition
-> - Dream Machine Pro Max
-> - Cloud Gateway Ultra
-> - Cloud Gateway Express
-> - Enterprise Fortress Gateway (u/Navish360)
->
-> If your device is not on this list, message me and we can modfiy the script for compatibility.
+## Supported Devices
+This script has been confirmed working on the following hardware:
+- Dream Machine (u/-BruceWayne-)
+- Dream Machine Pro
+- Dream Machine Special Edition
+- Dream Machine Pro Max
+- Cloud Gateway Ultra
+- Cloud Gateway Express
+- Enterprise Fortress Gateway (u/Navish360)
 
-**DO NOT RUN THIS SCRIPT IF YOUR DEVICE IS IN BRIDGE MODE!**
+If your device is not on this list, message me and we can modfiy the script for compatibility.
 
-**IT DOES NOT CURRENTLY CHECK FOR BRIDGE MODE AND WILL BREAK YOUR SETUP!**
+## How to Use
+> [!WARNING]
+>
+> **DO NOT RUN THIS SCRIPT IF YOUR DEVICE IS IN BRIDGE MODE!**
+> **IT DOES NOT CURRENTLY CHECK FOR BRIDGE MODE AND WILL BREAK YOUR SETUP!**
 
 > [!TIP]
 >
@@ -34,7 +40,7 @@ Features:
 <details>
 <summary>USER VARIABLES</summary>
 
- ```bash
+ ```
 ## USER VARIABLES ##
 
 # FULL PATH to "backup" folder
@@ -66,7 +72,7 @@ debPath="/etc/wpa_supplicant/packages"
 
 ### Create your "config" folder
 I created a folder called "config" that contains the following:
-``` shell
+```
 CA.pem
 Client.pem
 PrivateKey.pem
@@ -87,18 +93,16 @@ I like to use SSH private keys instead of passwords and install them using the `
 ### Copy the "config" folder to your device
 I've created a hostname entry on my internal dns called "udmpro", but you can use your IP address.
 
-```bash
-scp -r config root@udmpro:~/
-```
+```scp -r config root@udmpro:~/```
 
 Once that is done, ssh into your device and navigate to the directory you just copied over.
-```bash
+```
 DEMO:~ shaun$ ssh root@udmpro
 root@UDMPRO:~# cd config/
 ```
 
 Do an ```ls -l``` to confirm the script is executable.
-```bash
+```
 root@UDMPRO:~/config# ls -l
 total 1276
 -rw-r----- 1 root root    6399 Jun 10 16:24 CA.pem
@@ -116,7 +120,7 @@ root@UDMPRO:~/config#
 > ```chmod +x wtf-wpa.sh```
 
 ### Script Usage
-```bash
+```
 root@UDMPRO:~/config# ./wtf-wpa.sh
  
    WTF wpa_supplicant script
@@ -148,7 +152,7 @@ root@UDMPRO:~/config#
 <details>
 <summary>Log Output Example</summary>
   
-```bash
+```
 [2024-10-06 11:33:32] - *** Logging to: log-wtf-wpa.log ***
 [2024-10-06 11:33:32] - *** VERIFICATION MODE ***
 [2024-10-06 11:33:32] - *** Checking for variables ***
