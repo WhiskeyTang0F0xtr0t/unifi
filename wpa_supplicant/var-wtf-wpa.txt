@@ -8,6 +8,7 @@ libpcspkg="libpcsclite1_1.9.1-1_arm64.deb"
 wpapkg="wpasupplicant_2.9.0-21_arm64.deb"
 
 # Internet (ONT) interface MAC address (Pulled from cert extraction process)
+# Exmaple: inetONTmac="00:00:00:00:00:00"
 inetONTmac=""
 
 # Certficate variables

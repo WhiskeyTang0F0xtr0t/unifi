@@ -2,6 +2,7 @@
 - [Overview](#overview)
 - [Supported Devices](#supported-devices)
 - [Getting Started](#getting-started)
+- [Deployment](#deployment)
 - [Usage](#usage)
 - [Future Plans](#future-plans)
 
@@ -32,12 +33,32 @@ If your device is not on this list, message me and we can modfiy the script for 
 > **DO NOT RUN THIS SCRIPT IF YOUR DEVICE IS IN BRIDGE MODE!**
 > **IT DOES NOT CURRENTLY CHECK FOR BRIDGE MODE AND WILL BREAK YOUR SETUP!**
 
-### Make sure SSH is configured on your device.
-I like to use SSH private keys instead of passwords and install them using the ```ssh-copy-id``` command.
+## Requirements
+- SSH is enabled on your Ubiquiti hardware
+- Folder with all certifcates(CA, Client, Private Key), script, deb packages
+- Configure User Variable (in```wtf-wpa.sh``` or ```var-wtf-wpa.txt```)
 
-You must update the USER VARIABLES to match your configuration!
-This can be done in the script itself or the ```var-wtf-wpa.txt``` file
-Anything enter in the ```var-wtf-wpa.txt``` file will take precedence over values entered in the script
+### "config" folder example
+I created a folder called "config" that contains the following:
+```shell
+CA.pem
+Client.pem
+PrivateKey.pem
+libpcsclite1_1.9.1-1_arm64.deb
+wpasupplicant_2.9.0-21_arm64.deb
+wtf-wpa.sh
+var-wtf-wpa.txt
+```
+You will need to provide your own certificates, but the script, deb files and variable file are available below:
+- [wtf-wpa.sh](wtf-wpa.sh)
+- [wpasupplicant_2.9.0-21_arm64.deb](deb%20packages/wpasupplicant_2.9.0-21_arm64.deb) - wpa_supplicant installer
+- [libpcsclite1_1.9.1-1_arm64.deb](deb%20packages/libpcsclite1_1.9.1-1_arm64.deb) - Dependancy for wpasupplicant_2.9.0-21_arm64.deb
+- [var-wtf-wpa.txt](var-wtf-wpa.txt) (_optional_)
+
+### USER VARIABLES
+Variables must be configured in ```wtf-wpa.sh``` or the ```var-wtf-wpa.txt``` file.
+
+The ```var-wtf-wpa.txt``` file will take precedence over values entered in the script
  ```bash
 ## USER VARIABLES ##
 
@@ -49,6 +70,7 @@ libpcspkg="libpcsclite1_1.9.1-1_arm64.deb"
 wpapkg="wpasupplicant_2.9.0-21_arm64.deb"
 
 # Internet (ONT) interface MAC address (Pulled from cert extraction process)
+# Exmaple: inetONTmac="00:00:00:00:00:00"
 inetONTmac=""
 
 # Certficate variables
@@ -65,23 +87,7 @@ certPath="/etc/wpa_supplicant/conf"
 # FULL PATH for deb package storage
 debPath="/etc/wpa_supplicant/packages"
 ```
-
-### Create your "config" folder
-I created a folder called "config" that contains the following:
-```shell
-CA.pem
-Client.pem
-PrivateKey.pem
-libpcsclite1_1.9.1-1_arm64.deb
-wpasupplicant_2.9.0-21_arm64.deb
-wtf-wpa.sh
-var-wtf-wpa.txt
-```
-You will need to provide your own certificates, but the script, deb files and variable file are available below:
-- [wtf-wpa.sh](wtf-wpa.sh)
-- [wpasupplicant_2.9.0-21_arm64.deb](deb%20packages/wpasupplicant_2.9.0-21_arm64.deb) - wpa_supplicant installer
-- [libpcsclite1_1.9.1-1_arm64.deb](deb%20packages/libpcsclite1_1.9.1-1_arm64.deb) - Dependancy for wpasupplicant_2.9.0-21_arm64.deb
-- [var-wtf-wpa.txt](var-wtf-wpa.txt) (_optional_)
+# Deployment
 
 ### Copy the "config" folder to your device
 I've created a hostname entry on my internal dns called "udmpro", but you can use your IP address.
@@ -112,7 +118,7 @@ root@UDMPRO:~/config#
 >If you do not see the "x" when listing the directory, you can add it by executing the following command:
 > ```chmod +x wtf-wpa.sh```
 
-## Usage
+# Usage
 ```shell
 root@UDMPRO:~/config# ./wtf-wpa.sh
  
