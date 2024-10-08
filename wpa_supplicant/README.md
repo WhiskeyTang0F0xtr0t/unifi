@@ -1,9 +1,9 @@
-## Table of Contents
-- [Overview](##-overview)
+# Table of Contents
+- [Overview](#-overview)
 - [Supported Devices](#-supported-devices)
 - [How to Use](#-how-to-use)
 
-## Overview
+# Overview
 A tool to setup the wpa_supplicant service for AT&T Residential Gateway Bypass on Ubiquiti hardware.
 
 Features:
@@ -13,7 +13,7 @@ Features:
 - Creates "auto recovery" service that leverages $backupPath to re-install and configure wpa_supplicant after Unifi OS update/upgrade
 
 
-## Supported Devices
+# Supported Devices
 This script has been confirmed working on the following hardware:
 - Dream Machine (u/-BruceWayne-)
 - Dream Machine Pro
@@ -25,7 +25,7 @@ This script has been confirmed working on the following hardware:
 
 If your device is not on this list, message me and we can modfiy the script for compatibility.
 
-## How to Use
+# How to Use
 > [!WARNING]
 >
 > **DO NOT RUN THIS SCRIPT IF YOUR DEVICE IS IN BRIDGE MODE!**
