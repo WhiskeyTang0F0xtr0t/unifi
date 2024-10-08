@@ -34,7 +34,7 @@ Features:
 <details>
 <summary>USER VARIABLES</summary>
 
- ```
+ ``` shell
 ## USER VARIABLES ##
 
 # FULL PATH to "backup" folder
@@ -66,7 +66,7 @@ debPath="/etc/wpa_supplicant/packages"
 
 ### Create your "config" folder
 I created a folder called "config" that contains the following:
-```
+``` shell
 CA.pem
 Client.pem
 PrivateKey.pem
