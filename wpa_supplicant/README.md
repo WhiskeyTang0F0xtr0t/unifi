@@ -34,7 +34,7 @@ Features:
 <details>
 <summary>USER VARIABLES</summary>
 
- ``` shell
+ ```bash
 ## USER VARIABLES ##
 
 # FULL PATH to "backup" folder
@@ -87,16 +87,18 @@ I like to use SSH private keys instead of passwords and install them using the `
 ### Copy the "config" folder to your device
 I've created a hostname entry on my internal dns called "udmpro", but you can use your IP address.
 
-```scp -r config root@udmpro:~/```
+```bash
+scp -r config root@udmpro:~/
+```
 
 Once that is done, ssh into your device and navigate to the directory you just copied over.
-```
+```bash
 DEMO:~ shaun$ ssh root@udmpro
 root@UDMPRO:~# cd config/
 ```
 
 Do an ```ls -l``` to confirm the script is executable.
-```
+```bash
 root@UDMPRO:~/config# ls -l
 total 1276
 -rw-r----- 1 root root    6399 Jun 10 16:24 CA.pem
@@ -114,7 +116,7 @@ root@UDMPRO:~/config#
 > ```chmod +x wtf-wpa.sh```
 
 ### Script Usage
-```
+```bash
 root@UDMPRO:~/config# ./wtf-wpa.sh
  
    WTF wpa_supplicant script
@@ -146,7 +148,7 @@ root@UDMPRO:~/config#
 <details>
 <summary>Log Output Example</summary>
   
-```
+```bash
 [2024-10-06 11:33:32] - *** Logging to: log-wtf-wpa.log ***
 [2024-10-06 11:33:32] - *** VERIFICATION MODE ***
 [2024-10-06 11:33:32] - *** Checking for variables ***
