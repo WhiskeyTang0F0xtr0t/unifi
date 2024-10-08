@@ -1,7 +1,7 @@
 # Table of Contents
-- [Overview](#-overview)
-- [Supported Devices](#-supported-devices)
-- [How to Use](#-how-to-use)
+- [Overview](#overview)
+- [Supported Devices](#supported-devices)
+- [How to Use](#how-to-use)
 
 # Overview
 A tool to setup the wpa_supplicant service for AT&T Residential Gateway Bypass on Ubiquiti hardware.
