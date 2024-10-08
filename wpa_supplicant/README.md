@@ -102,7 +102,7 @@ root@UDMPRO:~# cd config/
 ```
 
 Do an ```ls -l``` to confirm the script is executable.
-```
+```shell
 root@UDMPRO:~/config# ls -l
 total 1276
 -rw-r----- 1 root root    6399 Jun 10 16:24 CA.pem
@@ -120,7 +120,7 @@ root@UDMPRO:~/config#
 > ```chmod +x wtf-wpa.sh```
 
 ### Script Usage
-```
+```shell
 root@UDMPRO:~/config# ./wtf-wpa.sh
  
    WTF wpa_supplicant script
@@ -152,7 +152,7 @@ root@UDMPRO:~/config#
 <details>
 <summary>Log Output Example</summary>
   
-```
+```shell
 [2024-10-06 11:33:32] - *** Logging to: log-wtf-wpa.log ***
 [2024-10-06 11:33:32] - *** VERIFICATION MODE ***
 [2024-10-06 11:33:32] - *** Checking for variables ***
