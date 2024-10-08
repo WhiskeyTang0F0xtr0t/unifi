@@ -90,7 +90,8 @@ You will need to provide your own certificates, but the deb files and script are
 ### Make sure SSH is configured on your device.
 I like to use SSH private keys instead of passwords and install them using the ```shell
 ssh-copy-id
-``` command.
+```
+command.
 
 ### Copy the "config" folder to your device
 I've created a hostname entry on my internal dns called "udmpro", but you can use your IP address.
