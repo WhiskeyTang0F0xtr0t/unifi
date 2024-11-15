@@ -15,7 +15,7 @@ All assets were created new and are fully connect-able.
 
 ### ubiquiti-NVRs.xml
 - NVR
-- NVR Pro
+- NVR Pro/UNAS Pro
 <img width="836" alt="nvrs" src="https://github.com/WhiskeyTang0F0xtr0t/unifi/assets/9803191/9f468e17-81a7-4ce8-97e7-c0c9a4567541">
 
 ### ubiquiti-Gateways.xml
