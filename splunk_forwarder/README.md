@@ -36,8 +36,7 @@ I like to use SSH private keys instead of passwords and install them using the `
 I've created a hostname entry on my internal dns called "udmpro", but you can use your IP address.
 
 ```
-scp -r splunk root@udmpro:~/```
-```
+DEMO:~ shaun$ scp -r splunk root@udmpro:~/
 DEMO:~ shaun$ ssh root@udmpro
 root@UDMPRO:~# cd splunk/
 ```
