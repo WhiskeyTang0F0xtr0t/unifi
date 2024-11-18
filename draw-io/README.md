@@ -1,9 +1,7 @@
-Simple drawing for Ubiquiti Siwtches and NVRs.
+draw.io template for Ubiquiti rackmount hardware.
 All assets were created new and are fully connect-able.
 
 ### ubiquiti-Switching.xml
-- UDM Pro/SE
-- UDM Pro Max
 - Standard/Professional 16
 - Standard/Professional 24
 - Standard/Professional/Pro Max 48
@@ -11,19 +9,26 @@ All assets were created new and are fully connect-able.
 - Mission Critical
 - Aggregation
 - Aggregation Pro
-<img width="851" alt="switches" src="https://github.com/WhiskeyTang0F0xtr0t/unifi/assets/9803191/a9a4a847-af1c-4c9a-8338-865a1bd94049">
+<img width="851" alt="Switching" src="https://github.com/user-attachments/assets/54cc768a-3dbf-4b77-b3db-1eebd699e7e1">
 
 ### ubiquiti-NVRs.xml
 - NVR
 - NVR Pro/UNAS Pro
 <img width="836" alt="nvrs" src="https://github.com/WhiskeyTang0F0xtr0t/unifi/assets/9803191/9f468e17-81a7-4ce8-97e7-c0c9a4567541">
 
-### ubiquiti-Gateways.xml
+### ubiquiti-CloudKeys-Gateways.xml
 - Gateway Pro
-<img width="668" alt="gateways" src="https://github.com/WhiskeyTang0F0xtr0t/unifi/assets/9803191/4c565899-d12f-40e0-9ced-75c90c90e463">
+- Gateway Enterprise
+- CloudKey Enterprise
+<img width="1467" alt="CloudKeys Gateways" src="https://github.com/user-attachments/assets/585dd12b-6b10-413d-a13c-acc81569980c">
+
+### ubiquiti-CloudGateways.xml
+- Enterprise Fortress Gateway
+- UDM Pro Max
+- UDM Pro/SE
+<img width="1469" alt="Cloud Gateways" src="https://github.com/user-attachments/assets/6d039544-8eba-4916-92d0-70438ab33104">
 
 ### ubiquiti-Panels.xml
-
 - 1U OCD Panel
 - 2U OCD Panel
 - 1U OCD Brush panel
