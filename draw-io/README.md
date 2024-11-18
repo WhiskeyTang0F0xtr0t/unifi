@@ -1,4 +1,4 @@
-draw.io template for Ubiquiti rackmount hardware.
+draw.io templates for Ubiquiti rackmount hardware.
 All assets were created new and are fully connect-able.
 
 ### ubiquiti-Switching.xml
