@@ -33,7 +33,8 @@ All assets were created new and are fully connect-able.
 - 2U OCD Panel
 - 1U OCD Brush panel
 - 24 Port Keystone panel
-<img width="1288" alt="Screenshot 2024-11-15 at 4 34 51 PM" src="https://github.com/user-attachments/assets/bd0861f0-1cc9-47f2-9db5-8f44b60da69e">
+<img width="1368" alt="panels" src="https://github.com/user-attachments/assets/44e5883c-db26-410f-b52c-9d602f1159ec">
+
 
 ### ubiquiti-PowerTech.xml
 - Power Distribution Pro
