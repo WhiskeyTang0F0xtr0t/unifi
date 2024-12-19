@@ -14,6 +14,7 @@ Features:
 - Verifies all needed files are available(certs, pkgs) and variables are set
 - Installs and configures wpa_supplicant service with "restart on failure" enabled
 - Creates "auto recovery" service that leverages $backupPath to re-install and configure wpa_supplicant after Unifi OS update/upgrade
+- Optional external variable file support
 
 # Supported Devices
 This script has been confirmed working on the following hardware:
