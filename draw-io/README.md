@@ -6,10 +6,11 @@ All assets were created new and are fully connect-able.
 - Standard/Professional 24
 - Standard/Professional/Pro Max 48
 - Pro Max/Enterprise/Enterprise XG 24
+- Pro HD 24/Pro HD 24 POE
 - Mission Critical
 - Aggregation
 - Aggregation Pro
-<img width="851" alt="Switching" src="https://github.com/user-attachments/assets/54cc768a-3dbf-4b77-b3db-1eebd699e7e1">
+<img width="1401" alt="Screenshot 2025-01-11 at 11 29 38 PM" src="https://github.com/user-attachments/assets/7f8bbdea-cae1-4f9e-809e-1cb1bbf53f21" />
 
 ### ubiquiti-NVRs.xml
 - NVR
