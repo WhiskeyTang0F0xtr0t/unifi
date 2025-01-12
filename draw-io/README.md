@@ -25,8 +25,8 @@ All assets were created new and are fully connect-able.
 
 ### ubiquiti-CloudGateways.xml
 - Enterprise Fortress Gateway
-- UDM Pro Max
 - UDM Pro/SE
+- UDM Pro Max
 <img width="1469" alt="Cloud Gateways" src="https://github.com/user-attachments/assets/6d039544-8eba-4916-92d0-70438ab33104">
 
 ### ubiquiti-Panels.xml
