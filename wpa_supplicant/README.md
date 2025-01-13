@@ -1,3 +1,13 @@
+> [!CAUTION]
+> If the installed version of the Network app is newer than the version in a Unifi OS update, it may need to download the newer version of the Network app before it can restore your configuration.
+> 
+> You may need to SSH into your device and run ``` wtf-wpa.sh -i ``` to repair the wpa_supplicant service and allow it to download the update.
+> 
+> Example: The UniFi OS 4.1.13 update is bundled with UniFi Network 8.6.9, but I had 9.0.108 installed already and had to do the process above.
+> 
+
+
+
 # Table of Contents
 - [Overview](#overview)
 - [Supported Devices](#supported-devices)
