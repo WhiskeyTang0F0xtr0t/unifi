@@ -1,3 +1,7 @@
+> [!NOTE]
+> This ReadMe is out of date and will be update to reflect new content and structure based on Ubiquiti's current categorization.
+
+
 draw.io templates for Ubiquiti rackmount hardware.
 All assets were created new and are fully connect-able.
 
