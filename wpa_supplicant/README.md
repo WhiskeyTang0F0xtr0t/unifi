@@ -145,7 +145,7 @@ root@UDMPRO:~/config# ./wtf-wpa.sh
          -c   Does a quick status check of the wpa_supplicant service
               Example: wtf-wpa.sh -c
 
-         -f   update your certificates and conf files only
+         -f   forces configuration file rebuild and re-copies your certificates
               Example: wtf-wpa.sh -f
               Useful for rebuilding after configuration/certificate changes
 
@@ -156,56 +156,59 @@ root@UDMPRO:~/config#
 
 <details>
 <summary>Terminal Output Example</summary>
-<img width="1034" alt="Screenshot 2024-10-06 at 11 33 58 AM" src="https://github.com/user-attachments/assets/72af3272-063b-4094-8857-94288203f7b5">
+<img width="1193" alt="output" src="https://github.com/user-attachments/assets/eea8ad2a-5f50-47fe-b784-ba475a2f1da4" />
 </details>
 
 <details>
 <summary>Log Output Example</summary>
   
 ```shell
-[2024-10-06 11:33:32] - *** Logging to: log-wtf-wpa.log ***
-[2024-10-06 11:33:32] - *** VERIFICATION MODE ***
-[2024-10-06 11:33:32] - *** Checking for variables ***
-[2024-10-06 11:33:32] - INFO: Found - var-file: /root/config/var-wtf-wpa.txt
-[2024-10-06 11:33:32] - INFO: Found - backupPath: /root/config
-[2024-10-06 11:33:32] - INFO: Found - libpcspkg: libpcsclite1_1.9.1-1_arm64.deb
-[2024-10-06 11:33:32] - INFO: Found - wpapkg: wpasupplicant_2.9.0-21_arm64.deb
-[2024-10-06 11:33:32] - INFO: Found - inetONTmac: 12:34:56:78:AB:CD
-[2024-10-06 11:33:32] - INFO: Found - backupPath: /root/config
-[2024-10-06 11:33:32] - INFO: Found - CA_filename: CA.pem
-[2024-10-06 11:33:32] - INFO: Found - Client_filename: Client.pem
-[2024-10-06 11:33:32] - INFO: Found - PrivateKey_filename: PrivateKey.pem
-[2024-10-06 11:33:32] - INFO: Found - confPath: /etc/wpa_supplicant/conf
-[2024-10-06 11:33:32] - INFO: Found - certPath: /etc/wpa_supplicant/conf
-[2024-10-06 11:33:32] - INFO: Found - debPath: /etc/wpa_supplicant/packages
-[2024-10-06 11:33:32] - *** Checking Hardware Version ***
-[2024-10-06 11:33:32] - INFO: Hardware - UniFi Dream Machine Pro
-[2024-10-06 11:33:32] - INFO: WAN Interface: eth8
-[2024-10-06 11:33:32] - *** Checking for required directories ***
-[2024-10-06 11:33:32] - INFO: Found - Backup Path: /root/config
-[2024-10-06 11:33:32] - INFO: Found - debPath: /etc/wpa_supplicant/packages
-[2024-10-06 11:33:32] - INFO: Found - certPath: /etc/wpa_supplicant/conf
-[2024-10-06 11:33:32] - INFO: Found - confPath: /etc/wpa_supplicant/conf
-[2024-10-06 11:33:32] - INFO: Found - override: /etc/systemd/system/wpa_supplicant.service.d
-[2024-10-06 11:33:32] - *** Checking for required deb packages ***
-[2024-10-06 11:33:32] - INFO: Found - deb_pkg: /etc/wpa_supplicant/packages/libpcsclite1_1.9.1-1_arm64.deb
-[2024-10-06 11:33:32] - INFO: Found - deb_pkg: /etc/wpa_supplicant/packages/wpasupplicant_2.9.0-21_arm64.deb
-[2024-10-06 11:33:32] - *** Checking for required certificates ***
-[2024-10-06 11:33:32] - INFO: Found - CA: /etc/wpa_supplicant/conf/CA.pem
-[2024-10-06 11:33:32] - INFO: Found - Client: /etc/wpa_supplicant/conf/Client.pem
-[2024-10-06 11:33:32] - INFO: Found - PrivateKey: /etc/wpa_supplicant/conf/PrivateKey.pem
-[2024-10-06 11:33:32] - *** Checking for wpa_supplicant conf files ***
-[2024-10-06 11:33:32] - INFO: Found - wpa_conf: /etc/wpa_supplicant/conf/wpa_supplicant.conf
-[2024-10-06 11:33:32] - INFO: Found - override: /etc/systemd/system/wpa_supplicant.service.d/override.conf
-[2024-10-06 11:33:32] - *** Checking wpa_supplicant service ***
-[2024-10-06 11:33:32] - INFO: wpa_supplicant installed: 2:2.9.0-21
-[2024-10-06 11:33:32] - INFO: wpa_supplicant is active
-[2024-10-06 11:33:32] - INFO: wpa_supplicant is enabled
-[2024-10-06 11:33:32] - *** Checking recovery service ***
-[2024-10-06 11:33:32] - INFO: wtf-wpa.service is enabled
-[2024-10-06 11:33:32] - *** Testing connection to google.com:80 ***
-[2024-10-06 11:33:32] - INFO: Attemp 1/3: netcat google.com:80 SUCCESSFUL
-[2024-10-06 11:33:32] - *** Process complete ***
+[2025-04-10 18:08:35] - *** Logging to: log-wtf-wpa.log ***
+[2025-04-10 18:08:35] - *** VERIFICATION MODE ***
+[2025-04-10 18:08:35] - *** Checking for variables ***
+[2025-04-10 18:08:35] - INFO: Found - var-file: /root/config/var-wtf-wpa.txt
+[2025-04-10 18:08:35] - INFO: Found - backupPath: /root/config
+[2025-04-10 18:08:35] - INFO: Found - libpcspkg: libpcsclite1_1.9.1-1_arm64.deb
+[2025-04-10 18:08:35] - INFO: Found - wpapkg: wpasupplicant_2.9.0-21_arm64.deb
+[2025-04-10 18:08:35] - INFO: Found - inetONTmac: 12:34:56:78:AB:CD
+[2025-04-10 18:08:35] - INFO: Found - backupPath: /root/config
+[2025-04-10 18:08:35] - INFO: Found - CA_filename: CA.pem
+[2025-04-10 18:08:35] - INFO: Found - Client_filename: Client.pem
+[2025-04-10 18:08:35] - INFO: Found - PrivateKey_filename: PrivateKey.pem
+[2025-04-10 18:08:35] - INFO: Found - confPath: /etc/wpa_supplicant/conf
+[2025-04-10 18:08:35] - INFO: Found - certPath: /etc/wpa_supplicant/conf
+[2025-04-10 18:08:35] - INFO: Found - debPath: /etc/wpa_supplicant/packages
+[2025-04-10 18:08:35] - *** Checking Hardware ***
+[2025-04-10 18:08:35] - INFO: Hardware - UniFi Dream Machine Pro
+[2025-04-10 18:08:35] - INFO: WAN Interface: eth8
+[2025-04-10 18:08:35] - INFO: Override WAN Interface: eth8
+[2025-04-10 18:08:35] - INFO: Compare WAN Interface: MATCHED
+[2025-04-10 18:08:35] - *** Checking for required directories ***
+[2025-04-10 18:08:35] - INFO: Found - Backup Path: /root/config
+[2025-04-10 18:08:35] - INFO: Found - debPath: /etc/wpa_supplicant/packages
+[2025-04-10 18:08:35] - INFO: Found - certPath: /etc/wpa_supplicant/conf
+[2025-04-10 18:08:35] - INFO: Found - confPath: /etc/wpa_supplicant/conf
+[2025-04-10 18:08:35] - INFO: Found - override: /etc/systemd/system/wpa_supplicant.service.d
+[2025-04-10 18:08:35] - *** Checking for required deb packages ***
+[2025-04-10 18:08:35] - INFO: Found - deb_pkg: /etc/wpa_supplicant/packages/libpcsclite1_1.9.1-1_arm64.deb
+[2025-04-10 18:08:35] - INFO: Found - deb_pkg: /etc/wpa_supplicant/packages/wpasupplicant_2.9.0-21_arm64.deb
+[2025-04-10 18:08:35] - *** Checking for required certificates ***
+[2025-04-10 18:08:35] - INFO: Found - CA: /etc/wpa_supplicant/conf/CA.pem
+[2025-04-10 18:08:35] - INFO: Found - Client: /etc/wpa_supplicant/conf/Client.pem
+[2025-04-10 18:08:35] - INFO: Found - PrivateKey: /etc/wpa_supplicant/conf/PrivateKey.pem
+[2025-04-10 18:08:35] - *** Checking for wpa_supplicant conf files ***
+[2025-04-10 18:08:35] - INFO: Found - wpa_conf: /etc/wpa_supplicant/conf/wpa_supplicant.conf
+[2025-04-10 18:08:35] - INFO: Found - override: /etc/systemd/system/wpa_supplicant.service.d/override.conf
+[2025-04-10 18:08:35] - *** Checking wpa_supplicant service ***
+[2025-04-10 18:08:35] - INFO: wpa_supplicant installed: 2:2.9.0-21
+[2025-04-10 18:08:35] - INFO: wpa_supplicant is active
+[2025-04-10 18:08:35] - INFO: wpa_supplicant is enabled
+[2025-04-10 18:08:35] - *** Checking recovery service ***
+[2025-04-10 18:08:35] - INFO: wtf-wpa.service is enabled
+[2025-04-10 18:08:35] - *** Testing connection to google.com:80 ***
+[2025-04-10 18:08:35] - INFO: Attempt 1/3: netcat google.com:80 SUCCESSFUL
+[2025-04-10 18:08:35] - *** Process complete ***
+
 ```
 </details>
 ------
