@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###################################### 
-# wtf-wpa v2.2
+# wtf-wpa v2.3
 #
 # Check/repair/install the wpa_supplicant setup on UDM hardware
 #
@@ -87,12 +87,11 @@ display-help()
 	printf "   %8s   %s\\n\\n" "" "Example: ${CYAN}${full_filename} -i${NC}"
 	printf "   %8s   %s\\n" "-c" "Does a quick status check of the wpa_supplicant service"
 	printf "   %8s   %s\\n\\n" "" "Example: ${CYAN}${full_filename} -c${NC}"
-	printf "   %8s   %s\\n" "-f" "update your certificates and conf files only"
+	printf "   %8s   %s\\n" "-f" "forces configuration file rebuild and re-copies your certificates"
 	printf "   %8s   %s\\n" "" "Example: ${CYAN}${full_filename} -f${NC}"
 	printf "   %8s   %s\\n\\n" "" "Useful for rebuilding after configuration/certificate changes"
 	printf "   %8s   %s\\n\\n" "<none>" "Print this Help"
 }
-
 # Output colors
 CYAN=$(tput setaf 6)
 GREEN=$(tput setaf 2)
@@ -102,9 +101,6 @@ NC=$(tput sgr0)
 TICK="[${GREEN}✓${NC}]"
 CROSS="[${RED}✗${NC}]"
 INFO="[i]"
-
-# Load external variable file
-. ${backupPath}/var-wtf-wpa.txt 1> /dev/null 2> >(log-stream)
 
 #######################################
 # Show a formatted banner with message
@@ -180,13 +176,50 @@ check-hw () {
 parse-wan-int () {
 # Checks ubios-udapi-server.state to determine the WAN port
 	if [ -f /data/udapi-config/ubios-udapi-server/ubios-udapi-server.state ]; then
-		# Parses udapi-net-cfg.json and etracts first interface in wanFailover yaml object
+		# Parses udapi-net-cfg.json and for first interface in wanFailover yaml object
 		udapi_wan_int=$(jq -r '.services.wanFailover.wanInterfaces.[0].interface' /data/udapi-config/udapi-net-cfg.json | awk -F"." '{print $1}')
 		output IY "WAN Int" "${udapi_wan_int}" && log I "WAN Interface: ${udapi_wan_int}"
 	else
 		output C "WAN Int" "Could not determine WAN interface from udapi-net-cfg - EXITING"; log E "Could not determine WAN interface from udapi-net-cfg - EXITING"
 		exit 1
 	fi
+}
+
+#######################################
+# Checks the WAN interface in the override.conf file
+# OUTPUTS:
+#   conf-wan-int
+# RETURN:
+#   Status message, exits script if fails
+#######################################
+parse-conf-wan-int () {
+# Checks WAN port in the override.conf
+	if [ -f /etc/systemd/system/wpa_supplicant.service.d/override.conf ]; then
+		# Parses override.conf and extracts the wan interface in the command string
+		conf_wan_int=$(grep -oP '(?<=-i).*?(?= -c)' < /etc/systemd/system/wpa_supplicant.service.d/override.conf)
+		output IY "CONF Int" "${conf_wan_int}" && log I "Override WAN Interface: ${conf_wan_int}"
+	else
+		output C "CONF Int" "override.conf not found"; log E "override.conf not found"
+		conf_wan_int=""
+	fi
+}
+
+#######################################
+# Tries to determine the WAN interface by parsing /data/udapi-config/udapi-net-cfg.json
+# OUTPUTS:
+#   conf-wan-int
+# RETURN:
+#   Status message, exits script if fails
+#######################################
+compare-wan-int () {
+# Checks WAN port in the override.conf
+if [ "${conf_wan_int}" == "${udapi_wan_int}" ]; then
+		output T "Compare Int" "Matched" && log I "Compare WAN Interface: MATCHED"
+  else
+		output C "Compare Int" "Active WAN interface does not match override.conf"; log E "Active WAN interface does not match override.conf"
+		output C "Compare Int" "Please run the script with the -f flag to force a configuration rebuild - EXITING"; log E "Please run the script with the -f flag to force a configuration rebuild - EXITING"
+		exit 1
+fi
 }
 
 #######################################
@@ -516,7 +549,7 @@ check-variable confPath "${confPath}"
 check-variable certPath "${certPath}"
 check-variable debPath "${debPath}"
 
-banner "Checking Hardware Version"
+banner "Checking Hardware"
 check-hw
 parse-wan-int
 
@@ -565,7 +598,7 @@ clear
 rm "$log_filename" 1> /dev/null 2> >(log-stream)
 banner "Logging to: $log_filename"
 
-banner "FILES ONLY MODE"
+banner "FORCE REBUILD MODE"
 
 banner "Checking for variables"
 check-for-file "var-file" "${backupPath}" "var-wtf-wpa.txt"
@@ -581,9 +614,10 @@ check-variable confPath "${confPath}"
 check-variable certPath "${certPath}"
 check-variable debPath "${debPath}"
 
-banner "Checking Hardware Version"
+banner "Checking Hardware"
 check-hw
 parse-wan-int
+parse-conf-wan-int
 
 banner "Checking for required directories"
 check-for-path 'Backup Path' "${backupPath}"
@@ -603,7 +637,7 @@ restore-file "override" "/etc/systemd/system/wpa_supplicant.service.d" "override
 
 banner "Do you want to restart the wpa_supplicant service?"
 read -p "[y/N]" promptRestart
-if [ "$promptRestart" = "y" ]; then
+if [[ "$promptRestart" =~ ^(y|Y)$ ]]; then
    restart-wpa-supp
 else
    banner "wpa_supplicant service not restarted"
@@ -623,9 +657,10 @@ rm "$log_filename" 1> /dev/null 2> >(log-stream)
 banner "Logging to: $log_filename"
 
 banner "RECOVERY MODE"
-banner "Checking Hardware Version"
+banner "Checking Hardware"
 check-hw
 parse-wan-int
+parse-conf-wan-int
 
 banner "Checking for required directories"
 check-for-path 'Backup Path' "${backupPath}"
@@ -685,9 +720,11 @@ check-variable confPath "${confPath}"
 check-variable certPath "${certPath}"
 check-variable debPath "${debPath}"
 
-banner "Checking Hardware Version"
+banner "Checking Hardware"
 check-hw
 parse-wan-int
+parse-conf-wan-int
+compare-wan-int
 
 banner "Checking for required directories"
 check-for-path 'Backup Path' "${backupPath}"
