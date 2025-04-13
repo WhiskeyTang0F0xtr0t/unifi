@@ -27,14 +27,15 @@ Features:
 - Optional external variable file support
 
 # Supported Devices
-This script has been confirmed working on the following hardware:
-- Dream Machine (u/-BruceWayne-)
-- Dream Machine Pro
+This script should work on any UniFi hardware runnin their modern OS and been confirmed working on the following hardware:
+- Dream Machine (UDM) (u/-BruceWayne-)
+- Dream Machine Pro (UDM-Pro)
 - Dream Machine Special Edition
-- Dream Machine Pro Max
-- Cloud Gateway Ultra
-- Cloud Gateway Express
-- Enterprise Fortress Gateway (u/Navish360)
+- Dream Machine Pro Max (UDM-Pro-Max)
+- Cloud Gateway Ultra (UCG-Ultra)
+- Cloud Gateway Fiber (UCG-Fiber) (u/-BruceWayne-)
+- UniFi Express (UX)
+- Enterprise Fortress Gateway (EFG) (u/Navish360)
 
 If your device is not on this list, message me and we can modfiy the script for compatibility.
 
@@ -215,4 +216,4 @@ root@UDMPRO:~/config#
 
 
 # Future Plans
-- [ ] Overhaul README.md
+- TBD
