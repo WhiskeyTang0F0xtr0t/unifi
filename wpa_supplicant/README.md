@@ -161,7 +161,7 @@ root@UDMPRO:~/config#
 
 <details>
 <summary>Terminal Output Example</summary>
-<img width="1193" alt="output" src="https://github.com/user-attachments/assets/eea8ad2a-5f50-47fe-b784-ba475a2f1da4" />
+<img width="1097" alt="Screenshot 2025-04-16 at 8 07 45 AM" src="https://github.com/user-attachments/assets/f1a41e98-88c0-43be-a6c0-61a86d48eb10" />
 </details>
 
 <details>
