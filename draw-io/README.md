@@ -5,6 +5,12 @@
 draw.io templates for Ubiquiti rackmount hardware.
 All assets were created new and are fully connect-able.
 
+# Future Plans
+- Update Readme
+- Enable "Snap to Point" property on all asssets
+- Add text to all objects
+- Add Tool Tips with port info and specs
+
 ### ubiquiti-Switching.xml
 - Standard/Professional 16
 - Standard/Professional 24
