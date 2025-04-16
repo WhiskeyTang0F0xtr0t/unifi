@@ -1,7 +1,6 @@
 #!/bin/bash
 
 ###################################### 
-# wtf-wpa v2.3
 #
 # Check/repair/install the wpa_supplicant setup on UDM hardware
 #
@@ -48,7 +47,7 @@ debPath="/etc/wpa_supplicant/packages"
 ####################################### 
 # Load external variable file
 . ${backupPath}/var-wtf-wpa.txt &> /dev/null
-
+wtf_ver="2.3"
 wpasupp_install=""
 
 full_filename=$(basename -- "$0")
@@ -532,7 +531,7 @@ main-install () {
 clear
 rm "$log_filename" 1> /dev/null 2> >(log-stream)
 banner "Logging to: $log_filename"
-
+banner "Script Version: $wtf_ver"
 banner "INSTALLATION MODE"
 
 banner "Checking for variables"
@@ -597,7 +596,7 @@ clear
 
 rm "$log_filename" 1> /dev/null 2> >(log-stream)
 banner "Logging to: $log_filename"
-
+banner "Script Version: $wtf_ver"
 banner "FORCE REBUILD MODE"
 
 banner "Checking for variables"
@@ -655,7 +654,7 @@ log_filename="/root/recovery-${short_filename}.log"
 
 rm "$log_filename" 1> /dev/null 2> >(log-stream)
 banner "Logging to: $log_filename"
-
+banner "Script Version: $wtf_ver"
 banner "RECOVERY MODE"
 banner "Checking Hardware"
 check-hw
@@ -703,7 +702,7 @@ main-check () {
 clear
 rm "$log_filename" 1> /dev/null 2> >(log-stream)
 banner "Logging to: $log_filename"
-
+banner "Script Version: $wtf_ver"
 banner "VERIFICATION MODE"
 
 banner "Checking for variables"

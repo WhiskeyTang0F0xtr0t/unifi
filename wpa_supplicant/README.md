@@ -14,12 +14,13 @@
 - [Getting Started](#getting-started)
 - [Deployment](#deployment)
 - [Usage](#usage)
+- [Example Files](#example-files)
 - [Future Plans](#future-plans)
 
 # Overview
 A tool to setup the wpa_supplicant service for AT&T Residential Gateway Bypass on Ubiquiti hardware.
 
-Features:
+### Features:
 - Made for Ubiquiti hardware, but could be tweaked to work on other platforms that support wpa_supplicant
 - Verifies all needed files are available(certs, pkgs) and variables are set
 - Installs and configures wpa_supplicant service with "restart on failure" enabled
@@ -27,7 +28,7 @@ Features:
 - Optional external variable file support
 
 # Supported Devices
-This script should work on any UniFi hardware runnin their modern OS and been confirmed working on the following hardware:
+This script should work on any UniFi hardware running their modern OS and been confirmed working on the following hardware:
 - Dream Machine (UDM) (u/-BruceWayne-)
 - Dream Machine Pro (UDM-Pro)
 - Dream Machine Special Edition
@@ -61,11 +62,12 @@ wpasupplicant_2.9.0-21_arm64.deb
 wtf-wpa.sh
 var-wtf-wpa.txt
 ```
+
 You will need to provide your own certificates, but the script, deb files and variable file are available below:
 - [wtf-wpa.sh](wtf-wpa.sh)
 - [wpasupplicant_2.9.0-21_arm64.deb](deb%20packages/wpasupplicant_2.9.0-21_arm64.deb) - wpa_supplicant installer
 - [libpcsclite1_1.9.1-1_arm64.deb](deb%20packages/libpcsclite1_1.9.1-1_arm64.deb) - Dependancy for wpasupplicant_2.9.0-21_arm64.deb
-- [var-wtf-wpa.txt](var-wtf-wpa.txt) (_optional_)
+- [var-wtf-wpa.txt](var-wtf-wpa.txt) (_optional, but recommended_)
 
 ### USER VARIABLES
 Variables must be configured in ```wtf-wpa.sh``` or the ```var-wtf-wpa.txt``` file.
@@ -99,6 +101,7 @@ certPath="/etc/wpa_supplicant/conf"
 # FULL PATH for deb package storage
 debPath="/etc/wpa_supplicant/packages"
 ```
+
 # Deployment
 
 ### Copy the "config" folder to your device
@@ -129,6 +132,7 @@ root@UDMPRO:~/config#
 >
 >If you do not see the "x" when listing the directory, you can add it by executing the following command:
 > ```chmod +x wtf-wpa.sh```
+<br/>
 
 # Usage
 ```shell
@@ -165,6 +169,7 @@ root@UDMPRO:~/config#
   
 ```shell
 [2025-04-10 18:08:35] - *** Logging to: log-wtf-wpa.log ***
+[2025-04-10 18:08:35] - *** Script Version: 2.3 ***
 [2025-04-10 18:08:35] - *** VERIFICATION MODE ***
 [2025-04-10 18:08:35] - *** Checking for variables ***
 [2025-04-10 18:08:35] - INFO: Found - var-file: /root/config/var-wtf-wpa.txt
@@ -209,11 +214,99 @@ root@UDMPRO:~/config#
 [2025-04-10 18:08:35] - *** Testing connection to google.com:80 ***
 [2025-04-10 18:08:35] - INFO: Attempt 1/3: netcat google.com:80 SUCCESSFUL
 [2025-04-10 18:08:35] - *** Process complete ***
-
 ```
 </details>
 ------
+<br/>
 
+# Example Files
+
+<details>
+
+<summary>wpa_supplicant configuration</summary>
+/etc/wpa_supplicant/conf/wpa_supplicant.conf
+
+```shell
+eapol_version=1
+ap_scan=0
+fast_reauth=1
+network={
+        ca_cert="'"${certPath}"/"${CA_filename}"'"
+        client_cert="'"${certPath}"/"${Client_filename}"'"
+        eap=TLS
+        eapol_flags=0
+        identity="'"${inetONTmac}"'" # Internet (ONT) interface MAC address must match this value
+        key_mgmt=IEEE8021X
+        phase1="allow_canned_success=1"
+        private_key="'"${certPath}"/"${PrivateKey_filename}"'"
+}
+```
+</details>
+
+<details>
+
+<summary>wpa_supplicant service</summary>
+/lib/systemd/system/wpa_supplicant.service
+
+```shell
+[Unit]
+Description=WPA supplicant
+Before=network.target
+After=dbus.service
+Wants=network.target
+IgnoreOnIsolate=true
+
+[Service]
+Type=dbus
+BusName=fi.w1.wpa_supplicant1
+ExecStart=/sbin/wpa_supplicant -u -s -O /run/wpa_supplicant
+
+[Install]
+WantedBy=multi-user.target
+Alias=dbus-fi.w1.wpa_supplicant1.service
+```
+</details>
+
+<details>
+
+<summary>wpa_supplicant service override.conf</summary>
+/etc/systemd/system/wpa_supplicant.service.d/override.conf
+
+```shell
+[Unit]
+Description=wpa_supplicant service for AT&T router bypass
+StartLimitIntervalSec=30s
+StartLimitBurst=5
+
+[Service]
+Restart=on-failure
+RestartSec=5s
+
+ExecStart=
+ExecStart=/sbin/wpa_supplicant -u -s -Dwired -i${udapi_wan_int} -c${confPath}/wpa_supplicant.conf
+```
+</details>
+
+<details>
+
+<summary>Recovery Service</summary>
+/etc/systemd/system/wtf-wpa.service
+
+```shell
+[Unit]
+Description=Reinstall and start/enable wpa_supplicant
+AssertPathExistsGlob='${backupPath}'/wpasupplicant*arm64.deb
+AssertPathExistsGlob='${backupPath}'/libpcsclite1*arm64.deb
+ConditionPathExists=!/sbin/wpa_supplicant
+ConditionPathExists='${backupPath}'/wtf-wpa.sh
+
+[Service]
+Type=oneshot\nExecStart='${backupPath}'/wtf-wpa.sh -r
+
+[Install]
+WantedBy=multi-user.target
+```
+</details>
 
 # Future Plans
 - TBD
