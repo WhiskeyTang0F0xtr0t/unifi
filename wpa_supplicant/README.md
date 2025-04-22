@@ -104,9 +104,11 @@ debPath="/etc/wpa_supplicant/packages"
 
 # Deployment
 
-### Copy the "config" folder to your device
-I've created a hostname entry on my internal dns called "udmpro", but you can use your IP address.
+### Copy the "config" folder to your device.
 
+I recommend putting this in ```/root/``` and setting your ```backupPath``` varibale to ```"/root/config"```.
+
+I've created a hostname entry on my internal dns called "udmpro", but you can use your IP address.
 ```scp -r config root@udmpro:~/```
 
 Once that is done, ssh into your device and navigate to the directory you just copied over.
