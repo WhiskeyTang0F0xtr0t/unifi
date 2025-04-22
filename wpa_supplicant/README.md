@@ -106,7 +106,7 @@ debPath="/etc/wpa_supplicant/packages"
 
 ### Copy the "config" folder to your device.
 
-I recommend putting this in ```/root/``` and setting your ```backupPath``` varibale to ```"/root/config"```.
+I recommend putting this in ```/root/``` and setting your ```backupPath``` variable to ```"/root/config"```.
 
 I've created a hostname entry on my internal dns called "udmpro", but you can use your IP address.
 ```scp -r config root@udmpro:~/```
