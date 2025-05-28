@@ -39,6 +39,11 @@ All assets were created new and are fully connect-able.
 ### ui-Integrations-NetworkStorage-v3.xml
 - UNAS Pro
 
+### ui-Integrations-PowerTech-v3.xml
+- Mission Critical
+- Power Backup
+- Power Distribution Pro
+
 ### ui-Switching-Aggregation-v3.xml
 - Hi-Capacity Aggregation
 - Aggregation
@@ -48,8 +53,3 @@ All assets were created new and are fully connect-able.
 ### ui-Switching-Enterprise-v3.xml
 - Enterprise Campus 48 PoE
 - Enterprise Campus 24 PoE
-
-### ui-Integrations-PowerTech-v3.xml
-- Mission Critical
-- Power Backup
-- Power Distribution Pro
