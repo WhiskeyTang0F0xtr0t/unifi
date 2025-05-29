@@ -53,3 +53,17 @@ All assets were created new and are fully connect-able.
 ### ui-Switching-Enterprise-v3.xml
 - Enterprise Campus 48 PoE
 - Enterprise Campus 24 PoE
+
+### ui-Switching-ProMax-XG-v3.xml
+Missing Pro Max 16 PoE & Pro Max 16, but will be added soon.
+- Pro Max 48 PoE
+- Pro Max 24 PoE
+- Pro XG 48 PoE
+- Pro XG 24 PoE
+- Pro HD 24 PoE
+- Pro XG 48
+- Pro XG 24
+- Pro HD 24
+- Pro Max 48
+- Pro Max 24
+- Pro XG 10 PoE
