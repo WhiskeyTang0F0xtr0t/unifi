@@ -67,3 +67,10 @@ Missing Pro Max 16 PoE & Pro Max 16, but will be added soon.
 - Pro Max 48
 - Pro Max 24
 - Pro XG 10 PoE
+
+### ui-Switching-Professional-v3.xml
+- Pro 48 PoE
+- Pro 24 PoE
+- Pro 48
+- Pro 24
+- Mission Critical
