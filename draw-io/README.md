@@ -40,7 +40,6 @@ All assets were created new and are fully connect-able.
 - UNAS Pro
 
 ### ui-Integrations-PowerTech-v3.xml
-- Mission Critical
 - Power Backup
 - Power Distribution Pro
 
