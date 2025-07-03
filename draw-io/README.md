@@ -1,6 +1,7 @@
 > [!NOTE]
-> I'm in the middle of re-drawing all the existing hardware and adding new assets.
-> This work is not yet finished, but I've uploaded what I have so far.
+>
+> Please submit an issue if an additional asset needs to be created/added.
+> 
 
 
 draw.io templates for Ubiquiti rackmount hardware.
