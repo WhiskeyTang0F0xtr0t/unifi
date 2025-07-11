@@ -149,7 +149,7 @@ Click the "Add this library to draw.io online" link.
 - Pro XG 10 PoE
 <details>
 <summary>Preview</summary>
-<img width="756" height="1091" alt="ui-Switching-ProMax-XG-v3" src="https://github.com/user-attachments/assets/3de3d58e-62ec-4917-8ed4-fe14a6c64f3e" />
+<img width="1833" height="892" alt="ui-Switching-ProMax-XG-v3" src="https://github.com/user-attachments/assets/fbd43d45-5e2d-405e-931d-4ba210d0c9fa" />
 </details>
 
 ### ui-Switching-Professional-v3.xml
