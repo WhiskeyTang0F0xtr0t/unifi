@@ -5,6 +5,9 @@
 
 # Table of Contents
 - [Overview](#overview)
+- [Add this library to draw.io online](#add-this-library-to-draw.io-online)
+  - [draw.io online](https://github.com/WhiskeyTang0F0xtr0t/unifi/tree/main/draw-io#drawio-online)
+  - [draw.io Desktop app](https://github.com/WhiskeyTang0F0xtr0t/unifi/tree/main/draw-io#drawio-desktop-app)
 - [Current Products](#current-products)
   - [Accessories: Rack Mount](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-accessories-rack-mount-v3xml)
   - [Advaced Hosting](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-advanced-hosting-v3xml)
@@ -24,9 +27,21 @@
 draw.io templates for Ubiquiti rackmount hardware.
 - All assets were created new and are fully connect-able.
 
+# Adding a library to draw.io
+
+### draw.io online
+
+Click the "Add this library to draw.io online" link. 
+
+### draw.io Desktop app
+
+1. Download the desired xml file(s)
+2. Drag the file(s) to an open diagram.
+
 # Current Products
 
 ### ui-Accessories-Rack-Mount-v3.xml
+[Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Accessories-Rack-Mount-v3.xml)
 - 1U Blank Panel
 - 2U Blank Panel
 - 1U Brush Panel
@@ -42,6 +57,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 </details>
 
 ### ui-Advanced-Hosting-v3.xml
+[Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Advanced-Hosting-v3.xml)
 - Gateway Enterprise
 - CloudKey Enterprise
 - Gateway Pro
@@ -51,6 +67,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 </details>
 
 ### ui-Camera-Security-v3.xml
+[Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Camera-Security-v3.xml)
 - Network Video Recorder Pro
 - Network Video Recorder
 - Enterprise Network Video Recorder
@@ -60,6 +77,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 </details>
 
 ### ui-CloudGateways-v3.xml
+[Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-CloudGateways-v3.xml)
 - Enterprise Fortress Gateway
 - Dream Machine Pro Max
 - Dream Machine Pro
@@ -70,6 +88,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 </details>
 
 ### ui-Integrations-InternetSolutions-v3.xml
+[Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/ui-Integrations-InternetSolutions-v3.xml)
 - Cable Internet
 <details>
 <summary>Preview</summary>
@@ -77,6 +96,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 </details>
 
 ### ui-Integrations-NetworkStorage-v3.xml
+[Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Integrations-NetworkStorage-v3.xml)
 - UNAS Pro
 <details>
 <summary>Preview</summary>
@@ -84,6 +104,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 </details>
 
 ### ui-Integrations-PowerTech-v3.xml
+[Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Integrations-PowerTech-v3.xml)
 - Power Backup
 - Power Distribution Pro
 <details>
@@ -92,6 +113,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 </details>
 
 ### ui-Switching-Aggregation-v3.xml
+[Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Switching-Aggregation-v3.xml)
 - Hi-Capacity Aggregation
 - Aggregation
 - Enterprise Campus Aggregation
@@ -102,6 +124,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 </details>
 
 ### ui-Switching-Enterprise-v3.xml
+[Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Switching-Enterprise-v3.xml)
 - Enterprise Campus 48 PoE
 - Enterprise Campus 24 PoE
 <details>
@@ -110,6 +133,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 </details>
 
 ### ui-Switching-ProMax-XG-v3.xml
+[Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Switching-ProMax-XG-v3.xml)
 - Pro Max 48 PoE
 - Pro Max 24 PoE
 - Pro XG 48 PoE
@@ -129,6 +153,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 </details>
 
 ### ui-Switching-Professional-v3.xml
+[Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Switching-Professional-v3.xml)
 - Pro 48 PoE
 - Pro 24 PoE
 - Pro 48
@@ -140,6 +165,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 </details>
 
 ### ui-Switching-WAN-v3.xml
+[Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Switching-WAN-v3.xml)
 - WAN Switch
 - WAN Switch RJ45
 <details>
