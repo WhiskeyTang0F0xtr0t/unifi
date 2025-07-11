@@ -6,7 +6,7 @@
 # Table of Contents
 - [Overview](#overview)
 - [Current Products](#current-products)
-  - [ui-Accessories-Rack-Mount-v3.xml](#ui-accessories-rack-mount-v3.xml)
+  - [Accessories Rack Mount](#ui-accessories-rack-mount-v3.xml)
 
 # Overview
 draw.io templates for Ubiquiti rackmount hardware.
@@ -14,7 +14,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 
 # Current Products
 
-### ui-Accessories-Rack-Mount-v3.xml
+## ui-Accessories-Rack-Mount-v3.xml
 - 1U Blank Panel
 - 2U Blank Panel
 - 1U Brush Panel
