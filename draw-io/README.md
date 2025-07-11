@@ -141,11 +141,13 @@ Click the "Add this library to draw.io online" link.
 - Pro HD 24 PoE
 - Pro XG 48
 - Pro XG 24
-- Pro Max 16 PoE
+- Pro Max 16 PoE (Right)
+- Pro Max 16 PoE (Left)
 - Pro HD 24
 - Pro Max 48
 - Pro Max 24
-- Pro Max 16
+- Pro Max 16 (Right)
+- Pro Max 16 (Left)
 - Pro XG 10 PoE
 <details>
 <summary>Preview</summary>
