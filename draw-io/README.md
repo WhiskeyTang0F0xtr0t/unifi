@@ -3,7 +3,6 @@
 > Please submit an issue if an additional asset needs to be created/added.
 > 
 
-
 draw.io templates for Ubiquiti rackmount hardware.
 All assets were created new and are fully connect-able.
 
@@ -75,3 +74,7 @@ All assets were created new and are fully connect-able.
 - Pro 48
 - Pro 24
 - Mission Critical
+
+### ui-Switching-WAN-v3.xml
+- WAN Switch
+- WAN Switch RJ45
