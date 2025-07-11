@@ -42,6 +42,7 @@ Click the "Add this library to draw.io online" link.
 
 ### ui-Accessories-Rack-Mount-v3.xml
 [Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Accessories-Rack-Mount-v3.xml)
+<a href="ttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Accessories-Rack-Mount-v3.xml">Download this library</a>
 - 1U Blank Panel
 - 2U Blank Panel
 - 1U Brush Panel
