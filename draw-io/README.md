@@ -6,7 +6,18 @@
 # Table of Contents
 - [Overview](#overview)
 - [Current Products](#current-products)
-- [Accessories Rack Mount](#ui-accessories-rack-mount-v3.xml)
+  - [Accessories: Rack Mount](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-accessories-rack-mount-v3xml)
+  - [Advaced Hosting](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-advanced-hosting-v3xml)
+  - [Camera Security](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-camera-security-v3xml)
+  - [Cloud Gateways](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-cloudgateways-v3xml)
+  - [Integrations: Internet Solutions](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-integrations-internetsolutions-v3xml)
+  - [Integrations: Network Storage](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-integrations-networkstorage-v3xml)
+  - [Integrations: Power Tech](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-integrations-powertech-v3xml)
+  - [Switching: Aggregation](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-aggregation-v3xml)
+  - [Switching: Enterprise](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-enterprise-v3xml)
+  - [Switching: Professional Max & XG](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-promax-xg-v3xml)
+  - [Switching: Professional](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-professional-v3xml)
+  - [Switching: WAN](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-wan-v3xml)
 
 # Overview
 draw.io templates for Ubiquiti rackmount hardware.
@@ -14,7 +25,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 
 # Current Products
 
-## ui-Accessories-Rack-Mount-v3.xml
+### ui-Accessories-Rack-Mount-v3.xml
 - 1U Blank Panel
 - 2U Blank Panel
 - 1U Brush Panel
