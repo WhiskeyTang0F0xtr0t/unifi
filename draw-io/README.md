@@ -18,6 +18,7 @@
   - [Switching: Professional Max & XG](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-promax-xg-v3xml)
   - [Switching: Professional](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-professional-v3xml)
   - [Switching: WAN](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-wan-v3xml)
+- [Future Plans](#future-plans)
 
 # Overview
 draw.io templates for Ubiquiti rackmount hardware.
@@ -145,3 +146,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 <summary>Preview</summary>
 <img width="752" height="200" alt="ui-Switching-WAN-v3" src="https://github.com/user-attachments/assets/e8d64b6a-d5a9-4d81-92d1-1b554a23be7e" />
 </details>
+
+# Future Plans
+- [ ] Add flat image version of libraries for draw.io's rack building tool
+- [ ] Add "Utility" line of products
