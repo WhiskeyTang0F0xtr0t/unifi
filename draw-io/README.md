@@ -6,7 +6,7 @@
 # Table of Contents
 - [Overview](#overview)
 - [Current Products](#current-products)
-  - [Accessories: Rack Mount](#ui-Accessories-Rack-Mount-v3.xml)
+  - [ui-Accessories-Rack-Mount-v3.xml](#ui-Accessories-Rack-Mount-v3.xml)
 
 # Overview
 draw.io templates for Ubiquiti rackmount hardware.
