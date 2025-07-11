@@ -55,7 +55,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 - Enterprise Network Video Recorder
 <details>
 <summary>Preview</summary>
-
+<img width="756" height="519" alt="ui-Camera-Security-v3" src="https://github.com/user-attachments/assets/a6f9d600-22d9-40fa-a1e3-98de90a39ffd" />
 </details>
 
 ### ui-CloudGateways-v3.xml
@@ -65,21 +65,21 @@ draw.io templates for Ubiquiti rackmount hardware.
 - Dream Machine Special Edition
 <details>
 <summary>Preview</summary>
-
+<img width="753" height="384" alt="ui-CloudGateways-v3" src="https://github.com/user-attachments/assets/5b66ea1a-e5ca-43ca-854e-244e29ae62f3" />
 </details>
 
 ### ui-Integrations-InternetSolutions-v3.xml
 - Cable Internet
 <details>
 <summary>Preview</summary>
-
+<img width="759" height="92" alt="ui-Integrations-InternetSolutions-v3" src="https://github.com/user-attachments/assets/9f8ce540-4772-41db-94d9-1d6e0866e9ce" />
 </details>
 
 ### ui-Integrations-NetworkStorage-v3.xml
 - UNAS Pro
 <details>
 <summary>Preview</summary>
-
+<img width="756" height="158" alt="ui-Integrations-NetworkStorage-v3" src="https://github.com/user-attachments/assets/691d5925-98fe-4936-88d7-61b7c8ca008b" />
 </details>
 
 ### ui-Integrations-PowerTech-v3.xml
@@ -87,7 +87,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 - Power Distribution Pro
 <details>
 <summary>Preview</summary>
-
+<img width="756" height="284" alt="ui-Integrations-PowerTech-v3" src="https://github.com/user-attachments/assets/298a9873-e56d-4b63-bafb-647b0391ff0a" />
 </details>
 
 ### ui-Switching-Aggregation-v3.xml
@@ -97,7 +97,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 - Pro XG Aggregation
 <details>
 <summary>Preview</summary>
-
+<img width="756" height="382" alt="ui-Switching-Aggregation-v3" src="https://github.com/user-attachments/assets/7b3f5372-37f6-47be-aded-131811a5e175" />
 </details>
 
 ### ui-Switching-Enterprise-v3.xml
@@ -105,7 +105,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 - Enterprise Campus 24 PoE
 <details>
 <summary>Preview</summary>
-
+<img width="754" height="196" alt="ui-Switching-Enterprise-v3" src="https://github.com/user-attachments/assets/17670954-243d-4957-a279-bc213890f81d" />
 </details>
 
 ### ui-Switching-ProMax-XG-v3.xml
@@ -124,7 +124,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 - Pro XG 10 PoE
 <details>
 <summary>Preview</summary>
-
+<img width="756" height="1091" alt="ui-Switching-ProMax-XG-v3" src="https://github.com/user-attachments/assets/3de3d58e-62ec-4917-8ed4-fe14a6c64f3e" />
 </details>
 
 ### ui-Switching-Professional-v3.xml
@@ -135,7 +135,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 - Mission Critical
 <details>
 <summary>Preview</summary>
-
+<img width="754" height="473" alt="ui-Switching-Professional-v3" src="https://github.com/user-attachments/assets/112cd420-21ed-40a5-bba2-0736a181ac65" />
 </details>
 
 ### ui-Switching-WAN-v3.xml
@@ -143,5 +143,5 @@ draw.io templates for Ubiquiti rackmount hardware.
 - WAN Switch RJ45
 <details>
 <summary>Preview</summary>
-
+<img width="752" height="200" alt="ui-Switching-WAN-v3" src="https://github.com/user-attachments/assets/e8d64b6a-d5a9-4d81-92d1-1b554a23be7e" />
 </details>
