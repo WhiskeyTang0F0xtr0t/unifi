@@ -12,7 +12,8 @@
 - [Overview](#overview)
 - [Supported Devices](#supported-devices)
 - [Getting Started](#getting-started)
-- [Deployment](#deployment)
+- [Initial Deployment](#initial-deployment)
+- [Updating Script](#updating-script)
 - [Usage](#usage)
 - [Example Files](#example-files)
 - [Future Plans](#future-plans)
@@ -49,7 +50,7 @@ If your device is not on this list, message me and we can modfiy the script for 
 ## Requirements
 - SSH is enabled on your Ubiquiti hardware
 - Folder with all certifcates(CA, Client, Private Key), script, deb packages
-- Configure User Variable (in```wtf-wpa.sh``` or ```var-wtf-wpa.txt```)
+- Configure User Variables (in```wtf-wpa.sh``` or ```var-wtf-wpa.txt```)
 
 ### "config" folder example
 I created a folder called "config" that contains the following:
@@ -71,6 +72,10 @@ You will need to provide your own certificates, but the script, deb files and va
 
 ### USER VARIABLES
 Variables must be configured in ```wtf-wpa.sh``` or the ```var-wtf-wpa.txt``` file.
+> [!TIP]
+>
+>I highly recommend using the ```var-wtf-wpa.txt``` file to make script updates easier.
+>
 
 The ```var-wtf-wpa.txt``` file will take precedence over values entered in the script
  ```bash
@@ -102,7 +107,7 @@ certPath="/etc/wpa_supplicant/conf"
 debPath="/etc/wpa_supplicant/packages"
 ```
 
-# Deployment
+# Initial Deployment
 
 ### Copy the "config" folder to your device.
 
@@ -136,11 +141,23 @@ root@UDMPRO:~/config#
 > ```chmod +x wtf-wpa.sh```
 <br/>
 
+# Updating Script
+
+1. SSH into your device and navigate to your "config" directory.
+2. Run the curl command below to download the new script, overwriting the existing file.
+```shell
+curl -O https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/wpa_supplicant/wtf-wpa.sh
+```
+3. Make the script executable.
+```shell
+chmod +x wtf-wpa.sh
+```
+
 # Usage
 ```shell
 root@UDMPRO:~/config# ./wtf-wpa.sh
  
-   WTF wpa_supplicant script
+   WTF wpa_supplicant script $wtf_ver
 
    Syntax: wtf-wpa.sh [-i|c|f]
 
