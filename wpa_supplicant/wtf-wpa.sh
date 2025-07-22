@@ -79,7 +79,7 @@ display-help()
 	# Display Help
 	script_name=$(basename -- "$0")
 	printf "%b %s\\n"
-	printf "   %b\\n\\n" "WTF wpa_supplicant script"
+	printf "   %b\\n\\n" "WTF wpa_supplicant script ${wtf_ver}"
 	printf "   %b\\n\\n" "Syntax: ${CYAN}${full_filename} [-i|c|f]${NC}"
 	printf "   %b %s\\n\\n" "options:" ""
 	printf "   %8s   %s\\n" "-i" "Install/repair & configure the wpa_supplicant service"
