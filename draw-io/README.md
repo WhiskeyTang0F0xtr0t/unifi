@@ -177,14 +177,14 @@ Click the "Add this library to draw.io online" link.
 </details>
 
 ### Rack-Diagrams
-Libraries containing flattened images created with assistance from @boomshankerx
+Libraries containing flattened images created with assistance from @boomshankerx.
+[Rack Diagram files](Rack)
 - ui-Rack-Accessories-Rack-Mount.xml
 - ui-Rack-Advanced-Hosting.xml
 - ui-Rack-Camera-Security.xml
 - ui-Rack-CloudGateways.xml
 - ui-Rack-Integrations.xml
 - ui-Rack-Switching.xml
-
 
 # Future Plans
 - [ ] Add "Utility" line of products
