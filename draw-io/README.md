@@ -21,6 +21,7 @@
   - [Switching: Professional Max & XG](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-promax-xg-v3xml)
   - [Switching: Professional](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-professional-v3xml)
   - [Switching: WAN](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-wan-v3xml)
+  - [Rack Diagrams](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#Rack-Diagrams)
 - [Future Plans](#future-plans)
 
 # Overview
@@ -175,6 +176,16 @@ Click the "Add this library to draw.io online" link.
 <img width="752" height="200" alt="ui-Switching-WAN-v3" src="https://github.com/user-attachments/assets/e8d64b6a-d5a9-4d81-92d1-1b554a23be7e" />
 </details>
 
+### Rack-Diagrams
+Libraries containing flattened images created with assistance from @boomshankerx
+- ui-Rack-Accessories-Rack-Mount.xml
+- ui-Rack-Advanced-Hosting.xml
+- ui-Rack-Camera-Security.xml
+- ui-Rack-CloudGateways.xml
+- ui-Rack-Integrations.xml
+- ui-Rack-Switching.xml
+
+
 # Future Plans
-- [ ] Add flat image version of libraries for draw.io's rack building tool
 - [ ] Add "Utility" line of products
+- [X] Add flat image version of libraries for draw.io's rack building tool
