@@ -103,7 +103,7 @@ Click the "Add this library to draw.io online" link.
 - UNAS Pro 8
 <details>
 <summary>Preview</summary>
-[ui-Integrations-NetworkStorage-v3.drawio](https://github.com/user-attachments/files/22440849/ui-Integrations-NetworkStorage-v3.drawio)
+<img width="638" height="348" alt="Screenshot 2025-09-20 at 9 12 21 AM" src="https://github.com/user-attachments/assets/2f3021c4-a12f-4409-98d5-d169e6cd7d57" />
 </details>
 
 ### ui-Integrations-PowerTech-v3.xml
