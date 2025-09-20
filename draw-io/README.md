@@ -188,5 +188,5 @@ Libraries containing flattened images created with assistance from @boomshankerx
 - ui-Rack-Switching.xml
 
 # Future Plans
-- [ ] Add "Utility" line of products
+- [ ] Add new rackmount NAS hardware
 - [X] Add flat image version of libraries for draw.io's rack building tool
