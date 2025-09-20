@@ -99,9 +99,11 @@ Click the "Add this library to draw.io online" link.
 ### ui-Integrations-NetworkStorage-v3.xml
 [Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Integrations-NetworkStorage-v3.xml)
 - UNAS Pro
+- UNAS Pro 4
+- UNAS Pro 8
 <details>
 <summary>Preview</summary>
-<img width="756" height="158" alt="ui-Integrations-NetworkStorage-v3" src="https://github.com/user-attachments/assets/691d5925-98fe-4936-88d7-61b7c8ca008b" />
+[ui-Integrations-NetworkStorage-v3.drawio](https://github.com/user-attachments/files/22440849/ui-Integrations-NetworkStorage-v3.drawio)
 </details>
 
 ### ui-Integrations-PowerTech-v3.xml
@@ -188,5 +190,5 @@ Libraries containing flattened images created with assistance from @boomshankerx
 - ui-Rack-Switching.xml
 
 # Future Plans
-- [ ] Add new rackmount NAS hardware
+- [X] Add new rackmount NAS hardware
 - [X] Add flat image version of libraries for draw.io's rack building tool
