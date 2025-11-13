@@ -1,0 +1,113 @@
+{
+  "libraries": [
+    {
+      "title": {
+        "main": "Unifi Rack Diagrams"
+      },
+      "entries": [
+        {
+          "id": "ui-Rack-Accessories-Rack-Mount",
+          "title": {
+            "main": "Accessories: Rack Mount"
+          },
+          "desc": {
+            "main": "Accessories: Rack Mount"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui-Rack Accessories Rack Mount"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-Accessories-Rack-Mount.xml"
+            }
+          ]
+        },
+        {
+          "id": "ui-Rack-Advanced-Hosting",
+          "title": {
+            "main": "Advanced Hosting"
+          },
+          "desc": {
+            "main": "Gateways"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui-Rack Advanced Hosting"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-Advanced-Hosting.xml"
+            }
+          ]
+        },
+        {
+          "id": "ui-Rack-Camera-Security",
+          "title": {
+            "main": "Camera Security"
+          },
+          "desc": {
+            "main": "Camera Security"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui-Rack Camera Security"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-Camera-Security.xml"
+            }
+          ]
+        },
+        {
+          "id": "ui-Rack-CloudGateways",
+          "title": {
+            "main": "Cloud Gateways"
+          },
+          "desc": {
+            "main": "Cloud Gateways"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui-Rack Cloud Gateways"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-CloudGateways.xml"
+            }
+          ]
+        },
+        {
+          "id": "ui-Rack-Integrations",
+          "title": {
+            "main": "Integrations"
+          },
+          "desc": {
+            "main": "Integrations"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui-Rack Integrations"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-Integrations.xml"
+            }
+          ]
+        },
+        {
+          "id": "ui-Rack-Switching",
+          "title": {
+            "main": "Switching"
+          },
+          "desc": {
+            "main": "Switching"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui-Rack Switching"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-Switching.xml"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
