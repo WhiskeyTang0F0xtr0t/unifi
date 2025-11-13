@@ -161,7 +161,7 @@ check-hw () {
 		model=$(ubnt-device-info model)
 		output IY "Model" "${model}"; log I "Hardware - ${model}"
 	else
-    	output C "\e[4m UNSUPPORTED HARDWARE - EXITING"; log E "UNSUPPORTED HARDWARE - EXITING"; exit 1
+    	output C "check-hw" "\e[4m UNSUPPORTED HARDWARE - EXITING"; log E "UNSUPPORTED HARDWARE - EXITING"; exit 1
 	fi
 }
 
