@@ -1,0 +1,364 @@
+{
+  "libraries": [
+    {
+      "title": {
+        "main": "Unifi Accessories"
+      },
+      "entries": [
+        {
+          "id": "ui-Accessories-Rack-Mount",
+          "preview": "https://github.com/user-attachments/assets/7a865f11-9827-4566-9900-7ae9098e3b59",
+          "title": {
+            "main": "Accessories: Rack Mount"
+          },
+          "desc": {
+            "main": "Accessories: Rack Mount"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui Accessories: Rack Mount"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Accessories-Rack-Mount-v3.xml"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": {
+        "main": "Unifi Camera Security"
+      },
+      "entries": [
+        {
+          "id": "ui-Camera-Security",
+          "preview": "https://github.com/user-attachments/assets/a6f9d600-22d9-40fa-a1e3-98de90a39ffd",
+          "title": {
+            "main": "Camera Security: NVR"
+          },
+          "desc": {
+            "main": "Camera Security: NVR"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui Camera Security: NVR"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Camera-Security-v3.xml"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": {
+        "main": "Unifi Integrations"
+      },
+      "entries": [
+        {
+          "id": "ui-Integrations-InternetSolutions",
+          "preview": "https://github.com/user-attachments/assets/9f8ce540-4772-41db-94d9-1d6e0866e9ce",
+          "title": {
+            "main": "Internet Solutions"
+          },
+          "desc": {
+            "main": "Internet Solutions"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui Internet Solutions"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Integrations-InternetSolutions-v3.xml"
+            }
+          ]
+        },
+        {
+          "id": "ui-Integrations-NetworkStorage",
+          "preview": "https://github.com/user-attachments/assets/2f3021c4-a12f-4409-98d5-d169e6cd7d57",
+          "title": {
+            "main": "Network Storage"
+          },
+          "desc": {
+            "main": "Network Storage"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui Network Storage"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Integrations-NetworkStorage-v3.xml"
+            }
+          ]
+        },
+        {
+          "id": "ui-Integrations-PowerTech",
+          "preview": "https://github.com/user-attachments/assets/298a9873-e56d-4b63-bafb-647b0391ff0a",
+          "title": {
+            "main": "Power Tech"
+          },
+          "desc": {
+            "main": "Power Tech"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui Power Tech"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Integrations-PowerTech-v3.xml"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": {
+        "main": "Unifi Switching"
+      },
+      "entries": [
+        {
+          "id": "ui-Aggregation",
+          "preview": "https://github.com/user-attachments/assets/7b3f5372-37f6-47be-aded-131811a5e175",
+          "title": {
+            "main": "Aggregation"
+          },
+          "desc": {
+            "main": "Aggregation switching"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui Aggregation"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Switching-Aggregation-v3.xml"
+            }
+          ]
+        },
+        {
+          "id": "ui-Enterprise",
+          "preview": "https://github.com/user-attachments/assets/17670954-243d-4957-a279-bc213890f81d",
+          "title": {
+            "main": "Enterprise"
+          },
+          "desc": {
+            "main": "Enterprise switching"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui Enterprise"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Switching-Enterprise-v3.xml"
+            }
+          ]
+        },
+        {
+          "id": "ui-ProMaxXG",
+          "preview": "https://github.com/user-attachments/assets/fbd43d45-5e2d-405e-931d-4ba210d0c9fa",
+          "title": {
+            "main": "Professional Max & XG"
+          },
+          "desc": {
+            "main": "Professional Max & XG"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui Pro Max XG"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Switching-ProMax-XG-v3.xml"
+            }
+          ]
+        },
+        {
+          "id": "ui-Professional",
+          "preview": "https://github.com/user-attachments/assets/112cd420-21ed-40a5-bba2-0736a181ac65",
+          "title": {
+            "main": "Professional"
+          },
+          "desc": {
+            "main": "Professional"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui Professional"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Switching-Professional-v3.xml"
+            }
+          ]
+        },
+        {
+          "id": "ui-WAN",
+          "preview": "https://github.com/user-attachments/assets/e8d64b6a-d5a9-4d81-92d1-1b554a23be7e",
+          "title": {
+            "main": "WAN"
+          },
+          "desc": {
+            "main": "WAN"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui WAN"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Switching-WAN-v3.xml"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": {
+        "main": "Unifi Hosting"
+      },
+      "entries": [
+        {
+          "id": "ui-Advanced-Hosting",
+          "preview": "https://github.com/user-attachments/assets/5746615c-5d23-4a00-b50a-2e5100e96f92",
+          "title": {
+            "main": "Advanced Hosting"
+          },
+          "desc": {
+            "main": "Advanced Hosting"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui Advanced Hosting"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Advanced-Hosting-v3.xml"
+            }
+          ]
+        },
+        {
+          "id": "ui-CloudGateways",
+          "preview": "https://github.com/user-attachments/assets/5b66ea1a-e5ca-43ca-854e-244e29ae62f3",
+          "title": {
+            "main": "Cloud Gateways"
+          },
+          "desc": {
+            "main": "Cloud Gateways"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui Cloud Gateways"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-CloudGateways-v3.xml"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": {
+        "main": "Unifi Rack Diagrams"
+      },
+      "entries": [
+        {
+          "id": "ui-Rack-Accessories-Rack-Mount",
+          "title": {
+            "main": "Accessories: Rack Mount"
+          },
+          "desc": {
+            "main": "Accessories: Rack Mount"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui-Rack Accessories Rack Mount"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-Accessories-Rack-Mount.xml"
+            }
+          ]
+        },
+        {
+          "id": "ui-Rack-Advanced-Hosting",
+          "title": {
+            "main": "Advanced Hosting"
+          },
+          "desc": {
+            "main": "Gateways"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui-Rack Advanced Hosting"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-Advanced-Hosting.xml"
+            }
+          ]
+        },
+        {
+          "id": "ui-Rack-Camera-Security",
+          "title": {
+            "main": "Camera Security"
+          },
+          "desc": {
+            "main": "Camera Security"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui-Rack Camera Security"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-Camera-Security.xml"
+            }
+          ]
+        },
+        {
+          "id": "ui-Rack-CloudGateways",
+          "title": {
+            "main": "Cloud Gateways"
+          },
+          "desc": {
+            "main": "Cloud Gateways"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui-Rack Cloud Gateways"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-CloudGateways.xml"
+            }
+          ]
+        },
+        {
+          "id": "ui-Rack-Integrations",
+          "title": {
+            "main": "Integrations"
+          },
+          "desc": {
+            "main": "Integrations"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui-Rack Integrations"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-Integrations.xml"
+            }
+          ]
+        },
+        {
+          "id": "ui-Rack-Switching",
+          "title": {
+            "main": "Switching"
+          },
+          "desc": {
+            "main": "Switching"
+          },
+          "libs": [
+            {
+              "title": {
+                "main": "ui-Rack Switching"
+              },
+              "url": "https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Rack/ui-Rack-Switching.xml"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
