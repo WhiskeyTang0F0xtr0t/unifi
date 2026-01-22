@@ -42,6 +42,8 @@ Click the "Add this library to draw.io online" link.
 # Current Products
 
 ### ui-Accessories-Rack-Mount-v3.xml
+[draw.io Diagram File](https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Diagram%20Files/ui-Accessories-Rack-Mount-v3.drawio)
+
 [Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Accessories-Rack-Mount-v3.xml)
 - 1U Blank Panel
 - 2U Blank Panel
@@ -58,6 +60,8 @@ Click the "Add this library to draw.io online" link.
 </details>
 
 ### ui-Advanced-Hosting-v3.xml
+[draw.io Diagram File](https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Diagram%20Files/ui-Advanced-Hosting-v3.drawio)
+
 [Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Advanced-Hosting-v3.xml)
 - Gateway Enterprise
 - CloudKey Enterprise
@@ -68,6 +72,8 @@ Click the "Add this library to draw.io online" link.
 </details>
 
 ### ui-Camera-Security-v3.xml
+[draw.io Diagram File](https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Diagram%20Files/ui-Camera-Security-v3.drawio)
+
 [Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Camera-Security-v3.xml)
 - Network Video Recorder Pro
 - Network Video Recorder
@@ -78,6 +84,8 @@ Click the "Add this library to draw.io online" link.
 </details>
 
 ### ui-CloudGateways-v3.xml
+[draw.io Diagram File](https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Diagram%20Files/ui-CloudGateways-v3.drawio)
+
 [Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-CloudGateways-v3.xml)
 - Enterprise Fortress Gateway
 - Dream Machine Pro Max
@@ -89,6 +97,8 @@ Click the "Add this library to draw.io online" link.
 </details>
 
 ### ui-Integrations-InternetSolutions-v3.xml
+[draw.io Diagram File](https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Diagram%20Files/ui-Integrations-InternetSolutions-v3.drawio)
+
 [Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/ui-Integrations-InternetSolutions-v3.xml)
 - Cable Internet
 <details>
@@ -97,6 +107,8 @@ Click the "Add this library to draw.io online" link.
 </details>
 
 ### ui-Integrations-NetworkStorage-v3.xml
+[draw.io Diagram File](https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Diagram%20Files/ui-Integrations-NetworkStorage-v3.drawio)
+
 [Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Integrations-NetworkStorage-v3.xml)
 - UNAS Pro
 - UNAS Pro 4
@@ -107,6 +119,8 @@ Click the "Add this library to draw.io online" link.
 </details>
 
 ### ui-Integrations-PowerTech-v3.xml
+[draw.io Diagram File](https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Diagram%20Files/ui-Integrations-PowerTech-v3.drawio)
+
 [Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Integrations-PowerTech-v3.xml)
 - Power Backup
 - Power Distribution Pro
@@ -116,6 +130,8 @@ Click the "Add this library to draw.io online" link.
 </details>
 
 ### ui-Switching-Aggregation-v3.xml
+[draw.io Diagram File](https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Diagram%20Files/ui-Switching-Aggregation-v3.drawio)
+
 [Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Switching-Aggregation-v3.xml)
 - Hi-Capacity Aggregation
 - Aggregation
@@ -127,6 +143,8 @@ Click the "Add this library to draw.io online" link.
 </details>
 
 ### ui-Switching-Enterprise-v3.xml
+[draw.io Diagram File](https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Diagram%20Files/ui-Switching-Enterprise-v3.drawio)
+
 [Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Switching-Enterprise-v3.xml)
 - Enterprise Campus 48 PoE
 - Enterprise Campus 24 PoE
@@ -136,6 +154,8 @@ Click the "Add this library to draw.io online" link.
 </details>
 
 ### ui-Switching-ProMax-XG-v3.xml
+[draw.io Diagram File](https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Diagram%20Files/ui-Switching-ProMax-XG-v3.1.drawio)
+
 [Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Switching-ProMax-XG-v3.xml)
 - Pro Max 48 PoE
 - Pro Max 24 PoE
@@ -158,6 +178,8 @@ Click the "Add this library to draw.io online" link.
 </details>
 
 ### ui-Switching-Professional-v3.xml
+[draw.io Diagram File](https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Diagram%20Files/ui-Switching-Professional-v3.drawio)
+
 [Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Switching-Professional-v3.xml)
 - Pro 48 PoE
 - Pro 24 PoE
@@ -170,6 +192,8 @@ Click the "Add this library to draw.io online" link.
 </details>
 
 ### ui-Switching-WAN-v3.xml
+[draw.io Diagram File](https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Diagram%20Files/ui-Switching-WAN-v3.drawio)
+
 [Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Switching-WAN-v3.xml)
 - WAN Switch
 - WAN Switch RJ45
