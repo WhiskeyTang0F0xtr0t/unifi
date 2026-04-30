@@ -86,7 +86,6 @@ Click the "Add this library to draw.io online" link.
 ### ui-CloudGateways-v4.xml
 [draw.io Diagram File](https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Diagram%20Files/ui-CloudGateways-v4.drawio)
 
-[Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-CloudGateways-v3.xml)
 - Enterprise Fortress Gateway
 - Dream Machine Pro Max
 - Dream Machine Pro
