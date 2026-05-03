@@ -77,10 +77,12 @@ Click the "Add this library to draw.io online" link.
 [Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-Camera-Security-v3.xml)
 - Network Video Recorder Pro
 - Network Video Recorder
-- Enterprise Network Video Recorder
+- Enterprise NVR
+- Enterprise NVR Core
 <details>
 <summary>Preview</summary>
-<img width="756" height="519" alt="ui-Camera-Security-v3" src="https://github.com/user-attachments/assets/a6f9d600-22d9-40fa-a1e3-98de90a39ffd" />
+<img width="756" height="519" alt="ui-Camera-Security-v3" src="https://github.com/user-attachments/assets/c69a62f3-ba67-41df-8f43-7691a6a94cee" />
+
 </details>
 
 ### ui-CloudGateways-v4.xml
