@@ -12,7 +12,7 @@
   - [Accessories: Rack Mount](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-accessories-rack-mount-v3xml)
   - [Advaced Hosting](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-advanced-hosting-v3xml)
   - [Camera Security](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-camera-security-v3xml)
-  - [Cloud Gateways](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-cloudgateways-v3xml)
+  - [Cloud Gateways](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-cloudgateways-v4xml)
   - [Integrations: Internet Solutions](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-integrations-internetsolutions-v3xml)
   - [Integrations: Network Storage](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-integrations-networkstorage-v3xml)
   - [Integrations: Power Tech](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-integrations-powertech-v3xml)
@@ -83,17 +83,17 @@ Click the "Add this library to draw.io online" link.
 <img width="756" height="519" alt="ui-Camera-Security-v3" src="https://github.com/user-attachments/assets/a6f9d600-22d9-40fa-a1e3-98de90a39ffd" />
 </details>
 
-### ui-CloudGateways-v3.xml
-[draw.io Diagram File](https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Diagram%20Files/ui-CloudGateways-v3.drawio)
+### ui-CloudGateways-v4.xml
+[draw.io Diagram File](https://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/Diagram%20Files/ui-CloudGateways-v4.drawio)
 
-[Add this library to draw.io online](https://app.diagrams.net/?splash=0&clibs=Uhttps://raw.githubusercontent.com/WhiskeyTang0F0xtr0t/unifi/refs/heads/main/draw-io/ui-CloudGateways-v3.xml)
 - Enterprise Fortress Gateway
 - Dream Machine Pro Max
 - Dream Machine Pro
 - Dream Machine Special Edition
+- UDM Beast
 <details>
 <summary>Preview</summary>
-<img width="753" height="384" alt="ui-CloudGateways-v3" src="https://github.com/user-attachments/assets/5b66ea1a-e5ca-43ca-854e-244e29ae62f3" />
+<img width="753" height="384" alt="ui-CloudGateways-v3" src="https://github.com/user-attachments/assets/e386d4a6-06ec-4b9c-b95d-37eb154ef7df" />
 </details>
 
 ### ui-Integrations-InternetSolutions-v3.xml
