@@ -11,7 +11,7 @@
 - [Current Products](#current-products)
   - [Accessories: Rack Mount](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-accessories-rack-mount-v3xml)
   - [Advaced Hosting](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-advanced-hosting-v3xml)
-  - [Camera Security](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-camera-security-v4xml)
+  - [Camera Security](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-camera-security-v5xml)
   - [Cloud Gateways](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-cloudgateways-v4xml)
   - [Integrations: Internet Solutions](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-integrations-internetsolutions-v3xml)
   - [Integrations: Network Storage](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-integrations-networkstorage-v3xml)
@@ -65,7 +65,7 @@ Click the "Add this library to draw.io online" link.
 <img width="756" height="328" alt="ui-Advanced-Hosting-v3" src="https://github.com/user-attachments/assets/5746615c-5d23-4a00-b50a-2e5100e96f92" />
 </details>
 
-### ui-Camera-Security-v4.xml
+### ui-Camera-Security-v5.xml
 - Network Video Recorder Pro
 - Network Video Recorder
 - Enterprise NVR
@@ -84,7 +84,7 @@ Click the "Add this library to draw.io online" link.
 - UDM Beast
 <details>
 <summary>Preview</summary>
-<img width="753" height="384" alt="ui-CloudGateways-v3" src="https://github.com/user-attachments/assets/e386d4a6-06ec-4b9c-b95d-37eb154ef7df" />
+<img width="753" height="384" alt="ui-CloudGateways-v4" src="https://github.com/user-attachments/assets/e386d4a6-06ec-4b9c-b95d-37eb154ef7df" />
 </details>
 
 ### ui-Integrations-InternetSolutions-v3.xml
