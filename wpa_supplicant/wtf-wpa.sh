@@ -47,7 +47,7 @@ debPath="/etc/wpa_supplicant/packages"
 ####################################### 
 # Load external variable file
 . ${backupPath}/var-wtf-wpa.txt &> /dev/null
-wtf_ver="2.3"
+wtf_ver="2.4"
 wpasupp_install=""
 
 full_filename=$(basename -- "$0")
@@ -175,7 +175,8 @@ check-hw () {
 parse-wan-int () {
 # Checks ubios-udapi-server.state to determine the WAN port
 	if [ -f /data/udapi-config/ubios-udapi-server/ubios-udapi-server.state ]; then
-		# Parses udapi-net-cfg.json and for first interface in wanFailover yaml object
+		# Parses udapi-net-cfg.json, sorts by .metric and picks the lowest.
+		# Fix from @arthurlockman - https://github.com/WhiskeyTang0F0xtr0t/unifi/pull/11
 		udapi_wan_int=$(jq -r '.services.wanFailover.wanInterfaces | min_by(.metric) | .interface' /data/udapi-config/udapi-net-cfg.json | awk -F"." '{print $1}')
 		output IY "WAN Int" "${udapi_wan_int}" && log I "WAN Interface: ${udapi_wan_int}"
 	else
