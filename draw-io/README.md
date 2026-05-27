@@ -18,7 +18,7 @@
   - [Integrations: Power Tech](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-integrations-powertech-v3xml)
   - [Switching: Aggregation](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-aggregation-v3xml)
   - [Switching: Enterprise](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-enterprise-v3xml)
-  - [Switching: Professional Max & XG](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-promax-xg-v3xml)
+  - [Switching: Professional Max & XG](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-promax-xg-v31xml)
   - [Switching: Professional](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-professional-v3xml)
   - [Switching: WAN](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-wan-v3xml)
   - [Rack Diagrams](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#Rack-Diagrams)
@@ -129,7 +129,7 @@ Click the "Add this library to draw.io online" link.
 <img width="754" height="196" alt="ui-Switching-Enterprise-v3" src="https://github.com/user-attachments/assets/17670954-243d-4957-a279-bc213890f81d" />
 </details>
 
-### ui-Switching-ProMax-XG-v3.xml
+### ui-Switching-ProMax-XG-v3.1.xml
 - Pro Max 48 PoE
 - Pro Max 24 PoE
 - Pro XG 48 PoE
