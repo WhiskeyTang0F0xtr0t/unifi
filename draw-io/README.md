@@ -27,7 +27,7 @@
 
 # Overview
 draw.io templates for Ubiquiti rackmount hardware.
-- All assets were created new and are fully connect-able.
+- All assets were created from marketing assets and are fully connect-able.
 
 # Adding a library to draw.io
 
