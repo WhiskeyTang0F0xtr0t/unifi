@@ -8,26 +8,26 @@
 - [Add this library to draw.io online](#add-this-library-to-draw.io-online)
   - [draw.io Desktop app](https://github.com/WhiskeyTang0F0xtr0t/unifi/tree/main/draw-io#drawio-desktop-app)
 - [Current Products](#current-products)
-  - [Accessories: Other](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-accessories-otherxml)
-  - [Accessories: Rack Mount](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-accessories-rack-mountxml)
-  - [Advaced Hosting](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-advanced-hostingxml)
-  - [Camera Security](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-camera-securityxml)
-  - [Cloud Gateways-Compact](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-cloudgateways-compactxml)
-  - [Cloud Gateways-Enterprise](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-cloudgateways-enterprisexml)
-  - [Cloud Gateways-Large](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-cloudgateways-largexml)
-  - [Integrations: Internet Solutions](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-integrations-internetsolutions-v3xml)
-  - [Integrations: Network Storage](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-integrations-networkstoragexml)
-  - [Integrations: Power Tech](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-integrations-powertechxml)
-  - [Switching: Aggregation](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-aggregationxml)
-  - [Switching: Enterprise](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-enterprisexml)
-  - [Switching: Professional](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-professional-v3xml)
-  - [Switching: Professional Max & XG](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-promax-xgxml)
-  - [Switching: WAN](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-wanxml)
+  - [Accessories: Other](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-accessories-otherdrawio)
+  - [Accessories: Rack Mount](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-accessories-rack-mountdrawio)
+  - [Advaced Hosting](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-advanced-hostingdrawio)
+  - [Camera Security](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-camera-securitydrawio)
+  - [Cloud Gateways-Compact](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-cloudgateways-compactdrawio)
+  - [Cloud Gateways-Enterprise](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-cloudgateways-enterprisedrawio)
+  - [Cloud Gateways-Large](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-cloudgateways-largedrawio)
+  - [Integrations: Internet Solutions](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-integrations-internetsolutions-v3drawio)
+  - [Integrations: Network Storage](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-integrations-networkstoragedrawio)
+  - [Integrations: Power Tech](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-integrations-powertechdrawio)
+  - [Switching: Aggregation](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-aggregationdrawio)
+  - [Switching: Enterprise](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-enterprisedrawio)
+  - [Switching: Professional](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-professional-v3drawio)
+  - [Switching: Professional Max & XG](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-promax-xgdrawio)
+  - [Switching: WAN](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-wandrawio)
 - [Future Plans](#future-plans)
 
 # Overview
 draw.io templates for Ubiquiti rackmount hardware.
-- All assets were created new and are fully connect-able.
+- All assets were created from marketing assets and are fully connect-able.
 
 # Adding a library to draw.io
 
@@ -46,6 +46,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 </details>
 
 ### ui-Accessories-Rack-Mount.drawio
+(Not updated yet)
 - 1U Blank Panel
 - 2U Blank Panel
 - 1U Brush Panel
@@ -167,6 +168,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 </details>
 
 ### ui-Switching-Professional-v3.drawio
+(Not updated yet)
 - Pro 48 PoE
 - Pro 24 PoE
 - Pro 48
@@ -197,5 +199,7 @@ Libraries containing flattened images created with assistance from @boomshankerx
 - ui-Rack-Switching.xml
 
 # Future Plans
+- [ ] Update ui-Switching-Professional-v3.drawio
+- [ ] Update ui-Accessories-Rack-Mount.drawio
 - [X] Add new rackmount NAS hardware
 - [X] Add flat image version of libraries for draw.io's rack building tool
