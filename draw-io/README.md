@@ -45,7 +45,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 <img width="1352" height="305" alt="ui-Accessories-Other" src="https://github.com/user-attachments/assets/04887132-097c-48e5-8e91-ee0ef06c1230" />
 </details>
 
-### ui-Accessories-Rack-Mount.drawio
+### ui-Accessories-Rack-Mount.drawio (Not updated yet)
 - 1U Blank Panel
 - 2U Blank Panel
 - 1U Brush Panel
@@ -166,7 +166,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 <img width="1145" height="1098" alt="ui-Switching-ProMax-XG" src="https://github.com/user-attachments/assets/5413a7ec-1cb3-44ee-a411-b72282703f37" />
 </details>
 
-### ui-Switching-Professional-v3.drawio
+### ui-Switching-Professional-v3.drawio (Not updated yet)
 - Pro 48 PoE
 - Pro 24 PoE
 - Pro 48
@@ -197,5 +197,7 @@ Libraries containing flattened images created with assistance from @boomshankerx
 - ui-Rack-Switching.xml
 
 # Future Plans
+- [ ] Update ui-Switching-Professional-v3.drawio
+- [ ] Update ui-Accessories-Rack-Mount.drawio
 - [X] Add new rackmount NAS hardware
 - [X] Add flat image version of libraries for draw.io's rack building tool
