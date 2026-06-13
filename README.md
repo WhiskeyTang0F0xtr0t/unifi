@@ -2,8 +2,8 @@
 
 A repository for my Unfi-related content.
 
-## [draw.io libraries](draw-io)
-Ubiquiti libraries for Draw.io
+## [draw.io files](draw-io)
+Ubiquiti files for Draw.io
 
 ## [nut-client](nut-client)
 Basic configuration for [Network UPS Tool](https://networkupstools.org) (NUT) client
