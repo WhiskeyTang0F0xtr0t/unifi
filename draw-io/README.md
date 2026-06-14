@@ -15,7 +15,6 @@
   - [Cloud Gateways-Compact](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-cloudgateways-compactdrawio)
   - [Cloud Gateways-Enterprise](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-cloudgateways-enterprisedrawio)
   - [Cloud Gateways-Large](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-cloudgateways-largedrawio)
-  - [Integrations: Internet Solutions](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-integrations-internetsolutions-v3drawio)
   - [Integrations: Network Storage](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-integrations-networkstoragedrawio)
   - [Integrations: Power Tech](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-integrations-powertechdrawio)
   - [Switching: Aggregation](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-aggregationdrawio)
@@ -177,7 +176,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 - Mission Critical
 <details>
 <summary>Preview</summary>
-<img width="767" height="488" alt="ui-Switching-Professional-v3" src="https://github.com/user-attachments/assets/5a052429-a004-43a1-843d-a11e5ed6fe49" />
+<img width="1066" height="1189" alt="ui-Switching-Professional" src="https://github.com/user-attachments/assets/cd82803a-18e7-43b8-8fa6-7556b8887902" />
 </details>
 
 ### ui-Switching-WAN.drawio
@@ -200,7 +199,7 @@ Libraries containing flattened images created with assistance from @boomshankerx
 - ui-Rack-Switching.xml
 
 # Future Plans
-- [ ] Update ui-Switching-Professional-v3.drawio
 - [ ] Update ui-Accessories-Rack-Mount.drawio
+- [X] Update ui-Switching-Professional-v3.drawio
 - [X] Add new rackmount NAS hardware
 - [X] Add flat image version of libraries for draw.io's rack building tool
