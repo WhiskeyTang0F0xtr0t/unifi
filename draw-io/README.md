@@ -20,7 +20,7 @@
   - [Integrations: Power Tech](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-integrations-powertechdrawio)
   - [Switching: Aggregation](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-aggregationdrawio)
   - [Switching: Enterprise](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-enterprisedrawio)
-  - [Switching: Professional](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-professional-v3drawio)
+  - [Switching: Professional](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-professionaldrawio)
   - [Switching: Professional Max & XG](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-promax-xgdrawio)
   - [Switching: WAN](https://github.com/WhiskeyTang0F0xtr0t/unifi/blob/main/draw-io/README.md#ui-switching-wandrawio)
 - [Future Plans](#future-plans)
@@ -168,7 +168,7 @@ draw.io templates for Ubiquiti rackmount hardware.
 <img width="1145" height="1098" alt="ui-Switching-ProMax-XG" src="https://github.com/user-attachments/assets/5413a7ec-1cb3-44ee-a411-b72282703f37" />
 </details>
 
-### ui-Switching-Professional-v3.drawio
+### ui-Switching-Professional.drawio
 (Not updated yet)
 - Pro 48 PoE
 - Pro 24 PoE
