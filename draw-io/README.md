@@ -111,12 +111,13 @@ draw.io templates for Ubiquiti rackmount hardware.
 </details>
 
 ### ui-Integrations-NetworkStorage.drawio
+- Enterprise NAS
+- UNAS Pro 8
 - UNAS Pro
 - UNAS Pro 4
-- UNAS Pro 8
 <details>
 <summary>Preview</summary>
-<img width="758" height="878" alt="ui-Integrations-NetworkStorage" src="https://github.com/user-attachments/assets/d42bf6d8-9b02-4e21-86d8-9eacbd843dff" />
+<img width="1713" height="924" alt="ui-Integrations-NetworkStorage" src="https://github.com/user-attachments/assets/acae5e4c-c07f-4028-8097-eea239f27b8d" />
 </details>
 
 ### ui-Integrations-PowerTech.drawio
