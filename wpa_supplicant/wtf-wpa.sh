@@ -47,7 +47,15 @@ debPath="/etc/wpa_supplicant/packages"
 ####################################### 
 # Load external variable file
 . ${backupPath}/var-wtf-wpa.txt &> /dev/null
-wtf_ver="2.4"
+wtf_ver="2.5"
+
+# Newer UniFi OS ships Debian 13+, where the Debian 11 packages above won't install.
+# Swap in the matching ones (found in "deb packages/debian13").
+os_major=$(. /etc/os-release 2>/dev/null; echo "${VERSION_ID%%.*}")
+if [[ "${os_major}" =~ ^[0-9]+$ ]] && (( os_major >= 13 )); then
+	libpcspkg="libpcsclite1_2.3.3-1_arm64.deb"
+	wpapkg="wpasupplicant_2.10-24_arm64.deb"
+fi
 wpasupp_install=""
 
 full_filename=$(basename -- "$0")
@@ -398,10 +406,13 @@ wpa-supp-enable () {
 install-pkg () {
 	local pkgName="$1"
 	output I "Installing" "${pkgName}"
-	if dpkg -i ${backupPath}/"${pkgName}" 1> /dev/null 2> >(log-stream); then
+	local dpkg_err
+	if dpkg_err=$(dpkg -i ${backupPath}/"${pkgName}" 2>&1 1> /dev/null); then
 		output T "dpkg" "Install successful: ${pkgName}"; log I "Install successful: ${pkgName}"
 	else
+		echo "${dpkg_err}" | log-stream
 		output C "dpkg" "Install failed: ${pkgName} - EXITING"; log E "Install failed: ${pkgName} - EXITING"
+		printf "%s\n" "${dpkg_err}" | sed 's/^/        /'
 		exit 1
 	fi
 }
