@@ -1,9 +1,8 @@
 > [!CAUTION]
-> If the installed version of the Network app is newer than the version in a Unifi OS update, it may need to download the newer version of the Network app before it can restore your configuration.
+> Updating UniFi OS version to 6.x upgrades the underlying Debian distribution to Debian 13.
 > 
-> You may need to SSH into your device and run ``` wtf-wpa.sh -i ``` to repair the wpa_supplicant service and allow it to download the update.
+> You will need to SSH into your device and run ``` wtf-wpa.sh -i ``` to install the newer apps for the wpa_supplicant service and update the configuration.
 > 
-> Example: The UniFi OS 4.1.13 update is bundled with UniFi Network 8.6.9, but I had 9.0.108 installed already and had to do the process above.
 > 
 
 
