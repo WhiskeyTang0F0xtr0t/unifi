@@ -68,7 +68,6 @@ You will need to provide your own certificates, but the script, deb files and va
 - [wtf-wpa.sh](wtf-wpa.sh)
 - [wpasupplicant_2.9.0-21_arm64.deb](deb%20packages/wpasupplicant_2.9.0-21_arm64.deb) - wpa_supplicant installer
 - [libpcsclite1_1.9.1-1_arm64.deb](deb%20packages/libpcsclite1_1.9.1-1_arm64.deb) - Dependancy for wpasupplicant_2.9.0-21_arm64.deb
-- **Debian 12+ / 13 (newer UniFi OS):** use the packages in [deb packages/debian13](deb%20packages/debian13) (`wpasupplicant_2.10-24_arm64.deb`, `libpcsclite1_2.3.3-1_arm64.deb`) and copy them to your backup folder as well. The script switches to them on its own when it sees Debian 13 or newer.
 - [var-wtf-wpa.txt](var-wtf-wpa.txt) (_optional, but recommended_)
 
 ### USER VARIABLES
